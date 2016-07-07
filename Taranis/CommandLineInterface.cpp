@@ -127,5 +127,10 @@ QString CommandLineInterface::helpMessage() const
             "\n"
             "  -h, -?, --help\tDisplay this help and exit\n").arg(applicationExecutable);
 
+    if ( !m_version.isEmpty() )
+    {
+        message += QStringLiteral("  -v, --version\tDisplay version information and exit\n");
+    }
+
     return message;
 }

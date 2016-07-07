@@ -59,7 +59,8 @@ void TaranisTestSuite::testHelpMessageWithVersion()
     QString expected = "Version 1.2.3.4\n"
                        "===============\n"
                        "Usage: TaranisTest.exe [OPTION]\n\n"
-                       "  -h, -?, --help\tDisplay this help and exit\n";
+                       "  -h, -?, --help\tDisplay this help and exit\n"
+                       "  -v, --version\tDisplay version information and exit\n";
 
 
     QCOMPARE( cli.helpMessage(), expected );
@@ -72,7 +73,8 @@ void TaranisTestSuite::testHelpMessageWithNameAndVersion()
     QString expected = "MyApp - Version 1.2.3.4\n"
                        "=======================\n"
                        "Usage: TaranisTest.exe [OPTION]\n\n"
-                       "  -h, -?, --help\tDisplay this help and exit\n";
+                       "  -h, -?, --help\tDisplay this help and exit\n"
+                       "  -v, --version\tDisplay version information and exit\n";
 
 
     QCOMPARE( cli.helpMessage(), expected );
@@ -121,7 +123,8 @@ void TaranisTestSuite::testHelpMessageWithDescriptionAndNameAndVersion()
                        "=======================\n"
                        "I'm a great app!\n\n"
                        "Usage: TaranisTest.exe [OPTION]\n\n"
-                       "  -h, -?, --help\tDisplay this help and exit\n";
+                       "  -h, -?, --help\tDisplay this help and exit\n"
+                       "  -v, --version\tDisplay version information and exit\n";
 
 
     QCOMPARE( cli.helpMessage(), expected );
