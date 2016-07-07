@@ -38,6 +38,8 @@ namespace Taranis
             explicit TaranisTestSuite(QObject *parent = 0) : QObject(parent) {}
 
         private slots:
+            void testDefaultHelpMessage();
+            void testHelpMessageWithName();
 
         };
     }

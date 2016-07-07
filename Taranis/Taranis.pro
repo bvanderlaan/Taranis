@@ -7,10 +7,12 @@ TEMPLATE = lib
 
 DEFINES += TARANIS_LIBRARY
 
-SOURCES +=
+SOURCES += \
+    CommandLineInterface.cpp
 
 HEADERS += \
-    taranis_global.hpp
+    taranis_global.hpp \
+    CommandLineInterface.hpp
 
 unix {
     target.path = /usr/lib

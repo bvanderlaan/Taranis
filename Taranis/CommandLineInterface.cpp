@@ -21,33 +21,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-#include <QTest>
-#include "TaranisTestSuite.hpp"
+#include <QCoreApplication>
+#include <QFileInfo>
 #include "CommandLineInterface.hpp"
 
-using namespace Taranis::UnitTest;
+using namespace Taranis;
 
-/////////////////////////////////////////////////////////////////////////////
-void TaranisTestSuite::testDefaultHelpMessage()
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface::CommandLineInterface(QObject *parent) :
+    CommandLineInterface("", parent)
 {
-    CommandLineInterface cli;
-    QString expected = "Usage: TaranisTest.exe [OPTION]\n\n"
-                       "-h, -?, --help\tDisplay this help and exit\n";
 
-
-    QCOMPARE( cli.helpMessage(), expected );
 }
 
-/////////////////////////////////////////////////////////////////////////////
-void TaranisTestSuite::testHelpMessageWithName()
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface::CommandLineInterface(const QString applicationName, QObject *parent)
+    : QObject(parent),
+      m_applicationName(applicationName)
 {
-    CommandLineInterface cli("MyApp");
-    QString expected = "MyApp\n"
-                       "=====\n"
-                       "Usage: TaranisTest.exe [OPTION]\n\n"
-                       "-h, -?, --help\tDisplay this help and exit\n";
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+QString CommandLineInterface::helpMessage() const
+{
+    QString message;
+    QString applicationExecutable = QFileInfo( QCoreApplication::applicationFilePath() ).fileName();
+
+    if ( !m_applicationName.isEmpty() )
+    {
+        message += QString("%1\n").arg(m_applicationName);
+        message += QString(message.length()-1, '=') + QStringLiteral("\n");
+    }
 
 
-    QCOMPARE( cli.helpMessage(), expected );
+    message += QString("Usage: %1 [OPTION]\n"
+            "\n"
+            "-h, -?, --help\tDisplay this help and exit\n").arg(applicationExecutable);
+
+    return message;
 }

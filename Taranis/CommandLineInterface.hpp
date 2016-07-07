@@ -21,33 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+#ifndef COMMANDLINEINTERFACE_HPP
+#define COMMANDLINEINTERFACE_HPP
 
-#include <QTest>
-#include "TaranisTestSuite.hpp"
-#include "CommandLineInterface.hpp"
+#include <QObject>
 
-using namespace Taranis::UnitTest;
-
-/////////////////////////////////////////////////////////////////////////////
-void TaranisTestSuite::testDefaultHelpMessage()
+namespace Taranis
 {
-    CommandLineInterface cli;
-    QString expected = "Usage: TaranisTest.exe [OPTION]\n\n"
-                       "-h, -?, --help\tDisplay this help and exit\n";
+    namespace UnitTest
+    {
+        class TaranisTestSuite;
+    }
 
+    /**
+     * @brief The CommandLineInterface class represents a command line interface.
+     * Your application will accept command line arguments which are defined in the CommandLineInterface object.
+     */
+    class CommandLineInterface : public QObject
+    {
+        Q_OBJECT
+        friend class UnitTest::TaranisTestSuite;
+    public:
+        explicit CommandLineInterface(QObject *parent = 0);
+        explicit CommandLineInterface(const QString applicationName, QObject *parent = 0);
 
-    QCOMPARE( cli.helpMessage(), expected );
+    signals:
+
+    public slots:
+
+    protected:
+        QString helpMessage() const;
+
+    private:
+        QString m_applicationName;
+    };
 }
 
-/////////////////////////////////////////////////////////////////////////////
-void TaranisTestSuite::testHelpMessageWithName()
-{
-    CommandLineInterface cli("MyApp");
-    QString expected = "MyApp\n"
-                       "=====\n"
-                       "Usage: TaranisTest.exe [OPTION]\n\n"
-                       "-h, -?, --help\tDisplay this help and exit\n";
-
-
-    QCOMPARE( cli.helpMessage(), expected );
-}
+#endif // COMMANDLINEINTERFACE_HPP
