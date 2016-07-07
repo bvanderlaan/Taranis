@@ -48,6 +48,7 @@ namespace Taranis
 
         QString name() const;
         QString version() const;
+        void process() const;
 
         CommandLineInterface& WithVersion(const QString& version );
 

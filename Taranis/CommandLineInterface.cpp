@@ -62,6 +62,19 @@ QString CommandLineInterface::version() const
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
+void CommandLineInterface::process() const
+{
+    foreach( QString arg, QCoreApplication::arguments() )
+    {
+        if ( arg.toLower() == "-h" )
+        {
+            printf( helpMessage().toLatin1().data() );
+            QCoreApplication::exit(0);
+        }
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface& CommandLineInterface::WithVersion(const QString &version)
 {
     m_version = version;
