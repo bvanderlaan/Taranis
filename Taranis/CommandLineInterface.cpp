@@ -94,7 +94,7 @@ QString CommandLineInterface::helpMessage() const
 
     message += QString("Usage: %1 [OPTION]\n"
             "\n"
-            "-h, -?, --help\tDisplay this help and exit\n").arg(applicationExecutable);
+            "  -h, -?, --help\tDisplay this help and exit\n").arg(applicationExecutable);
 
     return message;
 }

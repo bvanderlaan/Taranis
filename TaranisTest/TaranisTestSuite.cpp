@@ -33,7 +33,7 @@ void TaranisTestSuite::testDefaultHelpMessage()
 {
     CommandLineInterface cli;
     QString expected = "Usage: TaranisTest.exe [OPTION]\n\n"
-                       "-h, -?, --help\tDisplay this help and exit\n";
+                       "  -h, -?, --help\tDisplay this help and exit\n";
 
 
     QCOMPARE( cli.helpMessage(), expected );
@@ -46,7 +46,7 @@ void TaranisTestSuite::testHelpMessageWithName()
     QString expected = "MyApp\n"
                        "=====\n"
                        "Usage: TaranisTest.exe [OPTION]\n\n"
-                       "-h, -?, --help\tDisplay this help and exit\n";
+                       "  -h, -?, --help\tDisplay this help and exit\n";
 
 
     QCOMPARE( cli.helpMessage(), expected );
@@ -59,7 +59,7 @@ void TaranisTestSuite::testHelpMessageWithVersion()
     QString expected = "Version 1.2.3.4\n"
                        "===============\n"
                        "Usage: TaranisTest.exe [OPTION]\n\n"
-                       "-h, -?, --help\tDisplay this help and exit\n";
+                       "  -h, -?, --help\tDisplay this help and exit\n";
 
 
     QCOMPARE( cli.helpMessage(), expected );
@@ -72,7 +72,7 @@ void TaranisTestSuite::testHelpMessageWithNameAndVersion()
     QString expected = "MyApp - Version 1.2.3.4\n"
                        "=======================\n"
                        "Usage: TaranisTest.exe [OPTION]\n\n"
-                       "-h, -?, --help\tDisplay this help and exit\n";
+                       "  -h, -?, --help\tDisplay this help and exit\n";
 
 
     QCOMPARE( cli.helpMessage(), expected );
