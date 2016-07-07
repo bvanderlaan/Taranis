@@ -79,6 +79,55 @@ void TaranisTestSuite::testHelpMessageWithNameAndVersion()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testHelpMessageWithDescription()
+{
+    auto cli = CommandLineInterface()
+                        .WithDescription("I'm a great app!");
+
+
+    QString expected = "I'm a great app!\n\n"
+                       "Usage: TaranisTest.exe [OPTION]\n\n"
+                       "  -h, -?, --help\tDisplay this help and exit\n";
+
+
+    QCOMPARE( cli.helpMessage(), expected );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testHelpMessageWithDescriptionAndName()
+{
+    auto cli = CommandLineInterface("MyApp")
+                            .WithDescription("I'm a great app!");
+
+    QString expected = "MyApp\n"
+                       "=====\n"
+                       "I'm a great app!\n\n"
+                       "Usage: TaranisTest.exe [OPTION]\n\n"
+                       "  -h, -?, --help\tDisplay this help and exit\n";
+
+
+    QCOMPARE( cli.helpMessage(), expected );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testHelpMessageWithDescriptionAndNameAndVersion()
+{
+    auto cli = CommandLineInterface("MyApp")
+                        .WithDescription("I'm a great app!")
+                        .WithVersion("1.2.3.4");
+
+
+    QString expected = "MyApp - Version 1.2.3.4\n"
+                       "=======================\n"
+                       "I'm a great app!\n\n"
+                       "Usage: TaranisTest.exe [OPTION]\n\n"
+                       "  -h, -?, --help\tDisplay this help and exit\n";
+
+
+    QCOMPARE( cli.helpMessage(), expected );
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testConstructWithNameAndVersion()
 {
     CommandLineInterface cli("MyApp", "1.2.3.4");
@@ -92,4 +141,11 @@ void TaranisTestSuite::testSetVersionWithFluentInterface()
     auto cli = CommandLineInterface("MyApp").WithVersion("1.2.3.4");
     QCOMPARE( cli.name(), QStringLiteral("MyApp") );
     QCOMPARE( cli.version(), QStringLiteral("1.2.3.4"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testSetDescription()
+{
+    auto cli = CommandLineInterface().WithDescription("I'm a great app!");
+    QCOMPARE( cli.description(), QStringLiteral("I'm a great app!") );
 }

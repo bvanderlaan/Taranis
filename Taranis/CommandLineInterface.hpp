@@ -48,9 +48,11 @@ namespace Taranis
 
         QString name() const;
         QString version() const;
+        QString description() const;
         void process() const;
 
         CommandLineInterface& WithVersion(const QString& version );
+        CommandLineInterface &WithDescription(const QString& description );
 
     protected:
         QString helpMessage() const;
@@ -58,6 +60,7 @@ namespace Taranis
     private:
         QString m_applicationName;
         QString m_version;
+        QString m_description;
     };
 }
 

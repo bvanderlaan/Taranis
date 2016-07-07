@@ -42,8 +42,12 @@ namespace Taranis
             void testHelpMessageWithName();
             void testHelpMessageWithVersion();
             void testHelpMessageWithNameAndVersion();
+            void testHelpMessageWithDescription();
+            void testHelpMessageWithDescriptionAndName();
+            void testHelpMessageWithDescriptionAndNameAndVersion();
             void testConstructWithNameAndVersion();
             void testSetVersionWithFluentInterface();
+            void testSetDescription();
 
 
         };

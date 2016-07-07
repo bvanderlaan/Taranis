@@ -62,6 +62,12 @@ QString CommandLineInterface::version() const
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
+QString CommandLineInterface::description() const
+{
+    return m_description;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 void CommandLineInterface::process() const
 {
     foreach( QString arg, QCoreApplication::arguments() )
@@ -78,6 +84,13 @@ void CommandLineInterface::process() const
 CommandLineInterface& CommandLineInterface::WithVersion(const QString &version)
 {
     m_version = version;
+    return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface &CommandLineInterface::WithDescription(const QString &description)
+{
+    m_description = description;
     return *this;
 }
 
@@ -103,6 +116,11 @@ QString CommandLineInterface::helpMessage() const
     if ( !message.isEmpty() )
     {
         message += QString(message.length()-1, '=') + QStringLiteral("\n");
+    }
+
+    if ( !m_description.isEmpty() )
+    {
+        message += m_description + QStringLiteral("\n\n");
     }
 
     message += QString("Usage: %1 [OPTION]\n"
