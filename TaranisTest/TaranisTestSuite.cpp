@@ -51,3 +51,45 @@ void TaranisTestSuite::testHelpMessageWithName()
 
     QCOMPARE( cli.helpMessage(), expected );
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testHelpMessageWithVersion()
+{
+    auto cli = CommandLineInterface().WithVersion("1.2.3.4");
+    QString expected = "Version 1.2.3.4\n"
+                       "===============\n"
+                       "Usage: TaranisTest.exe [OPTION]\n\n"
+                       "-h, -?, --help\tDisplay this help and exit\n";
+
+
+    QCOMPARE( cli.helpMessage(), expected );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testHelpMessageWithNameAndVersion()
+{
+    CommandLineInterface cli("MyApp", "1.2.3.4");
+    QString expected = "MyApp - Version 1.2.3.4\n"
+                       "=======================\n"
+                       "Usage: TaranisTest.exe [OPTION]\n\n"
+                       "-h, -?, --help\tDisplay this help and exit\n";
+
+
+    QCOMPARE( cli.helpMessage(), expected );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testConstructWithNameAndVersion()
+{
+    CommandLineInterface cli("MyApp", "1.2.3.4");
+    QCOMPARE( cli.name(), QStringLiteral("MyApp") );
+    QCOMPARE( cli.version(), QStringLiteral("1.2.3.4"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testSetVersionWithFluentInterface()
+{
+    auto cli = CommandLineInterface("MyApp").WithVersion("1.2.3.4");
+    QCOMPARE( cli.name(), QStringLiteral("MyApp") );
+    QCOMPARE( cli.version(), QStringLiteral("1.2.3.4"));
+}

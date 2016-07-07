@@ -40,6 +40,11 @@ namespace Taranis
         private slots:
             void testDefaultHelpMessage();
             void testHelpMessageWithName();
+            void testHelpMessageWithVersion();
+            void testHelpMessageWithNameAndVersion();
+            void testConstructWithNameAndVersion();
+            void testSetVersionWithFluentInterface();
+
 
         };
     }

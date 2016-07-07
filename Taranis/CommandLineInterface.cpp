@@ -28,18 +28,44 @@
 using namespace Taranis;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface::CommandLineInterface(QObject *parent) :
-    CommandLineInterface("", parent)
+CommandLineInterface::CommandLineInterface() :
+    CommandLineInterface(QStringLiteral(""))
 {
 
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface::CommandLineInterface(const QString applicationName, QObject *parent)
-    : QObject(parent),
-      m_applicationName(applicationName)
+CommandLineInterface::CommandLineInterface(const QString applicationName)
+    : CommandLineInterface(applicationName, QStringLiteral(""))
 {
 
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface::CommandLineInterface(const QString applicationName, const QString version)
+    : m_applicationName(applicationName),
+      m_version(version)
+{
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+QString CommandLineInterface::name() const
+{
+    return m_applicationName;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+QString CommandLineInterface::version() const
+{
+    return m_version;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface& CommandLineInterface::WithVersion(const QString &version)
+{
+    m_version = version;
+    return *this;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,12 +74,23 @@ QString CommandLineInterface::helpMessage() const
     QString message;
     QString applicationExecutable = QFileInfo( QCoreApplication::applicationFilePath() ).fileName();
 
-    if ( !m_applicationName.isEmpty() )
+    if ( !m_applicationName.isEmpty() && !m_version.isEmpty() )
+    {
+        message += QString("%1 - Version %2\n").arg(m_applicationName).arg(m_version);
+    }
+    else if ( !m_applicationName.isEmpty() )
     {
         message += QString("%1\n").arg(m_applicationName);
-        message += QString(message.length()-1, '=') + QStringLiteral("\n");
+    }
+    else if ( !m_version.isEmpty() )
+    {
+        message += QString("Version %1\n").arg(m_version);
     }
 
+    if ( !message.isEmpty() )
+    {
+        message += QString(message.length()-1, '=') + QStringLiteral("\n");
+    }
 
     message += QString("Usage: %1 [OPTION]\n"
             "\n"

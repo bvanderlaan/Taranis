@@ -37,23 +37,26 @@ namespace Taranis
      * @brief The CommandLineInterface class represents a command line interface.
      * Your application will accept command line arguments which are defined in the CommandLineInterface object.
      */
-    class CommandLineInterface : public QObject
+    class CommandLineInterface
     {
-        Q_OBJECT
         friend class UnitTest::TaranisTestSuite;
     public:
-        explicit CommandLineInterface(QObject *parent = 0);
-        explicit CommandLineInterface(const QString applicationName, QObject *parent = 0);
+        CommandLineInterface();
+        explicit CommandLineInterface(const QString applicationName);
+        explicit CommandLineInterface(const QString applicationName, const QString version);
+        ~CommandLineInterface() {}
 
-    signals:
+        QString name() const;
+        QString version() const;
 
-    public slots:
+        CommandLineInterface& WithVersion(const QString& version );
 
     protected:
         QString helpMessage() const;
 
     private:
         QString m_applicationName;
+        QString m_version;
     };
 }
 
