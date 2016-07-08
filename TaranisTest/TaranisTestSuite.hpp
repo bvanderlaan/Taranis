@@ -49,6 +49,24 @@ namespace Taranis
             void testSetVersionWithFluentInterface();
             void testSetDescription();
 
+            /// InputArgument
+            void testIsValidWhenItIs();
+            void testIsValidWhenItsNot();
+            void testWhenArgumentHasPrefixInName();
+            void testPrefixDash();
+            void testPrefixDashDash();
+            void testPrefixDashDashWhenDashIsAlsoAccepted();
+            void testPrefixSlash();
+            void testPrefixWhenNotFound();
+
+            void testArgumentWithDashPrefix();
+            void testArgumentWithDashDashPrefix();
+            void testArgumentWithDashDashPrefixWhenDashPrefixIsAlsoAccepted();
+            void testArgumentWithSlashPrefix();
+            void testArgumentWhenPrefixNotFound();
+            void testArgumentWithUpperCase();
+
+
 
         };
     }

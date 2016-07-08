@@ -25,6 +25,7 @@
 #include <QTest>
 #include "TaranisTestSuite.hpp"
 #include "CommandLineInterface.hpp"
+#include "InputArgument.hpp"
 
 using namespace Taranis::UnitTest;
 
@@ -151,4 +152,107 @@ void TaranisTestSuite::testSetDescription()
 {
     auto cli = CommandLineInterface().WithDescription("I'm a great app!");
     QCOMPARE( cli.description(), QStringLiteral("I'm a great app!") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testIsValidWhenItIs()
+{
+    InputArgument arg( "--help", {"--"} );
+    QCOMPARE( arg.isValid(), true );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testIsValidWhenItsNot()
+{
+    InputArgument arg( "help", {"--"} );
+    QCOMPARE( arg.isValid(), false );
+
+    InputArgument arg2( "--", {"--"} );
+    QCOMPARE( arg2.isValid(), false );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testWhenArgumentHasPrefixInName()
+{
+    InputArgument arg( "--help--this", {"--"} );
+    QCOMPARE( arg.isValid(), true );
+    QCOMPARE( arg.argument(), QStringLiteral("help--this") );
+    QCOMPARE( arg.prefix(), QStringLiteral("--"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testPrefixDash()
+{
+    InputArgument arg( "-help", {"-"} );
+    QCOMPARE( arg.prefix(), QStringLiteral("-") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testPrefixDashDash()
+{
+    InputArgument arg( "--help", {"--"} );
+    QCOMPARE( arg.prefix(), QStringLiteral("--") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testPrefixDashDashWhenDashIsAlsoAccepted()
+{
+    InputArgument arg( "--help", {"-", "--"} );
+    QCOMPARE( arg.prefix(), QStringLiteral("--") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testPrefixSlash()
+{
+    InputArgument arg( "/help", {"/"} );
+    QCOMPARE( arg.prefix(), QStringLiteral("/") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testPrefixWhenNotFound()
+{
+    InputArgument arg( "=help", {"-", "--", "/"} );
+    QCOMPARE( arg.prefix(), QStringLiteral("") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentWithDashPrefix()
+{
+    InputArgument arg( "-help", {"-"} );
+    QCOMPARE( arg.argument(), QStringLiteral("help") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentWithDashDashPrefix()
+{
+    InputArgument arg( "--help", {"--"} );
+    QCOMPARE( arg.argument(), QStringLiteral("help") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentWithDashDashPrefixWhenDashPrefixIsAlsoAccepted()
+{
+    InputArgument arg( "--help", {"-", "--"} );
+    QCOMPARE( arg.argument(), QStringLiteral("help") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentWithSlashPrefix()
+{
+    InputArgument arg( "/help", {"/"} );
+    QCOMPARE( arg.argument(), QStringLiteral("help") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentWhenPrefixNotFound()
+{
+    InputArgument arg( "=help", {"-", "--", "/"} );
+    QCOMPARE( arg.argument(), QStringLiteral("") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentWithUpperCase()
+{
+    InputArgument arg( "--HELP", {"--"} );
+    QCOMPARE( arg.argument(), QStringLiteral("HELP") );
 }
