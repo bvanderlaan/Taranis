@@ -103,21 +103,8 @@ CommandLineInterface &CommandLineInterface::WithDescription(const QString &descr
 ////////////////////////////////////////////////////////////////////////////////////////////////
 QString CommandLineInterface::helpMessage() const
 {
-    QString message;
     QString applicationExecutable = QFileInfo( QCoreApplication::applicationFilePath() ).fileName();
-
-    if ( !m_applicationName.isEmpty() && !m_version.isEmpty() )
-    {
-        message += QString("%1 - Version %2\n").arg(m_applicationName).arg(m_version);
-    }
-    else if ( !m_applicationName.isEmpty() )
-    {
-        message += QString("%1\n").arg(m_applicationName);
-    }
-    else if ( !m_version.isEmpty() )
-    {
-        message += QString("Version %1\n").arg(m_version);
-    }
+    QString message = generateTitle();
 
     if ( !message.isEmpty() )
     {
@@ -139,4 +126,38 @@ QString CommandLineInterface::helpMessage() const
     }
 
     return message;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+QString CommandLineInterface::generateTitle() const
+{
+    QString message;
+    if ( !m_applicationName.isEmpty() && !m_version.isEmpty() )
+    {
+        message += QString("%1 - Version %2\n").arg(m_applicationName).arg(m_version);
+    }
+    else if ( !m_applicationName.isEmpty() )
+    {
+        message += QString("%1\n").arg(m_applicationName);
+    }
+    else if ( !m_version.isEmpty() )
+    {
+        message += QString("Version %1\n").arg(m_version);
+    }
+
+    return message;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void CommandLineInterface::doHelpAction() const
+{
+    printf( helpMessage().toLatin1().data() );
+    QCoreApplication::exit(0);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void CommandLineInterface::doVersionAction() const
+{
+    printf( generateTitle().toLatin1().data() );
+    QCoreApplication::exit(0);
 }

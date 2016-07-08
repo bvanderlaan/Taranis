@@ -62,6 +62,9 @@ namespace Taranis
         QString m_version;
         QString m_description;
         QList<QString> m_acceptedArgumentPrefixs;
+        void doHelpAction() const;
+        void doVersionAction() const;
+        QString generateTitle() const;
     };
 }
 
