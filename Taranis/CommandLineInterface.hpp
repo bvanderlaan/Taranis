@@ -25,6 +25,8 @@
 #define COMMANDLINEINTERFACE_HPP
 
 #include <QObject>
+#include <QMap>
+#include <QVariant>
 
 namespace Taranis
 {
@@ -58,9 +60,14 @@ namespace Taranis
         QString helpMessage() const;
 
     private:
+        enum ArgumentType {
+            Action,
+            Boolean
+        };
         QString m_applicationName;
         QString m_version;
         QString m_description;
+        QMap<QString, QPair<ArgumentType, QVariant>> m_arguments;
         QList<QString> m_acceptedArgumentPrefixs;
         void doHelpAction() const;
         void doVersionAction() const;

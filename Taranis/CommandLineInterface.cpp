@@ -23,10 +23,13 @@
  */
 #include <QCoreApplication>
 #include <QFileInfo>
+#include <functional>
 #include "CommandLineInterface.hpp"
 #include "InputArgument.hpp"
 
 using namespace Taranis;
+using action_callback = std::function<void()>;
+Q_DECLARE_METATYPE(action_callback)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface::CommandLineInterface() :
@@ -48,7 +51,15 @@ CommandLineInterface::CommandLineInterface(const QString applicationName, const 
       m_version(version),
       m_acceptedArgumentPrefixs( { QStringLiteral("-"), QStringLiteral("--") } )
 {
+
 //    m_acceptedArgumentPrefixs.append( QStringLiteral("/") );
+
+    action_callback helpCallback = std::bind( &CommandLineInterface::doHelpAction, this );
+    action_callback versionCallback = std::bind( &CommandLineInterface::doVersionAction, this );
+
+    m_arguments["version"] = qMakePair(ArgumentType::Action, qVariantFromValue(versionCallback));
+    m_arguments["help"] = qMakePair(ArgumentType::Action, qVariantFromValue(helpCallback));
+    m_arguments["?"] = qMakePair(ArgumentType::Action, qVariantFromValue(helpCallback));
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,8 +90,15 @@ void CommandLineInterface::process() const
         {
             if ( arg.argument().toLower() == "h" )
             {
-                printf( helpMessage().toLatin1().data() );
-                QCoreApplication::exit(0);
+                m_arguments["help"].second.value<action_callback>()();
+            }
+            else if ( arg.argument().toLower() == "?")
+            {
+                m_arguments["?"].second.value<action_callback>()();
+            }
+            else if ( arg.argument().toLower() == "v")
+            {
+                m_arguments["version"].second.value<action_callback>()();
             }
         }
     }
