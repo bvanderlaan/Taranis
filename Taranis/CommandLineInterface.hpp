@@ -58,6 +58,7 @@ namespace Taranis
 
     protected:
         QString helpMessage() const;
+        QString getArgumentKey( const QString& input ) const;
 
     private:
         enum ArgumentType {

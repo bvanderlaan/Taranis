@@ -88,20 +88,26 @@ void CommandLineInterface::process() const
         InputArgument arg( a, m_acceptedArgumentPrefixs );
         if ( arg.isValid() )
         {
-            if ( arg.argument().toLower() == "h" )
+            QString key = getArgumentKey( arg.argument().toLower() );
+            if ( !key.isEmpty() )
             {
-                m_arguments["help"].second.value<action_callback>()();
-            }
-            else if ( arg.argument().toLower() == "?")
-            {
-                m_arguments["?"].second.value<action_callback>()();
-            }
-            else if ( arg.argument().toLower() == "v")
-            {
-                m_arguments["version"].second.value<action_callback>()();
+                m_arguments[key].second.value<action_callback>()();
             }
         }
     }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+QString CommandLineInterface::getArgumentKey(const QString &input) const
+{
+    foreach( QString key, m_arguments.keys() )
+    {
+        if ( key.at(0) == input.at(0) )
+        {
+            return key;
+        }
+    }
+    return "";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
