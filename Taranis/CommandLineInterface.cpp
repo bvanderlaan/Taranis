@@ -61,7 +61,9 @@ CommandLineInterface::CommandLineInterface(const QString applicationName, const 
     action_callback versionCallback = std::bind( &CommandLineInterface::doVersionAction, this );
 
     m_arguments["version"] = qMakePair(ArgumentType::Action, qVariantFromValue(versionCallback));
+    m_arguments["v"] = qMakePair(ArgumentType::Action, qVariantFromValue(versionCallback));
     m_arguments["help"] = qMakePair(ArgumentType::Action, qVariantFromValue(helpCallback));
+    m_arguments["h"] = qMakePair(ArgumentType::Action, qVariantFromValue(helpCallback));
     m_arguments["?"] = qMakePair(ArgumentType::Action, qVariantFromValue(helpCallback));
 }
 
@@ -91,26 +93,13 @@ void CommandLineInterface::process() const
         InputArgument arg( a, m_acceptedArgumentPrefixs );
         if ( arg.isValid() )
         {
-            QString key = getArgumentKey( arg.argument().toLower() );
-            if ( !key.isEmpty() )
+            QString key = arg.argument().toLower();
+            if ( m_arguments.contains( key ) )
             {
                 m_arguments[key].second.value<action_callback>()();
             }
         }
     }
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-QString CommandLineInterface::getArgumentKey(const QString &input) const
-{
-    foreach( QString key, m_arguments.keys() )
-    {
-        if ( key.at(0) == input.at(0) )
-        {
-            return key;
-        }
-    }
-    return "";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
