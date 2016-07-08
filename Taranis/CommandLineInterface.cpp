@@ -23,6 +23,7 @@
  */
 #include <QCoreApplication>
 #include <QFileInfo>
+#include <QDir>
 #include <functional>
 #include "CommandLineInterface.hpp"
 #include "InputArgument.hpp"
@@ -51,8 +52,10 @@ CommandLineInterface::CommandLineInterface(const QString applicationName, const 
       m_version(version),
       m_acceptedArgumentPrefixs( { QStringLiteral("-"), QStringLiteral("--") } )
 {
-
-//    m_acceptedArgumentPrefixs.append( QStringLiteral("/") );
+    if ( QDir::separator() != QChar('/') )
+    {
+        m_acceptedArgumentPrefixs.append( QStringLiteral("/") );
+    }
 
     action_callback helpCallback = std::bind( &CommandLineInterface::doHelpAction, this );
     action_callback versionCallback = std::bind( &CommandLineInterface::doVersionAction, this );
