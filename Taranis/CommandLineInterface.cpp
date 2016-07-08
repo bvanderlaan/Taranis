@@ -93,7 +93,12 @@ void CommandLineInterface::process() const
             QString key = arg.argument().toLower();
             if ( m_arguments.contains( key ) )
             {
-                m_arguments[key].second.value<action_callback>()();
+                switch( m_arguments[key].first )
+                {
+                    case ArgumentType::Action:
+                        m_arguments[key].second.value<action_callback>()();
+                    break;
+                }
             }
         }
     }
