@@ -61,6 +61,7 @@ namespace Taranis
         QString m_applicationName;
         QString m_version;
         QString m_description;
+        QList<QString> m_acceptedArgumentPrefixs;
     };
 }
 

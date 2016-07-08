@@ -24,6 +24,7 @@
 #include <QCoreApplication>
 #include <QFileInfo>
 #include "CommandLineInterface.hpp"
+#include "InputArgument.hpp"
 
 using namespace Taranis;
 
@@ -44,9 +45,10 @@ CommandLineInterface::CommandLineInterface(const QString applicationName)
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface::CommandLineInterface(const QString applicationName, const QString version)
     : m_applicationName(applicationName),
-      m_version(version)
+      m_version(version),
+      m_acceptedArgumentPrefixs( { QStringLiteral("-"), QStringLiteral("--") } )
 {
-
+//    m_acceptedArgumentPrefixs.append( QStringLiteral("/") );
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,12 +72,16 @@ QString CommandLineInterface::description() const
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void CommandLineInterface::process() const
 {
-    foreach( QString arg, QCoreApplication::arguments() )
+    foreach( QString a, QCoreApplication::arguments() )
     {
-        if ( arg.toLower() == "-h" )
+        InputArgument arg( a, m_acceptedArgumentPrefixs );
+        if ( arg.isValid() )
         {
-            printf( helpMessage().toLatin1().data() );
-            QCoreApplication::exit(0);
+            if ( arg.argument().toLower() == "h" )
+            {
+                printf( helpMessage().toLatin1().data() );
+                QCoreApplication::exit(0);
+            }
         }
     }
 }
