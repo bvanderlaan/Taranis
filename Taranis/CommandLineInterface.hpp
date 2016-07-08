@@ -27,6 +27,7 @@
 #include <QObject>
 #include <QMap>
 #include <QVariant>
+#include <functional>
 
 namespace Taranis
 {
@@ -54,7 +55,8 @@ namespace Taranis
         void process() const;
 
         CommandLineInterface& WithVersion(const QString& version );
-        CommandLineInterface &WithDescription(const QString& description );
+        CommandLineInterface& WithDescription(const QString& description );
+        CommandLineInterface& WithAction( const QString& name, std::function<void()> action );
 
     protected:
         QString helpMessage() const;
@@ -72,6 +74,7 @@ namespace Taranis
         void doHelpAction() const;
         void doVersionAction() const;
         QString generateTitle() const;
+        void addArgument( const QString& name, QPair<ArgumentType, QVariant> meta );
     };
 }
 

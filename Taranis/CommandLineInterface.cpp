@@ -24,7 +24,6 @@
 #include <QCoreApplication>
 #include <QFileInfo>
 #include <QDir>
-#include <functional>
 #include "CommandLineInterface.hpp"
 #include "InputArgument.hpp"
 
@@ -60,11 +59,9 @@ CommandLineInterface::CommandLineInterface(const QString applicationName, const 
     action_callback helpCallback = std::bind( &CommandLineInterface::doHelpAction, this );
     action_callback versionCallback = std::bind( &CommandLineInterface::doVersionAction, this );
 
-    m_arguments["version"] = qMakePair(ArgumentType::Action, qVariantFromValue(versionCallback));
-    m_arguments["v"] = qMakePair(ArgumentType::Action, qVariantFromValue(versionCallback));
-    m_arguments["help"] = qMakePair(ArgumentType::Action, qVariantFromValue(helpCallback));
-    m_arguments["h"] = qMakePair(ArgumentType::Action, qVariantFromValue(helpCallback));
-    m_arguments["?"] = qMakePair(ArgumentType::Action, qVariantFromValue(helpCallback));
+    WithAction("version", versionCallback);
+    WithAction("help", helpCallback);
+    WithAction("?", helpCallback);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,6 +111,25 @@ CommandLineInterface &CommandLineInterface::WithDescription(const QString &descr
 {
     m_description = description;
     return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface &CommandLineInterface::WithAction(const QString &name, std::function<void()> action)
+{
+    auto pair = qMakePair(ArgumentType::Action, qVariantFromValue(action));
+    addArgument( name, pair );
+
+    return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void CommandLineInterface::addArgument(const QString &name, QPair<CommandLineInterface::ArgumentType, QVariant> meta)
+{
+    m_arguments[name] = meta;
+    if ( name.length() > 1 )
+    {
+        m_arguments[name.at(0)] = meta;
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
