@@ -54,9 +54,9 @@ CommandLineInterface::CommandLineInterface(const QString applicationName, const 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface::CommandLineInterface(const QString applicationName, const QString version, QStringList arguments)
-    : m_applicationName(applicationName),
+    : m_acceptedArgumentPrefixs( { QStringLiteral("-"), QStringLiteral("--") } ),
+      m_applicationName(applicationName),
       m_version(version),
-      m_acceptedArgumentPrefixs( { QStringLiteral("-"), QStringLiteral("--") } ),
       m_inputArguments( arguments )
 {
     if ( QDir::separator() != QChar('/') )

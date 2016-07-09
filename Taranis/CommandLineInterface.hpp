@@ -58,27 +58,27 @@ namespace Taranis
         CommandLineInterface& WithVersion(const QString& version );
         CommandLineInterface& WithDescription(const QString& description );
         CommandLineInterface& WithAction( const QString& name, std::function<void()> action );
-        CommandLineInterface& process();
+        virtual CommandLineInterface& process();
 
     protected:
-        QString helpMessage() const;
-
-    private:
         enum ArgumentType {
             Action,
             Boolean
         };
+        virtual QString helpMessage() const;
+        virtual void doHelpAction() const;
+        virtual void doVersionAction() const;
+        virtual QString generateTitle() const;
+        void addArgument( const QString& name, QPair<ArgumentType, QVariant> meta );
+
+        QStringList m_acceptedArgumentPrefixs;
+
+    private:
         QString m_applicationName;
         QString m_version;
         QString m_description;
         QMap<QString, QPair<ArgumentType, QVariant>> m_arguments;
-        QStringList m_acceptedArgumentPrefixs;
         QStringList m_inputArguments;
-
-        void doHelpAction() const;
-        void doVersionAction() const;
-        QString generateTitle() const;
-        void addArgument( const QString& name, QPair<ArgumentType, QVariant> meta );
     };
 }
 
