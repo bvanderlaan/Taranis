@@ -149,7 +149,7 @@ CommandLineInterface &CommandLineInterface::WithDescription(const QString &descr
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface &CommandLineInterface::WithFlag(const QString &flag, const QString &description)
 {
-    addArgument( new Argument( flag, description, ArgumentType::Action, [this, flag](){
+    addArgument( new Argument( flag, description, ArgumentType::Boolean, [this, flag](){
         m_arguments[flag]->setValue(true);
     }));
     return *this;
@@ -158,7 +158,7 @@ CommandLineInterface &CommandLineInterface::WithFlag(const QString &flag, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface &CommandLineInterface::WithFlag(const QString &flag, const QString &description, std::function<void ()> action)
 {
-    addArgument( new Argument( flag, description, ArgumentType::Action, action) );
+    addArgument( new Argument( flag, description, ArgumentType::Boolean, action) );
     return *this;
 }
 
