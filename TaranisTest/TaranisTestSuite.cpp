@@ -519,6 +519,36 @@ void TaranisTestSuite::testShortSlashVersionArgumentCaseInsensative()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAccessViaIndexOperatorWhenValueExists()
+{
+    auto arguments = Taranis::CommandLineInterface("My Cool App", "1.2.3", {"--mouse"})
+            .WithFlag("mouse", "Force mouse to be displayed in release build.")
+            .process();
+
+    QCOMPARE( arguments["mouse"], QVariant(true) );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAccessViaIndexOperatorWhenValueDoesNotExist()
+{
+    auto arguments = Taranis::CommandLineInterface("My Cool App", "1.2.3")
+            .WithFlag("mouse", "Force mouse to be displayed in release build.")
+            .process();
+
+    QCOMPARE( arguments["mouse"], QVariant(false) );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAccessViaIndexOperatorWhenArgumentIsUnknown()
+{
+    auto arguments = Taranis::CommandLineInterface("My Cool App", "1.2.3", {"--mouse"})
+            .WithFlag("mouse", "Force mouse to be displayed in release build.")
+            .process();
+
+    QCOMPARE( arguments["force"].isValid(), false );
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testIsValidWhenItIs()
 {
     InputArgument arg( "--help", {"--"} );

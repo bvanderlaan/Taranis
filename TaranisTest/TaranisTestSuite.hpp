@@ -92,6 +92,11 @@ namespace Taranis
             void testShortSlashVersionArgument();
             void testShortSlashVersionArgumentCaseInsensative();
 
+            /// Access values
+            void testAccessViaIndexOperatorWhenValueExists();
+            void testAccessViaIndexOperatorWhenValueDoesNotExist();
+            void testAccessViaIndexOperatorWhenArgumentIsUnknown();
+
             /// InputArgument
             void testIsValidWhenItIs();
             void testIsValidWhenItsNot();

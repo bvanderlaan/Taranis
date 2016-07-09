@@ -138,6 +138,18 @@ CommandLineInterface& CommandLineInterface::process()
     return *this;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+QVariant CommandLineInterface::operator[](const QString key) const
+{
+    if ( m_arguments.contains(key) )
+    {
+        return m_arguments[key]->value();
+    }
+    else
+    {
+        return QVariant();
+    }
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface &CommandLineInterface::WithDescription(const QString &description)

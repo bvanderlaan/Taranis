@@ -58,14 +58,13 @@ namespace Taranis
 
         CommandLineInterface& WithVersion(const QString& version );
         CommandLineInterface& WithDescription(const QString& description );
-
         CommandLineInterface& WithFlag( const QString& flag, const QString& description );
         CommandLineInterface& WithFlag( const QString& flag, const QString& description, std::function<void()> action );
-
         CommandLineInterface& WithAction( const QString& name, const QString& description, std::function<void()> action );
 
-
         virtual CommandLineInterface& process();
+
+        QVariant operator[](const QString key) const;
 
     protected:
         virtual QString helpMessage() const;
