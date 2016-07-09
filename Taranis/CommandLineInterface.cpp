@@ -131,12 +131,7 @@ CommandLineInterface& CommandLineInterface::process()
             QString key = arg.argument().toLower();
             if ( m_arguments.contains( key ) )
             {
-                switch( m_arguments[key]->type() )
-                {
-                    case ArgumentType::Action:
-                        m_arguments[key]->callback()();
-                    break;
-                }
+                m_arguments[key]->callback()();
             }
         }
     }
