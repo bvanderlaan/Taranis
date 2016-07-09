@@ -22,15 +22,34 @@
  * THE SOFTWARE.
  */
 #include <QCoreApplication>
+#include <QDebug>
 #include "CommandLineInterface.hpp"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
+
+    auto arguments = Taranis::CommandLineInterface("My Cool App")
+            .WithVersion("1.2.3.4-abc")
+            .WithFlag("mouse", "Force mouse to be displayed in release build.")
+            .process();
+
+    qDebug() << "Show Mouse? " << ( arguments["mouse"].toBool() ? "Yes" : "No" );
+
+
+    /// OR ///
+
+    bool showMouse( false );
     Taranis::CommandLineInterface("My Cool App")
             .WithVersion("1.2.3.4-abc")
+            .WithFlag("mouse", "Force mouse to be displayed in release build.",
+                      [&showMouse]() {
+                            showMouse = true;
+                       })
             .process();
+
+    qDebug() << "Show Mouse? " << ( showMouse ? "Yes" : "No" );
 
     return a.exec();
 }
