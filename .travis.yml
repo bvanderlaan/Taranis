@@ -12,10 +12,10 @@ script:
   - qmake Taranis.pro
   - make
 
-  addons:
-    apt:
-      sources:
-        - ubuntu-sdk-team
-      packages:
-        - qt5-qmake
-        - qtbase5-dev
+addons:
+  apt:
+    sources:
+      - ubuntu-sdk-team
+    packages:
+      - qt5-qmake
+      - qtbase5-dev
