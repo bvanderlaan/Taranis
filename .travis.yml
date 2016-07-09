@@ -1,4 +1,6 @@
 language: cpp
+sudo: required
+dist: trusty
 
 compiler: 
   - gcc
@@ -18,4 +20,4 @@ addons:
       - ubuntu-sdk-team
     packages:
       - qt5-qmake
-      - qtbase5-dev
+      - qt5-default
