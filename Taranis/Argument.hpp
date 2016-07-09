@@ -34,7 +34,6 @@ namespace Taranis
     class Argument
     {
     public:
-        Argument(const QString name, const QString description, const ArgumentType type);
         Argument(const QString name, const QString description, const ArgumentType type, std::function<void()> callback);
         ~Argument() {}
 

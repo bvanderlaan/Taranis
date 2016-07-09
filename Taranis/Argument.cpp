@@ -26,22 +26,20 @@
 using namespace Taranis;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-Argument::Argument(const QString name, const QString description, const ArgumentType type) :
-    m_name( name ),
-    m_description( description ),
-    m_type( type )
-{
-
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
 Argument::Argument(const QString name, const QString description, const ArgumentType type, std::function<void ()> callback) :
     m_name( name ),
     m_description( description ),
     m_type( type ),
     m_actionCallback( callback )
 {
-
+    switch (m_type)
+    {
+    case ArgumentType::Boolean:
+        m_value = false;
+        break;
+    default:
+        break;
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
