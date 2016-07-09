@@ -52,13 +52,17 @@ namespace Taranis
             void testHelpMessageWithDescriptionAndName();
             void testHelpMessageWithDescriptionAndNameAndVersion();
 
-            /// Test Argument Processing
+            /// Test Built in Argument Processing ///
+
+            /// Help Argument
             void testDashHelpArgument();
             void testDashHelpArgumentCaseInsensative();
             void testDashDashHelpArgument();
             void testDashDashHelpArgumentCaseInsensative();
             void testSlashHelpArgument();
             void testSlashHelpArgumentCaseInsensative();
+
+            /// Short Help Argument
             void testShortDashHelpArgument();
             void testShortDashHelpArgumentCaseInsensative();
             void testShortDashDashHelpArgument();
@@ -66,9 +70,26 @@ namespace Taranis
             void testShortSlashHelpArgument();
             void testShortSlashHelpArgumentCaseInsensative();
 
+            /// Question Mark Argument
             void testDashQuestionMarkArgument();
             void testDashDashQuestionMarkArgument();
             void testSlashQuestionMarkArgument();
+
+            /// Version Argument
+            void testDashVersionArgument();
+            void testDashVersionArgumentCaseInsensative();
+            void testDashDashVersionArgument();
+            void testDashDashVersionArgumentCaseInsensative();
+            void testSlashVersionArgument();
+            void testSlashVersionArgumentCaseInsensative();
+
+            /// Short Version Argument
+            void testShortDashVersionArgument();
+            void testShortDashVersionArgumentCaseInsensative();
+            void testShortDashDashVersionArgument();
+            void testShortDashDashVersionArgumentCaseInsensative();
+            void testShortSlashVersionArgument();
+            void testShortSlashVersionArgumentCaseInsensative();
 
             /// InputArgument
             void testIsValidWhenItIs();
@@ -86,9 +107,6 @@ namespace Taranis
             void testArgumentWithSlashPrefix();
             void testArgumentWhenPrefixNotFound();
             void testArgumentWithUpperCase();
-
-
-
         };
     }
 }

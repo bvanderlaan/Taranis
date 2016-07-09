@@ -157,7 +157,7 @@ void TaranisTestSuite::testHelpMessageWithDescriptionAndNameAndVersion()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testDashHelpArgument()
 {
-    int callCount(0);
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
     CommandLineInterface("MyApp", "1.2.3.4", {"-help"}).WithAction("help", [&callCount](){
         callCount++;
     }).process();
@@ -167,7 +167,7 @@ void TaranisTestSuite::testDashHelpArgument()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testDashHelpArgumentCaseInsensative()
 {
-    int callCount(0);
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
     CommandLineInterface("MyApp", "1.2.3.4", {"-HELP"}).WithAction("help", [&callCount](){
         callCount++;
     }).process();
@@ -177,7 +177,7 @@ void TaranisTestSuite::testDashHelpArgumentCaseInsensative()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testDashDashHelpArgument()
 {
-    int callCount(0);
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
     CommandLineInterface("MyApp", "1.2.3.4", {"--help"}).WithAction("help", [&callCount](){
         callCount++;
     }).process();
@@ -187,7 +187,7 @@ void TaranisTestSuite::testDashDashHelpArgument()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testDashDashHelpArgumentCaseInsensative()
 {
-    int callCount(0);
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
     CommandLineInterface("MyApp", "1.2.3.4", {"--HELP"}).WithAction("help", [&callCount](){
         callCount++;
     }).process();
@@ -199,7 +199,7 @@ void TaranisTestSuite::testSlashHelpArgument()
 {
     if ( QDir::separator() != QChar('/') )
     {
-        int callCount(0);
+        int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
         CommandLineInterface("MyApp", "1.2.3.4", {"/help"}).WithAction("help", [&callCount](){
             callCount++;
         }).process();
@@ -216,7 +216,7 @@ void TaranisTestSuite::testSlashHelpArgumentCaseInsensative()
 {
     if ( QDir::separator() != QChar('/') )
     {
-        int callCount(0);
+        int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
         CommandLineInterface("MyApp", "1.2.3.4", {"/HELP"}).WithAction("help", [&callCount](){
             callCount++;
         }).process();
@@ -231,7 +231,7 @@ void TaranisTestSuite::testSlashHelpArgumentCaseInsensative()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testShortDashHelpArgument()
 {
-    int callCount(0);
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
     CommandLineInterface("MyApp", "1.2.3.4", {"-h"}).WithAction("help", [&callCount](){
         callCount++;
     }).process();
@@ -241,7 +241,7 @@ void TaranisTestSuite::testShortDashHelpArgument()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testShortDashHelpArgumentCaseInsensative()
 {
-    int callCount(0);
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
     CommandLineInterface("MyApp", "1.2.3.4", {"-H"}).WithAction("help", [&callCount](){
         callCount++;
     }).process();
@@ -251,7 +251,7 @@ void TaranisTestSuite::testShortDashHelpArgumentCaseInsensative()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testShortDashDashHelpArgument()
 {
-    int callCount(0);
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
     CommandLineInterface("MyApp", "1.2.3.4", {"--h"}).WithAction("help", [&callCount](){
         callCount++;
     }).process();
@@ -261,7 +261,7 @@ void TaranisTestSuite::testShortDashDashHelpArgument()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testShortDashDashHelpArgumentCaseInsensative()
 {
-    int callCount(0);
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
     CommandLineInterface("MyApp", "1.2.3.4", {"--H"}).WithAction("help", [&callCount](){
         callCount++;
     }).process();
@@ -273,7 +273,7 @@ void TaranisTestSuite::testShortSlashHelpArgument()
 {
     if ( QDir::separator() != QChar('/') )
     {
-        int callCount(0);
+        int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
         CommandLineInterface("MyApp", "1.2.3.4", {"/h"}).WithAction("help", [&callCount](){
             callCount++;
         }).process();
@@ -290,7 +290,7 @@ void TaranisTestSuite::testShortSlashHelpArgumentCaseInsensative()
 {
     if ( QDir::separator() != QChar('/') )
     {
-        int callCount(0);
+        int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
         CommandLineInterface("MyApp", "1.2.3.4", {"/H"}).WithAction("help", [&callCount](){
             callCount++;
         }).process();
@@ -305,7 +305,7 @@ void TaranisTestSuite::testShortSlashHelpArgumentCaseInsensative()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testDashQuestionMarkArgument()
 {
-    int callCount(0);
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
     CommandLineInterface("MyApp", "1.2.3.4", {"-?"}).WithAction("?", [&callCount](){
         callCount++;
     }).process();
@@ -315,7 +315,7 @@ void TaranisTestSuite::testDashQuestionMarkArgument()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testDashDashQuestionMarkArgument()
 {
-    int callCount(0);
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
     CommandLineInterface("MyApp", "1.2.3.4", {"--?"}).WithAction("?", [&callCount](){
         callCount++;
     }).process();
@@ -327,8 +327,156 @@ void TaranisTestSuite::testSlashQuestionMarkArgument()
 {
     if ( QDir::separator() != QChar('/') )
     {
-        int callCount(0);
+        int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
         CommandLineInterface("MyApp", "1.2.3.4", {"/?"}).WithAction("?", [&callCount](){
+            callCount++;
+        }).process();
+        QCOMPARE(callCount, 1);
+    }
+    else
+    {
+        QSKIP("Not applicable for this plaform");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testDashVersionArgument()
+{
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
+    CommandLineInterface("MyApp", "1.2.3.4", {"-version"}).WithAction("version", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testDashVersionArgumentCaseInsensative()
+{
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
+    CommandLineInterface("MyApp", "1.2.3.4", {"-VERSION"}).WithAction("version", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testDashDashVersionArgument()
+{
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
+    CommandLineInterface("MyApp", "1.2.3.4", {"--version"}).WithAction("version", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testDashDashVersionArgumentCaseInsensative()
+{
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
+    CommandLineInterface("MyApp", "1.2.3.4", {"--VERSION"}).WithAction("version", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testSlashVersionArgument()
+{
+    if ( QDir::separator() != QChar('/'))
+    {
+        int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
+        CommandLineInterface("MyApp", "1.2.3.4", {"/version"}).WithAction("version", [&callCount](){
+            callCount++;
+        }).process();
+        QCOMPARE(callCount, 1);
+    }
+    else
+    {
+        QSKIP("Not applicable for this plaform");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testSlashVersionArgumentCaseInsensative()
+{
+    if ( QDir::separator() != QChar('/'))
+    {
+        int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
+        CommandLineInterface("MyApp", "1.2.3.4", {"/VERSION"}).WithAction("version", [&callCount](){
+            callCount++;
+        }).process();
+        QCOMPARE(callCount, 1);
+    }
+    else
+    {
+        QSKIP("Not applicable for this plaform");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testShortDashVersionArgument()
+{
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
+    CommandLineInterface("MyApp", "1.2.3.4", {"-v"}).WithAction("version", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testShortDashVersionArgumentCaseInsensative()
+{
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
+    CommandLineInterface("MyApp", "1.2.3.4", {"-V"}).WithAction("version", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testShortDashDashVersionArgument()
+{
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
+    CommandLineInterface("MyApp", "1.2.3.4", {"--v"}).WithAction("version", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testShortDashDashVersionArgumentCaseInsensative()
+{
+    int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
+    CommandLineInterface("MyApp", "1.2.3.4", {"--V"}).WithAction("version", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testShortSlashVersionArgument()
+{
+    if ( QDir::separator() != QChar('/'))
+    {
+        int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
+        CommandLineInterface("MyApp", "1.2.3.4", {"/v"}).WithAction("version", [&callCount](){
+            callCount++;
+        }).process();
+        QCOMPARE(callCount, 1);
+    }
+    else
+    {
+        QSKIP("Not applicable for this plaform");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testShortSlashVersionArgumentCaseInsensative()
+{
+    if ( QDir::separator() != QChar('/'))
+    {
+        int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
+        CommandLineInterface("MyApp", "1.2.3.4", {"/V"}).WithAction("version", [&callCount](){
             callCount++;
         }).process();
         QCOMPARE(callCount, 1);
