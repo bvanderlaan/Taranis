@@ -52,11 +52,11 @@ namespace Taranis
         QString name() const;
         QString version() const;
         QString description() const;
-        void process() const;
 
         CommandLineInterface& WithVersion(const QString& version );
         CommandLineInterface& WithDescription(const QString& description );
         CommandLineInterface& WithAction( const QString& name, std::function<void()> action );
+        CommandLineInterface& process();
 
     protected:
         QString helpMessage() const;

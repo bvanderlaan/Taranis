@@ -83,7 +83,7 @@ QString CommandLineInterface::description() const
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-void CommandLineInterface::process() const
+CommandLineInterface& CommandLineInterface::process()
 {
     foreach( QString a, QCoreApplication::arguments() )
     {
@@ -102,6 +102,7 @@ void CommandLineInterface::process() const
             }
         }
     }
+    return *this;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
