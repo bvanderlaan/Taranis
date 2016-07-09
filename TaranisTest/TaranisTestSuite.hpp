@@ -51,6 +51,7 @@ namespace Taranis
             void testHelpMessageWithDescription();
             void testHelpMessageWithDescriptionAndName();
             void testHelpMessageWithDescriptionAndNameAndVersion();
+            void testHelpMessageWithCustomArgument();
 
             /// Test Built in Argument Processing ///
 

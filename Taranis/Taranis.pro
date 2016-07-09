@@ -9,12 +9,15 @@ DEFINES += TARANIS_LIBRARY
 
 SOURCES += \
     CommandLineInterface.cpp \
-    InputArgument.cpp
+    InputArgument.cpp \
+    Argument.cpp
 
 HEADERS += \
     taranis_global.hpp \
     CommandLineInterface.hpp \
-    InputArgument.hpp
+    InputArgument.hpp \
+    Argument.hpp \
+    ArgumentType.hpp
 
 unix {
     target.path = /usr/lib

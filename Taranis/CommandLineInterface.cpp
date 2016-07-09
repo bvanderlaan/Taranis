@@ -31,6 +31,8 @@ using namespace Taranis;
 using action_callback = std::function<void()>;
 Q_DECLARE_METATYPE(action_callback)
 
+const QString CommandLineInterface::VERSIONARGUMENT = "version";
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface::CommandLineInterface() :
     CommandLineInterface(QStringLiteral(""))
@@ -56,7 +58,6 @@ CommandLineInterface::CommandLineInterface(const QString applicationName, const 
 CommandLineInterface::CommandLineInterface(const QString applicationName, const QString version, QStringList arguments)
     : m_acceptedArgumentPrefixs( { QStringLiteral("-"), QStringLiteral("--") } ),
       m_applicationName(applicationName),
-      m_version(version),
       m_inputArguments( arguments )
 {
     if ( QDir::separator() != QChar('/') )
@@ -64,12 +65,41 @@ CommandLineInterface::CommandLineInterface(const QString applicationName, const 
         m_acceptedArgumentPrefixs.append( QStringLiteral("/") );
     }
 
-    action_callback helpCallback = std::bind( &CommandLineInterface::doHelpAction, this );
-    action_callback versionCallback = std::bind( &CommandLineInterface::doVersionAction, this );
+    WithVersion( version );
+    WithHelp();
+}
 
-    WithAction("version", versionCallback);
-    WithAction("help", helpCallback);
-    WithAction("?", helpCallback);
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface::~CommandLineInterface()
+{
+//    qDeleteAll( m_arguments );
+    m_arguments.clear();
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface& CommandLineInterface::WithVersion(const QString &version)
+{
+    m_version = version;
+    if ( m_version.isEmpty() )
+    {
+        delete m_arguments.value(VERSIONARGUMENT);
+        m_arguments.remove(VERSIONARGUMENT);
+    }
+    else
+    {
+        action_callback versionCallback = std::bind( &CommandLineInterface::doVersionAction, this );
+        WithAction(VERSIONARGUMENT, "Display version information and exit", versionCallback);
+    }
+    return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface &CommandLineInterface::WithHelp()
+{
+    action_callback helpCallback = std::bind( &CommandLineInterface::doHelpAction, this );
+    WithAction("help", "Display this help and exit", helpCallback);
+    WithAction("?", "Display this help and exit", helpCallback);
+    return *this;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,10 +131,10 @@ CommandLineInterface& CommandLineInterface::process()
             QString key = arg.argument().toLower();
             if ( m_arguments.contains( key ) )
             {
-                switch( m_arguments[key].first )
+                switch( m_arguments[key]->type() )
                 {
                     case ArgumentType::Action:
-                        m_arguments[key].second.value<action_callback>()();
+                        m_arguments[key]->callback()();
                     break;
                 }
             }
@@ -113,12 +143,6 @@ CommandLineInterface& CommandLineInterface::process()
     return *this;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface& CommandLineInterface::WithVersion(const QString &version)
-{
-    m_version = version;
-    return *this;
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface &CommandLineInterface::WithDescription(const QString &description)
@@ -128,21 +152,36 @@ CommandLineInterface &CommandLineInterface::WithDescription(const QString &descr
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface &CommandLineInterface::WithAction(const QString &name, std::function<void()> action)
+CommandLineInterface &CommandLineInterface::WithFlag(const QString &flag, const QString &description)
 {
-    auto pair = qMakePair(ArgumentType::Action, qVariantFromValue(action));
-    addArgument( name, pair );
-
+    addArgument( new Argument( flag, description, ArgumentType::Action, [this, flag](){
+        m_arguments[flag]->setValue(true);
+    }));
     return *this;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-void CommandLineInterface::addArgument(const QString &name, QPair<CommandLineInterface::ArgumentType, QVariant> meta)
+CommandLineInterface &CommandLineInterface::WithFlag(const QString &flag, const QString &description, std::function<void ()> action)
 {
-    m_arguments[name] = meta;
-    if ( name.length() > 1 )
+    addArgument( new Argument( flag, description, ArgumentType::Action, action) );
+    return *this;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface &CommandLineInterface::WithAction(const QString &name, const QString &description, std::function<void ()> action)
+{
+    addArgument( new Argument( name, description, ArgumentType::Action, action) );
+    return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void CommandLineInterface::addArgument(Argument* arg)
+{
+    m_arguments[arg->name()] = arg;
+    if ( arg->hasShortName() )
     {
-        m_arguments[name.at(0)] = meta;
+        m_arguments[arg->shortName()] = arg;
     }
 }
 
@@ -162,15 +201,24 @@ QString CommandLineInterface::helpMessage() const
         message += m_description + QStringLiteral("\n\n");
     }
 
-    message += QString("Usage: %1 [OPTION]\n"
-            "\n"
-            "  -h, -?, --help\tDisplay this help and exit\n").arg(applicationExecutable);
+    message += QString("Usage: %1 [OPTION]\n\n").arg(applicationExecutable);
 
-    if ( !m_version.isEmpty() )
+    QStringList filterArgumentAliases;
+    foreach( Argument* arg, m_arguments.values() )
     {
-        message += QStringLiteral("  -v, --version\tDisplay version information and exit\n");
-    }
+        if ( filterArgumentAliases.contains( arg->name() ) ) continue;
+        if ( arg->hasShortName() )
+        {
+            message += QString( "  -%1, --%2").arg(arg->shortName()).arg(arg->name());
+        }
+        else
+        {
+            message += QString( "  -%1").arg(arg->name());
+        }
 
+        message += QString("\t%1\n").arg(arg->description());
+        filterArgumentAliases.append( arg->name());
+    }
     return message;
 }
 

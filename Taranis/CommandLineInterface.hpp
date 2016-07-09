@@ -29,6 +29,7 @@
 #include <QVariant>
 #include <QStringList>
 #include <functional>
+#include "Argument.hpp"
 
 namespace Taranis
 {
@@ -49,7 +50,7 @@ namespace Taranis
         explicit CommandLineInterface(const QString applicationName);
         explicit CommandLineInterface(const QString applicationName, const QString version);
         explicit CommandLineInterface(const QString applicationName, const QString version, QStringList arguments);
-        virtual ~CommandLineInterface() {}
+        virtual ~CommandLineInterface();
 
         QString name() const;
         QString version() const;
@@ -57,19 +58,21 @@ namespace Taranis
 
         CommandLineInterface& WithVersion(const QString& version );
         CommandLineInterface& WithDescription(const QString& description );
-        CommandLineInterface& WithAction( const QString& name, std::function<void()> action );
+
+        CommandLineInterface& WithFlag( const QString& flag, const QString& description );
+        CommandLineInterface& WithFlag( const QString& flag, const QString& description, std::function<void()> action );
+
+        CommandLineInterface& WithAction( const QString& name, const QString& description, std::function<void()> action );
+
+
         virtual CommandLineInterface& process();
 
     protected:
-        enum ArgumentType {
-            Action,
-            Boolean
-        };
         virtual QString helpMessage() const;
         virtual void doHelpAction() const;
         virtual void doVersionAction() const;
         virtual QString generateTitle() const;
-        void addArgument( const QString& name, QPair<ArgumentType, QVariant> meta );
+        void addArgument( Argument* arg );
 
         QStringList m_acceptedArgumentPrefixs;
 
@@ -77,8 +80,10 @@ namespace Taranis
         QString m_applicationName;
         QString m_version;
         QString m_description;
-        QMap<QString, QPair<ArgumentType, QVariant>> m_arguments;
+        QMap<QString, Argument*> m_arguments;
         QStringList m_inputArguments;
+        static const QString VERSIONARGUMENT;
+        CommandLineInterface& WithHelp();
     };
 }
 
