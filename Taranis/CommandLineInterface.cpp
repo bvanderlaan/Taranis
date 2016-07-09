@@ -47,9 +47,17 @@ CommandLineInterface::CommandLineInterface(const QString applicationName)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface::CommandLineInterface(const QString applicationName, const QString version)
+    : CommandLineInterface( applicationName, version, QCoreApplication::arguments() )
+{
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface::CommandLineInterface(const QString applicationName, const QString version, QStringList arguments)
     : m_applicationName(applicationName),
       m_version(version),
-      m_acceptedArgumentPrefixs( { QStringLiteral("-"), QStringLiteral("--") } )
+      m_acceptedArgumentPrefixs( { QStringLiteral("-"), QStringLiteral("--") } ),
+      m_inputArguments( arguments )
 {
     if ( QDir::separator() != QChar('/') )
     {
@@ -85,7 +93,7 @@ QString CommandLineInterface::description() const
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface& CommandLineInterface::process()
 {
-    foreach( QString a, QCoreApplication::arguments() )
+    foreach( QString a, m_inputArguments )
     {
         InputArgument arg( a, m_acceptedArgumentPrefixs );
         if ( arg.isValid() )

@@ -38,6 +38,12 @@ namespace Taranis
             explicit TaranisTestSuite(QObject *parent = 0) : QObject(parent) {}
 
         private slots:
+            /// Test Setting Name and Version
+            void testConstructWithNameAndVersion();
+            void testSetVersionWithFluentInterface();
+            void testSetDescription();
+
+            /// Test Help Message Generation
             void testDefaultHelpMessage();
             void testHelpMessageWithName();
             void testHelpMessageWithVersion();
@@ -45,9 +51,24 @@ namespace Taranis
             void testHelpMessageWithDescription();
             void testHelpMessageWithDescriptionAndName();
             void testHelpMessageWithDescriptionAndNameAndVersion();
-            void testConstructWithNameAndVersion();
-            void testSetVersionWithFluentInterface();
-            void testSetDescription();
+
+            /// Test Argument Processing
+            void testDashHelpArgument();
+            void testDashHelpArgumentCaseInsensative();
+            void testDashDashHelpArgument();
+            void testDashDashHelpArgumentCaseInsensative();
+            void testSlashHelpArgument();
+            void testSlashHelpArgumentCaseInsensative();
+            void testShortDashHelpArgument();
+            void testShortDashHelpArgumentCaseInsensative();
+            void testShortDashDashHelpArgument();
+            void testShortDashDashHelpArgumentCaseInsensative();
+            void testShortSlashHelpArgument();
+            void testShortSlashHelpArgumentCaseInsensative();
+
+            void testDashQuestionMarkArgument();
+            void testDashDashQuestionMarkArgument();
+            void testSlashQuestionMarkArgument();
 
             /// InputArgument
             void testIsValidWhenItIs();

@@ -27,6 +27,7 @@
 #include <QObject>
 #include <QMap>
 #include <QVariant>
+#include <QStringList>
 #include <functional>
 
 namespace Taranis
@@ -47,7 +48,8 @@ namespace Taranis
         CommandLineInterface();
         explicit CommandLineInterface(const QString applicationName);
         explicit CommandLineInterface(const QString applicationName, const QString version);
-        ~CommandLineInterface() {}
+        explicit CommandLineInterface(const QString applicationName, const QString version, QStringList arguments);
+        virtual ~CommandLineInterface() {}
 
         QString name() const;
         QString version() const;
@@ -70,7 +72,9 @@ namespace Taranis
         QString m_version;
         QString m_description;
         QMap<QString, QPair<ArgumentType, QVariant>> m_arguments;
-        QList<QString> m_acceptedArgumentPrefixs;
+        QStringList m_acceptedArgumentPrefixs;
+        QStringList m_inputArguments;
+
         void doHelpAction() const;
         void doVersionAction() const;
         QString generateTitle() const;

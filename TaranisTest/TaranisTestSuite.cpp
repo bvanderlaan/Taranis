@@ -30,6 +30,29 @@
 using namespace Taranis::UnitTest;
 
 /////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testConstructWithNameAndVersion()
+{
+    CommandLineInterface cli("MyApp", "1.2.3.4");
+    QCOMPARE( cli.name(), QStringLiteral("MyApp") );
+    QCOMPARE( cli.version(), QStringLiteral("1.2.3.4"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testSetVersionWithFluentInterface()
+{
+    auto cli = CommandLineInterface("MyApp").WithVersion("1.2.3.4");
+    QCOMPARE( cli.name(), QStringLiteral("MyApp") );
+    QCOMPARE( cli.version(), QStringLiteral("1.2.3.4"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testSetDescription()
+{
+    auto cli = CommandLineInterface().WithDescription("I'm a great app!");
+    QCOMPARE( cli.description(), QStringLiteral("I'm a great app!") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testDefaultHelpMessage()
 {
     CommandLineInterface cli;
@@ -132,26 +155,188 @@ void TaranisTestSuite::testHelpMessageWithDescriptionAndNameAndVersion()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void TaranisTestSuite::testConstructWithNameAndVersion()
+void TaranisTestSuite::testDashHelpArgument()
 {
-    CommandLineInterface cli("MyApp", "1.2.3.4");
-    QCOMPARE( cli.name(), QStringLiteral("MyApp") );
-    QCOMPARE( cli.version(), QStringLiteral("1.2.3.4"));
+    int callCount(0);
+    CommandLineInterface("MyApp", "1.2.3.4", {"-help"}).WithAction("help", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void TaranisTestSuite::testSetVersionWithFluentInterface()
+void TaranisTestSuite::testDashHelpArgumentCaseInsensative()
 {
-    auto cli = CommandLineInterface("MyApp").WithVersion("1.2.3.4");
-    QCOMPARE( cli.name(), QStringLiteral("MyApp") );
-    QCOMPARE( cli.version(), QStringLiteral("1.2.3.4"));
+    int callCount(0);
+    CommandLineInterface("MyApp", "1.2.3.4", {"-HELP"}).WithAction("help", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void TaranisTestSuite::testSetDescription()
+void TaranisTestSuite::testDashDashHelpArgument()
 {
-    auto cli = CommandLineInterface().WithDescription("I'm a great app!");
-    QCOMPARE( cli.description(), QStringLiteral("I'm a great app!") );
+    int callCount(0);
+    CommandLineInterface("MyApp", "1.2.3.4", {"--help"}).WithAction("help", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testDashDashHelpArgumentCaseInsensative()
+{
+    int callCount(0);
+    CommandLineInterface("MyApp", "1.2.3.4", {"--HELP"}).WithAction("help", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testSlashHelpArgument()
+{
+    if ( QDir::separator() != QChar('/') )
+    {
+        int callCount(0);
+        CommandLineInterface("MyApp", "1.2.3.4", {"/help"}).WithAction("help", [&callCount](){
+            callCount++;
+        }).process();
+        QCOMPARE(callCount, 1);
+    }
+    else
+    {
+        QSKIP("Not applicable for this plaform");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testSlashHelpArgumentCaseInsensative()
+{
+    if ( QDir::separator() != QChar('/') )
+    {
+        int callCount(0);
+        CommandLineInterface("MyApp", "1.2.3.4", {"/HELP"}).WithAction("help", [&callCount](){
+            callCount++;
+        }).process();
+        QCOMPARE(callCount, 1);
+    }
+    else
+    {
+        QSKIP("Not applicable for this plaform");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testShortDashHelpArgument()
+{
+    int callCount(0);
+    CommandLineInterface("MyApp", "1.2.3.4", {"-h"}).WithAction("help", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testShortDashHelpArgumentCaseInsensative()
+{
+    int callCount(0);
+    CommandLineInterface("MyApp", "1.2.3.4", {"-H"}).WithAction("help", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testShortDashDashHelpArgument()
+{
+    int callCount(0);
+    CommandLineInterface("MyApp", "1.2.3.4", {"--h"}).WithAction("help", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testShortDashDashHelpArgumentCaseInsensative()
+{
+    int callCount(0);
+    CommandLineInterface("MyApp", "1.2.3.4", {"--H"}).WithAction("help", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testShortSlashHelpArgument()
+{
+    if ( QDir::separator() != QChar('/') )
+    {
+        int callCount(0);
+        CommandLineInterface("MyApp", "1.2.3.4", {"/h"}).WithAction("help", [&callCount](){
+            callCount++;
+        }).process();
+        QCOMPARE(callCount, 1);
+    }
+    else
+    {
+        QSKIP("Not applicable for this plaform");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testShortSlashHelpArgumentCaseInsensative()
+{
+    if ( QDir::separator() != QChar('/') )
+    {
+        int callCount(0);
+        CommandLineInterface("MyApp", "1.2.3.4", {"/H"}).WithAction("help", [&callCount](){
+            callCount++;
+        }).process();
+        QCOMPARE(callCount, 1);
+    }
+    else
+    {
+        QSKIP("Not applicable for this plaform");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testDashQuestionMarkArgument()
+{
+    int callCount(0);
+    CommandLineInterface("MyApp", "1.2.3.4", {"-?"}).WithAction("?", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testDashDashQuestionMarkArgument()
+{
+    int callCount(0);
+    CommandLineInterface("MyApp", "1.2.3.4", {"--?"}).WithAction("?", [&callCount](){
+        callCount++;
+    }).process();
+    QCOMPARE(callCount, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testSlashQuestionMarkArgument()
+{
+    if ( QDir::separator() != QChar('/') )
+    {
+        int callCount(0);
+        CommandLineInterface("MyApp", "1.2.3.4", {"/?"}).WithAction("?", [&callCount](){
+            callCount++;
+        }).process();
+        QCOMPARE(callCount, 1);
+    }
+    else
+    {
+        QSKIP("Not applicable for this plaform");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
