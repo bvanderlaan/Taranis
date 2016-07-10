@@ -1,5 +1,6 @@
 QT       -= gui
 CONFIG += c++11
+CONFIG += staticlib
 
 TARGET = Taranis
 
