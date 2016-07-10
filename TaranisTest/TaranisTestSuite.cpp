@@ -31,6 +31,12 @@
 using namespace Taranis::UnitTest;
 
 /////////////////////////////////////////////////////////////////////////////
+TaranisTestSuite::TaranisTestSuite(QObject *parent) : QObject(parent)
+{
+    m_executableName = QFileInfo( QCoreApplication::applicationFilePath() ).fileName();
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testConstructWithNameAndVersion()
 {
     CommandLineInterface cli("MyApp", "1.2.3.4");
@@ -57,9 +63,9 @@ void TaranisTestSuite::testSetDescription()
 void TaranisTestSuite::testDefaultHelpMessage()
 {
     CommandLineInterface cli;
-    QString expected = "Usage: TaranisTest.exe [OPTION]\n\n"
+    QString expected = QString("Usage: %1 [OPTION]\n\n"
                        "  -?\tDisplay this help and exit\n"
-                       "  -h, --help\tDisplay this help and exit\n";
+                       "  -h, --help\tDisplay this help and exit\n").arg(m_executableName);
 
 
 
@@ -70,11 +76,11 @@ void TaranisTestSuite::testDefaultHelpMessage()
 void TaranisTestSuite::testHelpMessageWithName()
 {
     CommandLineInterface cli("MyApp");
-    QString expected = "MyApp\n"
+    QString expected = QString("MyApp\n"
                        "=====\n"
-                       "Usage: TaranisTest.exe [OPTION]\n\n"
+                       "Usage: %1 [OPTION]\n\n"
                        "  -?\tDisplay this help and exit\n"
-                       "  -h, --help\tDisplay this help and exit\n";
+                       "  -h, --help\tDisplay this help and exit\n").arg(m_executableName);
 
 
     QCOMPARE( cli.helpMessage(), expected );
@@ -84,12 +90,12 @@ void TaranisTestSuite::testHelpMessageWithName()
 void TaranisTestSuite::testHelpMessageWithVersion()
 {
     auto cli = CommandLineInterface().WithVersion("1.2.3.4");
-    QString expected = "Version 1.2.3.4\n"
+    QString expected = QString("Version 1.2.3.4\n"
                        "===============\n"
-                       "Usage: TaranisTest.exe [OPTION]\n\n"
+                       "Usage: %1 [OPTION]\n\n"
                        "  -?\tDisplay this help and exit\n"
                        "  -h, --help\tDisplay this help and exit\n"
-                       "  -v, --version\tDisplay version information and exit\n";
+                       "  -v, --version\tDisplay version information and exit\n").arg(m_executableName);
 
 
     QCOMPARE( cli.helpMessage(), expected );
@@ -99,12 +105,12 @@ void TaranisTestSuite::testHelpMessageWithVersion()
 void TaranisTestSuite::testHelpMessageWithNameAndVersion()
 {
     CommandLineInterface cli("MyApp", "1.2.3.4");
-    QString expected = "MyApp - Version 1.2.3.4\n"
+    QString expected = QString("MyApp - Version 1.2.3.4\n"
                        "=======================\n"
-                       "Usage: TaranisTest.exe [OPTION]\n\n"
+                       "Usage: %1 [OPTION]\n\n"
                        "  -?\tDisplay this help and exit\n"
                        "  -h, --help\tDisplay this help and exit\n"
-                       "  -v, --version\tDisplay version information and exit\n";
+                       "  -v, --version\tDisplay version information and exit\n").arg(m_executableName);
 
 
     QCOMPARE( cli.helpMessage(), expected );
@@ -117,10 +123,10 @@ void TaranisTestSuite::testHelpMessageWithDescription()
                         .WithDescription("I'm a great app!");
 
 
-    QString expected = "I'm a great app!\n\n"
-                       "Usage: TaranisTest.exe [OPTION]\n\n"
+    QString expected = QString("I'm a great app!\n\n"
+                       "Usage: %1 [OPTION]\n\n"
                        "  -?\tDisplay this help and exit\n"
-                       "  -h, --help\tDisplay this help and exit\n";;
+                       "  -h, --help\tDisplay this help and exit\n").arg(m_executableName);
 
 
     QCOMPARE( cli.helpMessage(), expected );
@@ -132,12 +138,12 @@ void TaranisTestSuite::testHelpMessageWithDescriptionAndName()
     auto cli = CommandLineInterface("MyApp")
                             .WithDescription("I'm a great app!");
 
-    QString expected = "MyApp\n"
+    QString expected = QString("MyApp\n"
                        "=====\n"
                        "I'm a great app!\n\n"
-                       "Usage: TaranisTest.exe [OPTION]\n\n"
+                       "Usage: %1 [OPTION]\n\n"
                        "  -?\tDisplay this help and exit\n"
-                       "  -h, --help\tDisplay this help and exit\n";;
+                       "  -h, --help\tDisplay this help and exit\n").arg(m_executableName);
 
 
     QCOMPARE( cli.helpMessage(), expected );
@@ -151,13 +157,13 @@ void TaranisTestSuite::testHelpMessageWithDescriptionAndNameAndVersion()
                         .WithVersion("1.2.3.4");
 
 
-    QString expected = "MyApp - Version 1.2.3.4\n"
+    QString expected = QString("MyApp - Version 1.2.3.4\n"
                        "=======================\n"
                        "I'm a great app!\n\n"
-                       "Usage: TaranisTest.exe [OPTION]\n\n"
+                       "Usage: %1 [OPTION]\n\n"
                        "  -?\tDisplay this help and exit\n"
                        "  -h, --help\tDisplay this help and exit\n"
-                       "  -v, --version\tDisplay version information and exit\n";
+                       "  -v, --version\tDisplay version information and exit\n").arg(m_executableName);
 
 
     QCOMPARE( cli.helpMessage(), expected );
@@ -172,14 +178,14 @@ void TaranisTestSuite::testHelpMessageWithCustomArgument()
                         .WithFlag("mouse", "Force mouse to be displayed in release build.");
 
 
-    QString expected = "MyApp - Version 1.2.3.4\n"
+    QString expected = QString("MyApp - Version 1.2.3.4\n"
                        "=======================\n"
                        "I'm a great app!\n\n"
-                       "Usage: TaranisTest.exe [OPTION]\n\n"
+                       "Usage: %1 [OPTION]\n\n"
                        "  -?\tDisplay this help and exit\n"
                        "  -h, --help\tDisplay this help and exit\n"
                        "  -m, --mouse\tForce mouse to be displayed in release build.\n"
-                       "  -v, --version\tDisplay version information and exit\n";
+                       "  -v, --version\tDisplay version information and exit\n").arg(m_executableName);
 
 
 

@@ -35,7 +35,9 @@ namespace Taranis
         {
             Q_OBJECT
         public:
-            explicit TaranisTestSuite(QObject *parent = 0) : QObject(parent) {}
+            explicit TaranisTestSuite(QObject *parent = 0);
+
+            QString m_executableName;
 
         private slots:
             /// Test Setting Name and Version
