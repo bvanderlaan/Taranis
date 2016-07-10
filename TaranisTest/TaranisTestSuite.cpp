@@ -23,6 +23,7 @@
  */
 
 #include <QTest>
+#include <QDir>
 #include "TaranisTestSuite.hpp"
 #include "CommandLineInterface.hpp"
 #include "InputArgument.hpp"
