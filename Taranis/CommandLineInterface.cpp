@@ -252,13 +252,13 @@ QString CommandLineInterface::generateTitle() const
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void CommandLineInterface::doHelpAction() const
 {
-    printf( helpMessage().toLatin1().data() );
+    printf( "%s", helpMessage().toLatin1().data() );
     QCoreApplication::exit(0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void CommandLineInterface::doVersionAction() const
 {
-    printf( generateTitle().toLatin1().data() );
+    printf( "%s", generateTitle().toLatin1().data() );
     QCoreApplication::exit(0);
 }
