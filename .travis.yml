@@ -22,6 +22,6 @@ addons:
       - qt5-qmake
       - qt5-default
 
-before install:
+before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install qt5; fi
