@@ -13,6 +13,7 @@ os:
 script:
   - qmake Taranis.pro
   - make
+  - make check
 
 addons:
   apt:
