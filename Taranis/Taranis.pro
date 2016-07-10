@@ -1,5 +1,5 @@
 QT       -= gui
-CONFIG += c++14
+CONFIG += c++11
 
 TARGET = Taranis
 

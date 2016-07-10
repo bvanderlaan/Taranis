@@ -3,7 +3,7 @@ QT -= gui
 
 TARGET = TaranisTest
 
-CONFIG += console c++14 testcase
+CONFIG += console c++11 testcase
 CONFIG -= app_bundle
 
 TEMPLATE = app
