@@ -14,6 +14,15 @@ matrix:
             - g++-4.6
       env: COMPILER=g++-4.6
   include:
+  - compiler: gcc
+      os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.6
+      env: COMPILER=g++-4.6
     - compiler: gcc
       os: osx
       addons:
