@@ -12,7 +12,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-4.6
-      env: CXX=g++-4.6
+      env: COMPILER=g++-4.6
 
     - compiler: gcc
       os: osx
@@ -22,7 +22,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-4.6
-      env: CXX=g++-4.6
+      env: COMPILER=g++-4.6
 
 compiler:
   - gcc 
@@ -45,7 +45,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH=$PATH:/usr/local/opt/qt5/bin/; fi
 
 before_script:
-  - $CXX --version
+  - if [[ "$COMPILER" ]]; then export CXX=$COMPILER; && $CXX --version; fi
 
 script:
   - qmake Taranis.pro
