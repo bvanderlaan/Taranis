@@ -45,7 +45,8 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH=$PATH:/usr/local/opt/qt5/bin/; fi
 
 before_script:
-  - if [[ "$COMPILER" ]]; then export CXX=$COMPILER; && $CXX --version; fi
+  - if [[ "$COMPILER" ]]; then export CXX=$COMPILER; fi
+  - if [[ "$COMPILER" ]]; then $CXX --version; fi
 
 script:
   - qmake Taranis.pro
