@@ -5,6 +5,9 @@ dist: trusty
 matrix:
   include:
     - compiler: gcc
+      os:
+        - linux
+        - osx
       addons:
         apt:
           sources:
@@ -13,6 +16,9 @@ matrix:
             - g++-4.6
       env: CXX=g++-4.6
     - compiler: gcc
+      os:
+        - linux
+        - osx    
       addons:
         apt:
           sources:
@@ -20,13 +26,10 @@ matrix:
           packages:
             - g++-5
       env: CXX=g++-5
-
-compiler: 
-  - clang
-
-os:
-  - linux
-  - osx
+    - compiler: clang
+      os:
+        - linux
+        - osx
 
 addons:
   apt:
