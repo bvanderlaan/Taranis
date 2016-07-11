@@ -3,6 +3,9 @@ sudo: required
 dist: trusty
 
 matrix:
+  allow_failures: 
+    compiler: gcc
+    os: linux
   include:
     - compiler: gcc
       os: linux
