@@ -14,7 +14,7 @@ matrix:
             - g++-4.6
       env: COMPILER=g++-4.6
   include:
-  - compiler: gcc
+    - compiler: gcc
       os: linux
       addons:
         apt:
