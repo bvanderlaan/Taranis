@@ -23,7 +23,70 @@
  */
 #include "InputArgumentKeyValuePair.hpp"
 
-InputArgumentKeyValuePair::InputArgumentKeyValuePair()
+using namespace Taranis;
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+InputArgumentKeyValuePair::InputArgumentKeyValuePair(const QString arg, QObject* parent) :
+    InputArgumentKeyValuePair( arg, {"=", ":"}, parent )
 {
 
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+InputArgumentKeyValuePair::InputArgumentKeyValuePair(const QString arg, QStringList valueSeperators, QObject* parent) :
+    QObject(parent),
+    m_valueSeperators( valueSeperators ),
+    m_originalArgumentString(arg)
+{
+    updateKeyValuePair( getSeperatorInfo(arg) );
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+QPair<QString, int> InputArgumentKeyValuePair::getSeperatorInfo(const QString argument) const
+{
+    int index(-1);
+    QString sep;
+
+    for( auto seperator : m_valueSeperators )
+    {
+        int seperator_index = argument.indexOf(seperator);
+        if ( ( (seperator_index >=0) && (seperator_index < index ) ) || (index == -1) )
+        {
+            index = seperator_index;
+            sep = seperator;
+        }
+    }
+    return qMakePair(sep, index);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void InputArgumentKeyValuePair::updateKeyValuePair(const QPair<QString, int> seperatorInfo)
+{
+    QString seperator = seperatorInfo.first;
+    int index = seperatorInfo.second;
+
+    if ( index >= 0 )
+    {
+        m_value = m_originalArgumentString.right( m_originalArgumentString.length() - index - seperator.length() );
+        m_key = m_originalArgumentString.left(index);
+        return;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+QString InputArgumentKeyValuePair::key() const
+{
+    return m_key;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+QVariant InputArgumentKeyValuePair::value() const
+{
+    return m_value;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+bool InputArgumentKeyValuePair::isValid() const
+{
+    return ( m_value.isValid() && !m_key.isEmpty() );
 }

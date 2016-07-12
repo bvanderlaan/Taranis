@@ -24,11 +24,31 @@
 #ifndef INPUTARGUMENTKEYVALUEPAIR_HPP
 #define INPUTARGUMENTKEYVALUEPAIR_HPP
 
+#include <QObject>
+#include <QStringList>
+#include <QVariant>
 
-class InputArgumentKeyValuePair
+namespace Taranis
 {
-public:
-    InputArgumentKeyValuePair();
-};
+    class InputArgumentKeyValuePair : QObject
+    {
+    public:
+        explicit InputArgumentKeyValuePair(const QString arg, QObject *parent = 0);
+        explicit InputArgumentKeyValuePair(const QString arg, QStringList acceptedArgumentPrefixs, QObject *parent = 0);
+        ~InputArgumentKeyValuePair() {}
+
+        QString key() const;
+        QVariant value() const;
+        bool isValid() const;
+
+    private:
+        QString m_key;
+        QVariant m_value;
+        QStringList m_valueSeperators;
+        QString m_originalArgumentString;
+        QPair<QString,int> getSeperatorInfo(const QString argument) const;
+        void updateKeyValuePair(const QPair<QString,int> seperatorInfo);
+    };
+}
 
 #endif // INPUTARGUMENTKEYVALUEPAIR_HPP
