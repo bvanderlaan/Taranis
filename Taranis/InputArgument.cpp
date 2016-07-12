@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 #include "InputArgument.hpp"
+#include "InputArgumentKeyValuePair.hpp"
 
 using namespace Taranis;
 
@@ -34,6 +35,7 @@ InputArgument::InputArgument(const QString arg, QList<QString> acceptedArgumentP
     // Sorting the list in reverse ensures that -- is checked before - preventing false hits.
     std::reverse( m_acceptedArgumentPrefixs.begin(), m_acceptedArgumentPrefixs.end() );
     clipPrefix();
+    updateValue();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,6 +60,18 @@ bool InputArgument::updatePrefix()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
+void InputArgument::updateValue()
+{
+    InputArgumentKeyValuePair argumentPair(m_argument);
+
+    if ( argumentPair.isValid() )
+    {
+        m_value = argumentPair.value();
+        m_argument = argumentPair.key();
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 QString InputArgument::argument() const
 {
     return m_argument;
@@ -70,7 +84,13 @@ QString InputArgument::prefix() const
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-bool InputArgument::isValid()
+QVariant InputArgument::value() const
+{
+    return ( !m_value.isValid() && isValid() ) ? true : m_value;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+bool InputArgument::isValid() const
 {
     return !m_argument.isEmpty() && !m_prefix.isEmpty();
 }

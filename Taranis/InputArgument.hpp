@@ -25,6 +25,8 @@
 #define INPUTARGUMENT_HPP
 
 #include <QObject>
+#include <QStringList>
+#include <QVariant>
 
 namespace Taranis
 {
@@ -37,15 +39,18 @@ namespace Taranis
 
         QString argument() const;
         QString prefix() const;
-        bool isValid();
+        bool isValid() const;
+        QVariant value() const;
 
     private:
         const QString m_originalInput;
         QString m_argument;
         QString m_prefix;
-        QList<QString> m_acceptedArgumentPrefixs;
+        QVariant m_value;
+        QStringList m_acceptedArgumentPrefixs;
         void clipPrefix();
         bool updatePrefix();
+        void updateValue();
     };
 }
 
