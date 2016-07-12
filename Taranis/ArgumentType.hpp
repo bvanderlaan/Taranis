@@ -26,7 +26,8 @@
 
 enum ArgumentType {
     Action,
-    Boolean
+    Boolean,
+    String
 };
 
 #endif // ARGUMENTTYPE_HPP
