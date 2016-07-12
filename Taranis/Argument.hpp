@@ -34,7 +34,7 @@ namespace Taranis
     class Argument
     {
     public:
-        Argument(const QString name, const QString description, const ArgumentType type, std::function<void()> callback);
+        Argument(const QString name, const QString description, const ArgumentType type, std::function<void(QVariant)> callback);
         ~Argument() {}
 
         QString name() const;
@@ -44,14 +44,14 @@ namespace Taranis
         ArgumentType type() const;
         QVariant value() const;
         void setValue( QVariant value );
-        std::function<void()> callback();
+        std::function<void(QVariant)> callback();
 
     private:
         QString m_name;
         QString m_description;
         ArgumentType m_type;
         QVariant m_value;
-        std::function<void()> m_actionCallback;
+        std::function<void(QVariant)> m_actionCallback;
     };
 }
 

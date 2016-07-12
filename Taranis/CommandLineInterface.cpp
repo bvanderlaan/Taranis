@@ -28,7 +28,7 @@
 #include "InputArgument.hpp"
 
 using namespace Taranis;
-using action_callback = std::function<void()>;
+using action_callback = std::function<void(QVariant)>;
 Q_DECLARE_METATYPE(action_callback)
 
 const QString CommandLineInterface::VERSIONARGUMENT = "version";
@@ -131,7 +131,7 @@ CommandLineInterface& CommandLineInterface::process()
             QString key = arg.argument().toLower();
             if ( m_arguments.contains( key ) )
             {
-                m_arguments[key]->callback()();
+                m_arguments[key]->callback()(arg.value());
             }
         }
     }
@@ -161,22 +161,37 @@ CommandLineInterface &CommandLineInterface::WithDescription(const QString &descr
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface &CommandLineInterface::WithFlag(const QString &flag, const QString &description)
 {
-    addArgument( new Argument( flag, description, ArgumentType::Boolean, [this, flag](){
+    addArgument( new Argument( flag, description, ArgumentType::Boolean, [this, flag](QVariant){
         m_arguments[flag]->setValue(true);
     }));
     return *this;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface &CommandLineInterface::WithFlag(const QString &flag, const QString &description, std::function<void ()> action)
+CommandLineInterface &CommandLineInterface::WithFlag(const QString &flag, const QString &description, action_callback action)
 {
     addArgument( new Argument( flag, description, ArgumentType::Boolean, action) );
     return *this;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface &CommandLineInterface::WithValue(const QString &name, const QString &description)
+{
+    addArgument( new Argument( name, description, ArgumentType::String, [this, name](QVariant value){
+        m_arguments[name]->setValue(value);
+    }));
+    return *this;
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface &CommandLineInterface::WithAction(const QString &name, const QString &description, std::function<void ()> action)
+CommandLineInterface &CommandLineInterface::WithValue(const QString &name, const QString &description, action_callback action)
+{
+    addArgument( new Argument( name, description, ArgumentType::String, action) );
+    return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterface &CommandLineInterface::WithAction(const QString &name, const QString &description, action_callback action)
 {
     addArgument( new Argument( name, description, ArgumentType::Action, action) );
     return *this;

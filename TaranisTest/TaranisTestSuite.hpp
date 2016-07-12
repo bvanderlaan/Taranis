@@ -99,6 +99,12 @@ namespace Taranis
             void testAccessViaIndexOperatorWhenValueDoesNotExist();
             void testAccessViaIndexOperatorWhenArgumentIsUnknown();
 
+            /// Arguments with Values
+            void testArgumentWithValueUsingEqualsNoSpace();
+            void testArgumentWithValueUsingEqualsWithEqualsInValueNoSpace();
+            void testArgumentWithValueUsingColonNoSpace();
+            void testArgumentWithValueUsingColonWithColonInValueNoSpace();
+
             /// InputArgument
             void testIsValidWhenItIs();
             void testIsValidWhenItsNot();
@@ -115,6 +121,17 @@ namespace Taranis
             void testArgumentWithSlashPrefix();
             void testArgumentWhenPrefixNotFound();
             void testArgumentWithUpperCase();
+
+            void testArgumentValueWhenFlag();
+            void testArgumentValueWhenNotValid();
+            void testArgumentValueWhenEqualSeperatorNoSpaceUsed();
+            void testArgumentValueWhenEqualSeperatorAndEqualsInValueNoSpaceUsed();
+            void testArgumentValueWhenEqualSeperatorAndSpaceInValueNoSpaceUsed();
+            void testArgumentValueWhenColonSeperatorNoSpaceUsed();
+            void testArgumentValueWhenColonSeperatorAndColonInValueNoSpaceUsed();
+            void testArgumentValueWhenColonSeperatorAndSpaceInValueNoSpaceUsed();
+            void testArgumentValueWhenColonSeperatorAndEqualsInValueNoSpacesUsed();
+            void testArgumentValueWhenEqualsSeperatorAndColonInValueNoSpacesUsed();
         };
     }
 }

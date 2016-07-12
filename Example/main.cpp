@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
     Taranis::CommandLineInterface("My Cool App")
             .WithVersion("1.2.3.4-abc")
             .WithFlag("mouse", "Force mouse to be displayed in release build.",
-                      [&showMouse]() {
+                      [&showMouse](QVariant) {
                             showMouse = true;
                        })
             .process();

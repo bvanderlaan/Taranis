@@ -26,7 +26,7 @@
 using namespace Taranis;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-Argument::Argument(const QString name, const QString description, const ArgumentType type, std::function<void ()> callback) :
+Argument::Argument(const QString name, const QString description, const ArgumentType type, std::function<void(QVariant)> callback) :
     m_name( name ),
     m_description( description ),
     m_type( type ),
@@ -85,7 +85,7 @@ void Argument::setValue(QVariant value)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-std::function<void ()> Argument::callback()
+std::function<void(QVariant)> Argument::callback()
 {
     return m_actionCallback;
 }
