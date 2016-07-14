@@ -9,7 +9,16 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES += main.cpp
+
+DEFINES += EXAMPLE2
+
+SOURCES += \
+        main.example1.cpp \
+        main.example2.cpp \
+        main.example3.cpp \
+        main.example4.cpp \
+        main.example5.cpp \
+        main.example6.cpp
 
 ## TARANIS ############################################################################
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Taranis/release/ -lTaranis
