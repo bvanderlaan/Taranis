@@ -44,7 +44,6 @@ namespace Taranis
      */
     class CommandLineInterface
     {
-        friend class UnitTest::TaranisTestSuite;
         friend class CommandLineInterfaceBuilder;
     public:
         CommandLineInterface() = delete;
@@ -55,8 +54,18 @@ namespace Taranis
         QString description() const;
         QStringList arguments() const;
 
+        /**
+         * @brief You can use the index operator to access argument values.
+         * @param key is the key or name of the argument whose value you are looking for.
+         * @return Returns the value of an argument or an invalid QVariant if the argument does not exist.
+         */
         QVariant operator[](const QString key) const;
 
+        /**
+         * @brief build is a static helper method to easily access a builder of CommandLineInterface objects.
+         * @return Returns a pointer to a builder.
+         * @warning The pointer is yours.
+         */
         static CommandLineInterfaceBuilder* build();
 
     protected:
