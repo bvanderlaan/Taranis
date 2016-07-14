@@ -37,32 +37,30 @@ TaranisTestSuite::TaranisTestSuite(QObject *parent) : QObject(parent)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void TaranisTestSuite::testConstructWithNameAndVersion()
+void TaranisTestSuite::testSetName()
 {
-    CommandLineInterface cli("MyApp", "1.2.3.4");
-    QCOMPARE( cli.name(), QStringLiteral("MyApp") );
-    QCOMPARE( cli.version(), QStringLiteral("1.2.3.4"));
+    CommandLineInterface* cli = CommandLineInterface::build()->WithName("MyApp");
+    QCOMPARE( cli->name(), QStringLiteral("MyApp") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void TaranisTestSuite::testSetVersionWithFluentInterface()
+void TaranisTestSuite::testSetVersion()
 {
-    auto cli = CommandLineInterface("MyApp").WithVersion("1.2.3.4");
-    QCOMPARE( cli.name(), QStringLiteral("MyApp") );
+    CommandLineInterface cli = CommandLineInterface::build()->WithVersion("1.2.3.4");
     QCOMPARE( cli.version(), QStringLiteral("1.2.3.4"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testSetDescription()
 {
-    auto cli = CommandLineInterface().WithDescription("I'm a great app!");
+    CommandLineInterface cli = CommandLineInterface::build()->WithDescription("I'm a great app!");
     QCOMPARE( cli.description(), QStringLiteral("I'm a great app!") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testDefaultHelpMessage()
 {
-    CommandLineInterface cli;
+    CommandLineInterface cli = CommandLineInterface::build()->getCommandLineInterface();
     QString expected = QString("Usage: %1 [OPTION]\n\n"
                        "  -?\tDisplay this help and exit\n"
                        "  -h, --help\tDisplay this help and exit\n").arg(m_executableName);
@@ -75,7 +73,7 @@ void TaranisTestSuite::testDefaultHelpMessage()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testHelpMessageWithName()
 {
-    CommandLineInterface cli("MyApp");
+    CommandLineInterface cli = CommandLineInterface::build()->WithName("MyApp");
     QString expected = QString("MyApp\n"
                        "=====\n"
                        "Usage: %1 [OPTION]\n\n"
@@ -89,7 +87,7 @@ void TaranisTestSuite::testHelpMessageWithName()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testHelpMessageWithVersion()
 {
-    auto cli = CommandLineInterface().WithVersion("1.2.3.4");
+    CommandLineInterface cli = CommandLineInterface::build()->WithVersion("1.2.3.4");
     QString expected = QString("Version 1.2.3.4\n"
                        "===============\n"
                        "Usage: %1 [OPTION]\n\n"
@@ -104,7 +102,9 @@ void TaranisTestSuite::testHelpMessageWithVersion()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testHelpMessageWithNameAndVersion()
 {
-    CommandLineInterface cli("MyApp", "1.2.3.4");
+    CommandLineInterface cli = CommandLineInterface::build()
+                                                ->WithName("MyApp")
+                                                .WithVersion("1.2.3.4");
     QString expected = QString("MyApp - Version 1.2.3.4\n"
                        "=======================\n"
                        "Usage: %1 [OPTION]\n\n"
@@ -119,8 +119,8 @@ void TaranisTestSuite::testHelpMessageWithNameAndVersion()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testHelpMessageWithDescription()
 {
-    auto cli = CommandLineInterface()
-                        .WithDescription("I'm a great app!");
+    CommandLineInterface cli = CommandLineInterface::build()
+                                    ->WithDescription("I'm a great app!");
 
 
     QString expected = QString("I'm a great app!\n\n"
@@ -135,8 +135,9 @@ void TaranisTestSuite::testHelpMessageWithDescription()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testHelpMessageWithDescriptionAndName()
 {
-    auto cli = CommandLineInterface("MyApp")
-                            .WithDescription("I'm a great app!");
+    CommandLineInterface cli = CommandLineInterface::build()
+                                    ->WithName("MyApp")
+                                    .WithDescription("I'm a great app!");
 
     QString expected = QString("MyApp\n"
                        "=====\n"
@@ -152,9 +153,10 @@ void TaranisTestSuite::testHelpMessageWithDescriptionAndName()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testHelpMessageWithDescriptionAndNameAndVersion()
 {
-    auto cli = CommandLineInterface("MyApp")
-                        .WithDescription("I'm a great app!")
-                        .WithVersion("1.2.3.4");
+    CommandLineInterface cli = CommandLineInterface::build()
+                                        ->WithName("MyApp")
+                                        .WithDescription("I'm a great app!")
+                                        .WithVersion("1.2.3.4");
 
 
     QString expected = QString("MyApp - Version 1.2.3.4\n"
@@ -172,10 +174,11 @@ void TaranisTestSuite::testHelpMessageWithDescriptionAndNameAndVersion()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testHelpMessageWithCustomArgument()
 {
-    auto cli = CommandLineInterface("MyApp")
-                        .WithDescription("I'm a great app!")
-                        .WithVersion("1.2.3.4")
-                        .WithFlag("mouse", "Force mouse to be displayed in release build.");
+    CommandLineInterface cli = CommandLineInterface::build()
+                                    ->WithName("MyApp")
+                                    .WithDescription("I'm a great app!")
+                                    .WithVersion("1.2.3.4")
+                                    .WithFlag("mouse", "Force mouse to be displayed in release build.");
 
 
     QString expected = QString("MyApp - Version 1.2.3.4\n"
@@ -196,9 +199,9 @@ void TaranisTestSuite::testHelpMessageWithCustomArgument()
 void TaranisTestSuite::testDashHelpArgument()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"-help"}).WithAction("help", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"-help"}).WithAction("help", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -206,9 +209,9 @@ void TaranisTestSuite::testDashHelpArgument()
 void TaranisTestSuite::testDashHelpArgumentCaseInsensative()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"-HELP"}).WithAction("help", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"-HELP"}).WithAction("help", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -216,9 +219,9 @@ void TaranisTestSuite::testDashHelpArgumentCaseInsensative()
 void TaranisTestSuite::testDashDashHelpArgument()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"--help"}).WithAction("help", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"--help"}).WithAction("help", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -226,9 +229,9 @@ void TaranisTestSuite::testDashDashHelpArgument()
 void TaranisTestSuite::testDashDashHelpArgumentCaseInsensative()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"--HELP"}).WithAction("help", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"--HELP"}).WithAction("help", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -238,9 +241,9 @@ void TaranisTestSuite::testSlashHelpArgument()
     if ( QDir::separator() != QChar('/') )
     {
         int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-        CommandLineInterface("MyApp", "1.2.3.4", {"/help"}).WithAction("help", "", [&callCount](QVariant){
+        CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"/help"}).WithAction("help", "", [&callCount](QVariant){
             callCount++;
-        }).process();
+        }).getCommandLineInterface();
         QCOMPARE(callCount, 1);
     }
     else
@@ -255,9 +258,9 @@ void TaranisTestSuite::testSlashHelpArgumentCaseInsensative()
     if ( QDir::separator() != QChar('/') )
     {
         int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-        CommandLineInterface("MyApp", "1.2.3.4", {"/HELP"}).WithAction("help", "", [&callCount](QVariant){
+        CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"/HELP"}).WithAction("help", "", [&callCount](QVariant){
             callCount++;
-        }).process();
+        }).getCommandLineInterface();
         QCOMPARE(callCount, 1);
     }
     else
@@ -270,9 +273,9 @@ void TaranisTestSuite::testSlashHelpArgumentCaseInsensative()
 void TaranisTestSuite::testShortDashHelpArgument()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"-h"}).WithAction("help", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"-h"}).WithAction("help", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -280,9 +283,9 @@ void TaranisTestSuite::testShortDashHelpArgument()
 void TaranisTestSuite::testShortDashHelpArgumentCaseInsensative()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"-H"}).WithAction("help", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"-H"}).WithAction("help", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -290,9 +293,9 @@ void TaranisTestSuite::testShortDashHelpArgumentCaseInsensative()
 void TaranisTestSuite::testShortDashDashHelpArgument()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"--h"}).WithAction("help", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"--h"}).WithAction("help", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -300,9 +303,9 @@ void TaranisTestSuite::testShortDashDashHelpArgument()
 void TaranisTestSuite::testShortDashDashHelpArgumentCaseInsensative()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"--H"}).WithAction("help", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"--H"}).WithAction("help", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -312,9 +315,9 @@ void TaranisTestSuite::testShortSlashHelpArgument()
     if ( QDir::separator() != QChar('/') )
     {
         int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-        CommandLineInterface("MyApp", "1.2.3.4", {"/h"}).WithAction("help", "", [&callCount](QVariant){
+        CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"/h"}).WithAction("help", "", [&callCount](QVariant){
             callCount++;
-        }).process();
+        }).getCommandLineInterface();
         QCOMPARE(callCount, 1);
     }
     else
@@ -329,9 +332,9 @@ void TaranisTestSuite::testShortSlashHelpArgumentCaseInsensative()
     if ( QDir::separator() != QChar('/') )
     {
         int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-        CommandLineInterface("MyApp", "1.2.3.4", {"/H"}).WithAction("help", "", [&callCount](QVariant){
+        CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"/H"}).WithAction("help", "", [&callCount](QVariant){
             callCount++;
-        }).process();
+        }).getCommandLineInterface();
         QCOMPARE(callCount, 1);
     }
     else
@@ -344,9 +347,9 @@ void TaranisTestSuite::testShortSlashHelpArgumentCaseInsensative()
 void TaranisTestSuite::testDashQuestionMarkArgument()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"-?"}).WithAction("?", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"-?"}).WithAction("?", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -354,9 +357,9 @@ void TaranisTestSuite::testDashQuestionMarkArgument()
 void TaranisTestSuite::testDashDashQuestionMarkArgument()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"--?"}).WithAction("?", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"--?"}).WithAction("?", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -366,9 +369,9 @@ void TaranisTestSuite::testSlashQuestionMarkArgument()
     if ( QDir::separator() != QChar('/') )
     {
         int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-        CommandLineInterface("MyApp", "1.2.3.4", {"/?"}).WithAction("?", "", [&callCount](QVariant){
+        CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"/?"}).WithAction("?", "", [&callCount](QVariant){
             callCount++;
-        }).process();
+        }).getCommandLineInterface();
         QCOMPARE(callCount, 1);
     }
     else
@@ -381,9 +384,9 @@ void TaranisTestSuite::testSlashQuestionMarkArgument()
 void TaranisTestSuite::testDashVersionArgument()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"-version"}).WithAction("version", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"-version"}).WithAction("version", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -391,9 +394,9 @@ void TaranisTestSuite::testDashVersionArgument()
 void TaranisTestSuite::testDashVersionArgumentCaseInsensative()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"-VERSION"}).WithAction("version", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"-VERSION"}).WithAction("version", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -401,9 +404,9 @@ void TaranisTestSuite::testDashVersionArgumentCaseInsensative()
 void TaranisTestSuite::testDashDashVersionArgument()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"--version"}).WithAction("version", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"--version"}).WithAction("version", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -411,9 +414,9 @@ void TaranisTestSuite::testDashDashVersionArgument()
 void TaranisTestSuite::testDashDashVersionArgumentCaseInsensative()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"--VERSION"}).WithAction("version", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"--VERSION"}).WithAction("version", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -423,9 +426,9 @@ void TaranisTestSuite::testSlashVersionArgument()
     if ( QDir::separator() != QChar('/'))
     {
         int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-        CommandLineInterface("MyApp", "1.2.3.4", {"/version"}).WithAction("version", "", [&callCount](QVariant){
+        CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"/version"}).WithAction("version", "", [&callCount](QVariant){
             callCount++;
-        }).process();
+        }).getCommandLineInterface();
         QCOMPARE(callCount, 1);
     }
     else
@@ -440,9 +443,9 @@ void TaranisTestSuite::testSlashVersionArgumentCaseInsensative()
     if ( QDir::separator() != QChar('/'))
     {
         int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-        CommandLineInterface("MyApp", "1.2.3.4", {"/VERSION"}).WithAction("version", "", [&callCount](QVariant){
+        CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"/VERSION"}).WithAction("version", "", [&callCount](QVariant){
             callCount++;
-        }).process();
+        }).getCommandLineInterface();
         QCOMPARE(callCount, 1);
     }
     else
@@ -455,9 +458,9 @@ void TaranisTestSuite::testSlashVersionArgumentCaseInsensative()
 void TaranisTestSuite::testShortDashVersionArgument()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"-v"}).WithAction("version", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"-v"}).WithAction("version", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -465,9 +468,9 @@ void TaranisTestSuite::testShortDashVersionArgument()
 void TaranisTestSuite::testShortDashVersionArgumentCaseInsensative()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"-V"}).WithAction("version", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"-V"}).WithAction("version", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -475,9 +478,9 @@ void TaranisTestSuite::testShortDashVersionArgumentCaseInsensative()
 void TaranisTestSuite::testShortDashDashVersionArgument()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"--v"}).WithAction("version", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"--v"}).WithAction("version", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -485,9 +488,9 @@ void TaranisTestSuite::testShortDashDashVersionArgument()
 void TaranisTestSuite::testShortDashDashVersionArgumentCaseInsensative()
 {
     int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-    CommandLineInterface("MyApp", "1.2.3.4", {"--V"}).WithAction("version", "", [&callCount](QVariant){
+    CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"--V"}).WithAction("version", "", [&callCount](QVariant){
         callCount++;
-    }).process();
+    }).getCommandLineInterface();
     QCOMPARE(callCount, 1);
 }
 
@@ -497,9 +500,9 @@ void TaranisTestSuite::testShortSlashVersionArgument()
     if ( QDir::separator() != QChar('/'))
     {
         int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-        CommandLineInterface("MyApp", "1.2.3.4", {"/v"}).WithAction("version", "", [&callCount](QVariant){
+        CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"/v"}).WithAction("version", "", [&callCount](QVariant){
             callCount++;
-        }).process();
+        }).getCommandLineInterface();
         QCOMPARE(callCount, 1);
     }
     else
@@ -514,9 +517,9 @@ void TaranisTestSuite::testShortSlashVersionArgumentCaseInsensative()
     if ( QDir::separator() != QChar('/'))
     {
         int callCount(0); // Below we are overloading the built in argument so we can capture if it was caled vs. actually performing the built in action
-        CommandLineInterface("MyApp", "1.2.3.4", {"/V"}).WithAction("version", "", [&callCount](QVariant){
+        CommandLineInterfaceBuilder("MyApp", "1.2.3.4", {"/V"}).WithAction("version", "", [&callCount](QVariant){
             callCount++;
-        }).process();
+        }).getCommandLineInterface();
         QCOMPARE(callCount, 1);
     }
     else
@@ -528,9 +531,9 @@ void TaranisTestSuite::testShortSlashVersionArgumentCaseInsensative()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testAccessViaIndexOperatorWhenValueExists()
 {
-    auto arguments = Taranis::CommandLineInterface("My Cool App", "1.2.3", {"--mouse"})
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--mouse"})
             .WithFlag("mouse", "Force mouse to be displayed in release build.")
-            .process();
+            .getCommandLineInterface();
 
     QCOMPARE( arguments["mouse"], QVariant(true) );
 }
@@ -538,9 +541,9 @@ void TaranisTestSuite::testAccessViaIndexOperatorWhenValueExists()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testAccessViaIndexOperatorWhenValueDoesNotExist()
 {
-    auto arguments = Taranis::CommandLineInterface("My Cool App", "1.2.3")
-            .WithFlag("mouse", "Force mouse to be displayed in release build.")
-            .process();
+    auto arguments = CommandLineInterface::build()
+            ->WithFlag("mouse", "Force mouse to be displayed in release build.")
+            .getCommandLineInterface();
 
     QCOMPARE( arguments["mouse"], QVariant(false) );
 }
@@ -548,9 +551,9 @@ void TaranisTestSuite::testAccessViaIndexOperatorWhenValueDoesNotExist()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testAccessViaIndexOperatorWhenArgumentIsUnknown()
 {
-    auto arguments = Taranis::CommandLineInterface("My Cool App", "1.2.3", {"--mouse"})
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--mouse"})
             .WithFlag("mouse", "Force mouse to be displayed in release build.")
-            .process();
+            .getCommandLineInterface();
 
     QCOMPARE( arguments["force"].isValid(), false );
 }
@@ -558,9 +561,9 @@ void TaranisTestSuite::testAccessViaIndexOperatorWhenArgumentIsUnknown()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingEqualsNoSpace()
 {
-    auto arguments = Taranis::CommandLineInterface("My Cool App", "1.2.3", {"--hello=world"})
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello=world"})
             .WithValue("hello", "test")
-            .process();
+            .getCommandLineInterface();
 
     QCOMPARE( arguments["hello"].toString(), QString("world") );
 }
@@ -568,9 +571,9 @@ void TaranisTestSuite::testArgumentWithValueUsingEqualsNoSpace()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingEqualsWithEqualsInValueNoSpace()
 {
-    auto arguments = Taranis::CommandLineInterface("My Cool App", "1.2.3", {"--hello=world=earth"})
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello=world=earth"})
             .WithValue("hello", "test")
-            .process();
+            .getCommandLineInterface();
 
     QCOMPARE( arguments["hello"].toString(), QString("world=earth") );
 }
@@ -578,9 +581,9 @@ void TaranisTestSuite::testArgumentWithValueUsingEqualsWithEqualsInValueNoSpace(
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingColonNoSpace()
 {
-    auto arguments = Taranis::CommandLineInterface("My Cool App", "1.2.3", {"--hello:world"})
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello:world"})
             .WithValue("hello", "test")
-            .process();
+            .getCommandLineInterface();
 
     QCOMPARE( arguments["hello"].toString(), QString("world") );
 }
@@ -588,9 +591,9 @@ void TaranisTestSuite::testArgumentWithValueUsingColonNoSpace()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingColonWithColonInValueNoSpace()
 {
-    auto arguments = Taranis::CommandLineInterface("My Cool App", "1.2.3", {"--hello:world:earth"})
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello:world:earth"})
             .WithValue("hello", "test")
-            .process();
+            .getCommandLineInterface();
 
     QCOMPARE( arguments["hello"].toString(), QString("world:earth") );
 }

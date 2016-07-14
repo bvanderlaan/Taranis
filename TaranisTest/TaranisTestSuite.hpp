@@ -41,8 +41,8 @@ namespace Taranis
 
         private slots:
             /// Test Setting Name and Version
-            void testConstructWithNameAndVersion();
-            void testSetVersionWithFluentInterface();
+            void testSetName();
+            void testSetVersion();
             void testSetDescription();
 
             /// Test Help Message Generation

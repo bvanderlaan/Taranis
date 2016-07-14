@@ -23,50 +23,22 @@
  */
 #include <QCoreApplication>
 #include <QFileInfo>
-#include <QDir>
+#include <functional>
 #include "CommandLineInterface.hpp"
 #include "InputArgument.hpp"
 
 using namespace Taranis;
 using action_callback = std::function<void(QVariant)>;
-Q_DECLARE_METATYPE(action_callback)
 
 const QString CommandLineInterface::VERSIONARGUMENT = "version";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface::CommandLineInterface() :
-    CommandLineInterface(QStringLiteral(""))
+CommandLineInterface::CommandLineInterface(const QString applicationName, QStringList arguments, QStringList acceptedArgumentPrefixes)
+    : m_applicationName(applicationName),
+      m_inputArguments( arguments ),
+      m_acceptedArgumentPrefixs( acceptedArgumentPrefixes )
 {
-
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface::CommandLineInterface(const QString applicationName)
-    : CommandLineInterface(applicationName, QStringLiteral(""))
-{
-
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface::CommandLineInterface(const QString applicationName, const QString version)
-    : CommandLineInterface( applicationName, version, QCoreApplication::arguments() )
-{
-
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface::CommandLineInterface(const QString applicationName, const QString version, QStringList arguments)
-    : m_acceptedArgumentPrefixs( { QStringLiteral("-"), QStringLiteral("--") } ),
-      m_applicationName(applicationName),
-      m_inputArguments( arguments )
-{
-    if ( QDir::separator() != QChar('/') )
-    {
-        m_acceptedArgumentPrefixs.append( QStringLiteral("/") );
-    }
-
-    WithVersion( version );
-    WithHelp();
+    addHelpArguments();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,32 +46,6 @@ CommandLineInterface::~CommandLineInterface()
 {
 //    qDeleteAll( m_arguments );
     m_arguments.clear();
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface& CommandLineInterface::WithVersion(const QString &version)
-{
-    m_version = version;
-    if ( m_version.isEmpty() )
-    {
-        delete m_arguments.value(VERSIONARGUMENT);
-        m_arguments.remove(VERSIONARGUMENT);
-    }
-    else
-    {
-        action_callback versionCallback = std::bind( &CommandLineInterface::doVersionAction, this );
-        WithAction(VERSIONARGUMENT, "Display version information and exit", versionCallback);
-    }
-    return *this;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface &CommandLineInterface::WithHelp()
-{
-    action_callback helpCallback = std::bind( &CommandLineInterface::doHelpAction, this );
-    WithAction("help", "Display this help and exit", helpCallback);
-    WithAction("?", "Display this help and exit", helpCallback);
-    return *this;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -118,6 +64,12 @@ QString CommandLineInterface::version() const
 QString CommandLineInterface::description() const
 {
     return m_description;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+QStringList CommandLineInterface::arguments() const
+{
+    return m_arguments.keys();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -152,49 +104,9 @@ QVariant CommandLineInterface::operator[](const QString key) const
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface &CommandLineInterface::WithDescription(const QString &description)
+CommandLineInterfaceBuilder *CommandLineInterface::build()
 {
-    m_description = description;
-    return *this;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface &CommandLineInterface::WithFlag(const QString &flag, const QString &description)
-{
-    addArgument( new Argument( flag, description, ArgumentType::Boolean, [this, flag](QVariant){
-        m_arguments[flag]->setValue(true);
-    }));
-    return *this;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface &CommandLineInterface::WithFlag(const QString &flag, const QString &description, action_callback action)
-{
-    addArgument( new Argument( flag, description, ArgumentType::Boolean, action) );
-    return *this;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface &CommandLineInterface::WithValue(const QString &name, const QString &description)
-{
-    addArgument( new Argument( name, description, ArgumentType::String, [this, name](QVariant value){
-        m_arguments[name]->setValue(value);
-    }));
-    return *this;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface &CommandLineInterface::WithValue(const QString &name, const QString &description, action_callback action)
-{
-    addArgument( new Argument( name, description, ArgumentType::String, action) );
-    return *this;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterface &CommandLineInterface::WithAction(const QString &name, const QString &description, action_callback action)
-{
-    addArgument( new Argument( name, description, ArgumentType::Action, action) );
-    return *this;
+    return new CommandLineInterfaceBuilder();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -204,6 +116,55 @@ void CommandLineInterface::addArgument(Argument* arg)
     if ( arg->hasShortName() )
     {
         m_arguments[arg->shortName()] = arg;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void CommandLineInterface::setVersion(const QString version)
+{
+    m_version = version;
+    if ( m_version.isEmpty() )
+    {
+        delete m_arguments.value(VERSIONARGUMENT);
+        m_arguments.remove(VERSIONARGUMENT);
+    }
+    else
+    {
+        action_callback versionCallback = std::bind( &CommandLineInterface::doVersionAction, this );
+        addArgument( new Argument( VERSIONARGUMENT, "Display version information and exit", ArgumentType::Action, versionCallback) );
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void CommandLineInterface::setName(const QString name)
+{
+    m_applicationName = name;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void CommandLineInterface::setDescription(const QString description)
+{
+    m_description = description;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void CommandLineInterface::addHelpArguments()
+{
+    action_callback helpCallback = std::bind( &CommandLineInterface::doHelpAction, this );
+    addArgument( new Argument( "help", "Display this help and exit", ArgumentType::Action, helpCallback) );
+    addArgument( new Argument( "?", "Display this help and exit", ArgumentType::Action, helpCallback) );
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void CommandLineInterface::setValue(const QString key, const QVariant value)
+{
+    if ( m_arguments.contains(key) )
+    {
+        m_arguments[key]->setValue(value);
+    }
+    else
+    {
+        Q_ASSERT_X( false, "CommandLineInterface::setValue", QString("No argument with name %1").arg(key).toLatin1().data() );
     }
 }
 

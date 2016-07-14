@@ -28,8 +28,8 @@
 #include <QMap>
 #include <QVariant>
 #include <QStringList>
-#include <functional>
 #include "Argument.hpp"
+#include "CommandLineInterfaceBuilder.hpp"
 
 namespace Taranis
 {
@@ -45,37 +45,33 @@ namespace Taranis
     class CommandLineInterface
     {
         friend class UnitTest::TaranisTestSuite;
+        friend class CommandLineInterfaceBuilder;
     public:
-        CommandLineInterface();
-        explicit CommandLineInterface(const QString applicationName);
-        explicit CommandLineInterface(const QString applicationName, const QString version);
-        explicit CommandLineInterface(const QString applicationName, const QString version, QStringList arguments);
+        CommandLineInterface() = delete;
         virtual ~CommandLineInterface();
 
         QString name() const;
         QString version() const;
         QString description() const;
-
-        CommandLineInterface& WithVersion(const QString& version );
-        CommandLineInterface& WithDescription(const QString& description );
-        CommandLineInterface& WithFlag( const QString& flag, const QString& description );
-        CommandLineInterface& WithFlag( const QString& flag, const QString& description, std::function<void(QVariant)> action );
-        CommandLineInterface& WithValue( const QString& name, const QString& description );
-        CommandLineInterface& WithValue( const QString& name, const QString& description, std::function<void(QVariant)> action );
-        CommandLineInterface& WithAction( const QString& name, const QString& description, std::function<void(QVariant)> action );
-
-        virtual CommandLineInterface& process();
+        QStringList arguments() const;
 
         QVariant operator[](const QString key) const;
 
+        static CommandLineInterfaceBuilder* build();
+
     protected:
+        explicit CommandLineInterface(const QString applicationName, QStringList arguments, QStringList acceptedArgumentPrefixes);
+        virtual CommandLineInterface& process();
         virtual QString helpMessage() const;
         virtual void doHelpAction() const;
         virtual void doVersionAction() const;
         virtual QString generateTitle() const;
         void addArgument( Argument* arg );
-
-        QStringList m_acceptedArgumentPrefixs;
+        void setVersion( const QString version );
+        void setName( const QString name );
+        void setDescription( const QString description );
+        void addHelpArguments();
+        void setValue( const QString key, const QVariant value );
 
     private:
         QString m_applicationName;
@@ -83,8 +79,8 @@ namespace Taranis
         QString m_description;
         QMap<QString, Argument*> m_arguments;
         QStringList m_inputArguments;
+        QStringList m_acceptedArgumentPrefixs;
         static const QString VERSIONARGUMENT;
-        CommandLineInterface& WithHelp();
     };
 }
 
