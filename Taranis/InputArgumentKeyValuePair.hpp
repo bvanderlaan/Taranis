@@ -30,6 +30,20 @@
 
 namespace Taranis
 {
+    /**
+     * @brief The InputArgumentKeyValuePair class represents input data consisting of a key and a value.
+     * The key is the string used to represent a given argument. We say key here becuase it could be a
+     * long name, i.e. 'help', or a short name, i.e. 'h', but will be used as the look up key in the CLI's
+     * list of acceptable arguments.
+     *
+     * Once an argument has been detected this class will be used to parse the string to detect any values
+     * attached to the argument. This class will handle a number of different seperator characters to support
+     * inputs such as:
+     *
+     *    address:1.23.4.5
+     *    address=1.23.4.5
+     *    address 1.23.4.5
+     */
     class InputArgumentKeyValuePair : QObject
     {
     public:
@@ -46,6 +60,12 @@ namespace Taranis
         QVariant m_value;
         QStringList m_valueSeperators;
         QString m_originalArgumentString;
+
+        /**
+         * @brief getSeperatorInfo will detect a value seperator.
+         * @param argument is an argument string which may include a value.
+         * @return Returns which seperator character was found and its index in the argument string.
+         */
         QPair<QString,int> getSeperatorInfo(const QString argument) const;
         void updateKeyValuePair(const QPair<QString,int> seperatorInfo);
     };
