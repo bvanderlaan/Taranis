@@ -24,10 +24,16 @@
 #ifndef ARGUMENTTYPE_HPP
 #define ARGUMENTTYPE_HPP
 
-enum ArgumentType {
-    Action,
-    Boolean,
-    String
-};
+namespace Taranis
+{
+    /**
+     * @brief The ArgumentType enum lists the different types of arguments Taranis can process.
+     */
+    enum ArgumentType {
+        Action,     //< Action arguments will perform some action like show the version or help text.
+        Boolean,    //< Boolean arguments as simple flags, they are true if present or false if not.
+        String      //< String arguments have a value. Such as an argument named ip having a value of 1.2.3.4
+    };
+}
 
 #endif // ARGUMENTTYPE_HPP
