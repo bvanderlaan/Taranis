@@ -40,7 +40,7 @@ namespace Taranis
         explicit InputArgument(const QString arg, QList<QString> acceptedArgumentPrefixs, QObject *parent = 0);
         ~InputArgument() {}
 
-        QString argument() const;
+        QString name() const;
         QString prefix() const;
         bool isValid() const;
         QVariant value() const;

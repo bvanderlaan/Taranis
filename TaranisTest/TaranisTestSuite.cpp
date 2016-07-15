@@ -620,7 +620,7 @@ void TaranisTestSuite::testWhenArgumentHasPrefixInName()
 {
     InputArgument arg( "--help--this", {"--"} );
     QCOMPARE( arg.isValid(), true );
-    QCOMPARE( arg.argument(), QStringLiteral("help--this") );
+    QCOMPARE( arg.name(), QStringLiteral("help--this") );
     QCOMPARE( arg.prefix(), QStringLiteral("--"));
 }
 
@@ -663,42 +663,42 @@ void TaranisTestSuite::testPrefixWhenNotFound()
 void TaranisTestSuite::testArgumentWithDashPrefix()
 {
     InputArgument arg( "-help", {"-"} );
-    QCOMPARE( arg.argument(), QStringLiteral("help") );
+    QCOMPARE( arg.name(), QStringLiteral("help") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithDashDashPrefix()
 {
     InputArgument arg( "--help", {"--"} );
-    QCOMPARE( arg.argument(), QStringLiteral("help") );
+    QCOMPARE( arg.name(), QStringLiteral("help") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithDashDashPrefixWhenDashPrefixIsAlsoAccepted()
 {
     InputArgument arg( "--help", {"-", "--"} );
-    QCOMPARE( arg.argument(), QStringLiteral("help") );
+    QCOMPARE( arg.name(), QStringLiteral("help") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithSlashPrefix()
 {
     InputArgument arg( "/help", {"/"} );
-    QCOMPARE( arg.argument(), QStringLiteral("help") );
+    QCOMPARE( arg.name(), QStringLiteral("help") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWhenPrefixNotFound()
 {
     InputArgument arg( "=help", {"-", "--", "/"} );
-    QCOMPARE( arg.argument(), QStringLiteral("") );
+    QCOMPARE( arg.name(), QStringLiteral("") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithUpperCase()
 {
     InputArgument arg( "--HELP", {"--"} );
-    QCOMPARE( arg.argument(), QStringLiteral("HELP") );
+    QCOMPARE( arg.name(), QStringLiteral("HELP") );
 }
 
 /////////////////////////////////////////////////////////////////////////////

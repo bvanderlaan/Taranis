@@ -72,7 +72,7 @@ void InputArgument::updateValue()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-QString InputArgument::argument() const
+QString InputArgument::name() const
 {
     return m_argument;
 }

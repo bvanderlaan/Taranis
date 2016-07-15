@@ -80,7 +80,7 @@ CommandLineInterface& CommandLineInterface::process()
         InputArgument arg( a, m_acceptedArgumentPrefixs );
         if ( arg.isValid() )
         {
-            QString key = arg.argument().toLower();
+            QString key = arg.name().toLower();
             if ( m_arguments.contains( key ) )
             {
                 m_arguments[key]->callback()(arg.value());
