@@ -46,7 +46,9 @@ namespace Taranis
         friend class UnitTest::TaranisTestSuite;
     public:
         CommandLineInterfaceBuilder();
-        virtual ~CommandLineInterfaceBuilder() {}
+        CommandLineInterfaceBuilder(CommandLineInterfaceBuilder& other);
+        CommandLineInterfaceBuilder(CommandLineInterfaceBuilder&& other);
+        virtual ~CommandLineInterfaceBuilder();
 
         CommandLineInterfaceBuilder& WithName(const QString& name );
         CommandLineInterfaceBuilder& WithVersion(const QString& version );
@@ -57,7 +59,8 @@ namespace Taranis
         CommandLineInterfaceBuilder& WithValue( const QString& name, const QString& description, std::function<void(QVariant)> action );
         CommandLineInterfaceBuilder& WithAction( const QString& name, const QString& description, std::function<void(QVariant)> action );
 
-        operator CommandLineInterface*() const;
+        CommandLineInterfaceBuilder& operator=(CommandLineInterfaceBuilder&& other);
+        CommandLineInterfaceBuilder& operator=(CommandLineInterfaceBuilder& other);
         operator CommandLineInterface() const;
 
         CommandLineInterface getCommandLineInterface() const;

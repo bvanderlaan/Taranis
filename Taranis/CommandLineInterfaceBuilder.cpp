@@ -42,6 +42,25 @@ CommandLineInterfaceBuilder::CommandLineInterfaceBuilder()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterfaceBuilder::CommandLineInterfaceBuilder(CommandLineInterfaceBuilder &other)
+{
+    *m_cli = *(other.m_cli);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterfaceBuilder::CommandLineInterfaceBuilder(CommandLineInterfaceBuilder &&other)
+{
+    m_cli = other.m_cli;
+    other.m_cli = nullptr;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterfaceBuilder::~CommandLineInterfaceBuilder()
+{
+    delete m_cli;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterfaceBuilder::CommandLineInterfaceBuilder(const QString applicationName, const QString version, QStringList arguments)
 {
    QStringList acceptedArgumentPrefixs = getAcceptedArgumentPrefixes();
@@ -62,13 +81,6 @@ QStringList CommandLineInterfaceBuilder::getAcceptedArgumentPrefixes()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterfaceBuilder::operator CommandLineInterface*() const
-{
-    m_cli->process();
-    return m_cli;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterfaceBuilder::operator CommandLineInterface() const
 {
     return getCommandLineInterface();
@@ -79,6 +91,29 @@ CommandLineInterface CommandLineInterfaceBuilder::getCommandLineInterface() cons
 {
     m_cli->process();
     return *m_cli;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterfaceBuilder &CommandLineInterfaceBuilder::operator=(CommandLineInterfaceBuilder &&other)
+{
+    if ( this != &other )
+    {
+        delete this->m_cli;
+        this->m_cli = other.m_cli;
+        other.m_cli = nullptr;
+    }
+    return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterfaceBuilder &CommandLineInterfaceBuilder::operator=(CommandLineInterfaceBuilder &other)
+{
+    if ( this != &other )
+    {
+        delete this->m_cli;
+        *(this->m_cli) = *(other.m_cli);
+    }
+    return *this;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
