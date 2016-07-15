@@ -45,6 +45,7 @@ namespace Taranis
     class CommandLineInterface
     {
         friend class CommandLineInterfaceBuilder;
+        friend class UnitTest::TaranisTestSuite;
     public:
         CommandLineInterface() = delete;
         virtual ~CommandLineInterface();
