@@ -10,7 +10,7 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 
-DEFINES += EXAMPLE2
+DEFINES += EXAMPLE1
 
 SOURCES += \
         main.example1.cpp \
