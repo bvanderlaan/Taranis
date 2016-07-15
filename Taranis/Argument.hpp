@@ -31,6 +31,11 @@
 
 namespace Taranis
 {
+    /**
+     * @brief The Argument class represents a command line argument.
+     * This object has a name and a short name (quite, q), a description,
+     * a type, and the value provided by the user on the CLI.
+     */
     class Argument
     {
     public:
@@ -44,6 +49,12 @@ namespace Taranis
         ArgumentType type() const;
         QVariant value() const;
         void setValue( QVariant value );
+
+        /**
+         * @brief callback is the function you want performed when the argument is detected on the CLI.
+         * The call back could be as simple as setting a value to be read by your program later or it could
+         * be a handler that performs some action when an argument is present and/or at a given value.
+         */
         std::function<void(QVariant)> callback();
 
     private:

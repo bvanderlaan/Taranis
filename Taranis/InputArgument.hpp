@@ -30,6 +30,9 @@
 
 namespace Taranis
 {
+    /**
+     * @brief The InputArgument class parses the users input string and identifies the prefix, argument name and value.
+     */
     class InputArgument : public QObject
     {
         Q_OBJECT

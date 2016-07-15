@@ -71,7 +71,12 @@ namespace Taranis
 
     protected:
         explicit CommandLineInterface(const QString applicationName, QStringList arguments, QStringList acceptedArgumentPrefixes);
+
+        /**
+         * @brief process will read the input arguments and parse them into Argument objects then execute their callbacks.
+         */
         virtual CommandLineInterface& process();
+
         virtual QString helpMessage() const;
         virtual void doHelpAction() const;
         virtual void doVersionAction() const;
