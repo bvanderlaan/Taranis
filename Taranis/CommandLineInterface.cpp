@@ -104,9 +104,9 @@ QVariant CommandLineInterface::operator[](const QString key) const
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterfaceBuilder *CommandLineInterface::build()
+CommandLineInterfaceBuilder CommandLineInterface::build()
 {
-    return new CommandLineInterfaceBuilder();
+    return CommandLineInterfaceBuilder();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

@@ -39,28 +39,28 @@ TaranisTestSuite::TaranisTestSuite(QObject *parent) : QObject(parent)
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testSetName()
 {
-    CommandLineInterface* cli = CommandLineInterface::build()->WithName("MyApp");
-    QCOMPARE( cli->name(), QStringLiteral("MyApp") );
+    CommandLineInterface cli = CommandLineInterface::build().WithName("MyApp");
+    QCOMPARE( cli.name(), QStringLiteral("MyApp") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testSetVersion()
 {
-    CommandLineInterface cli = CommandLineInterface::build()->WithVersion("1.2.3.4");
+    CommandLineInterface cli = CommandLineInterface::build().WithVersion("1.2.3.4");
     QCOMPARE( cli.version(), QStringLiteral("1.2.3.4"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testSetDescription()
 {
-    CommandLineInterface cli = CommandLineInterface::build()->WithDescription("I'm a great app!");
+    CommandLineInterface cli = CommandLineInterface::build().WithDescription("I'm a great app!");
     QCOMPARE( cli.description(), QStringLiteral("I'm a great app!") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testDefaultHelpMessage()
 {
-    CommandLineInterface cli = CommandLineInterface::build()->getCommandLineInterface();
+    CommandLineInterface cli = CommandLineInterface::build().getCommandLineInterface();
     QString expected = QString("Usage: %1 [OPTION]\n\n"
                        "  -?\tDisplay this help and exit\n"
                        "  -h, --help\tDisplay this help and exit\n").arg(m_executableName);
@@ -73,7 +73,7 @@ void TaranisTestSuite::testDefaultHelpMessage()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testHelpMessageWithName()
 {
-    CommandLineInterface cli = CommandLineInterface::build()->WithName("MyApp");
+    CommandLineInterface cli = CommandLineInterface::build().WithName("MyApp");
     QString expected = QString("MyApp\n"
                        "=====\n"
                        "Usage: %1 [OPTION]\n\n"
@@ -87,7 +87,7 @@ void TaranisTestSuite::testHelpMessageWithName()
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testHelpMessageWithVersion()
 {
-    CommandLineInterface cli = CommandLineInterface::build()->WithVersion("1.2.3.4");
+    CommandLineInterface cli = CommandLineInterface::build().WithVersion("1.2.3.4");
     QString expected = QString("Version 1.2.3.4\n"
                        "===============\n"
                        "Usage: %1 [OPTION]\n\n"
@@ -103,7 +103,7 @@ void TaranisTestSuite::testHelpMessageWithVersion()
 void TaranisTestSuite::testHelpMessageWithNameAndVersion()
 {
     CommandLineInterface cli = CommandLineInterface::build()
-                                                ->WithName("MyApp")
+                                                .WithName("MyApp")
                                                 .WithVersion("1.2.3.4");
     QString expected = QString("MyApp - Version 1.2.3.4\n"
                        "=======================\n"
@@ -120,7 +120,7 @@ void TaranisTestSuite::testHelpMessageWithNameAndVersion()
 void TaranisTestSuite::testHelpMessageWithDescription()
 {
     CommandLineInterface cli = CommandLineInterface::build()
-                                    ->WithDescription("I'm a great app!");
+                                    .WithDescription("I'm a great app!");
 
 
     QString expected = QString("I'm a great app!\n\n"
@@ -136,7 +136,7 @@ void TaranisTestSuite::testHelpMessageWithDescription()
 void TaranisTestSuite::testHelpMessageWithDescriptionAndName()
 {
     CommandLineInterface cli = CommandLineInterface::build()
-                                    ->WithName("MyApp")
+                                    .WithName("MyApp")
                                     .WithDescription("I'm a great app!");
 
     QString expected = QString("MyApp\n"
@@ -154,7 +154,7 @@ void TaranisTestSuite::testHelpMessageWithDescriptionAndName()
 void TaranisTestSuite::testHelpMessageWithDescriptionAndNameAndVersion()
 {
     CommandLineInterface cli = CommandLineInterface::build()
-                                        ->WithName("MyApp")
+                                        .WithName("MyApp")
                                         .WithDescription("I'm a great app!")
                                         .WithVersion("1.2.3.4");
 
@@ -175,7 +175,7 @@ void TaranisTestSuite::testHelpMessageWithDescriptionAndNameAndVersion()
 void TaranisTestSuite::testHelpMessageWithCustomArgument()
 {
     CommandLineInterface cli = CommandLineInterface::build()
-                                    ->WithName("MyApp")
+                                    .WithName("MyApp")
                                     .WithDescription("I'm a great app!")
                                     .WithVersion("1.2.3.4")
                                     .WithFlag("mouse", "Force mouse to be displayed in release build.");
@@ -542,7 +542,7 @@ void TaranisTestSuite::testAccessViaIndexOperatorWhenValueExists()
 void TaranisTestSuite::testAccessViaIndexOperatorWhenValueDoesNotExist()
 {
     auto arguments = CommandLineInterface::build()
-            ->WithFlag("mouse", "Force mouse to be displayed in release build.")
+            .WithFlag("mouse", "Force mouse to be displayed in release build.")
             .getCommandLineInterface();
 
     QCOMPARE( arguments["mouse"], QVariant(false) );

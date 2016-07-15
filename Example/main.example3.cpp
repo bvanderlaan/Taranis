@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
 
     auto builder = CommandLineInterface::build()
-                        ->WithName("My Cool App")
+                        .WithName("My Cool App")
                         .WithVersion("1.2.3.4-abc")
                         .WithFlag("mouse", "Force mouse to be displayed in release build.");
 

@@ -67,7 +67,7 @@ namespace Taranis
          * @return Returns a pointer to a builder.
          * @warning The pointer is yours.
          */
-        static CommandLineInterfaceBuilder* build();
+        static CommandLineInterfaceBuilder build();
 
     protected:
         explicit CommandLineInterface(const QString applicationName, QStringList arguments, QStringList acceptedArgumentPrefixes);

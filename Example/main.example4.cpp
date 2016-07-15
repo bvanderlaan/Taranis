@@ -33,11 +33,11 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
 
     auto builder = CommandLineInterface::build();
-    builder->WithName("My Cool App");
-    builder->WithVersion("1.2.3.4-abc");
-    builder->WithFlag("mouse", "Force mouse to be displayed in release build.");
+    builder.WithName("My Cool App");
+    builder.WithVersion("1.2.3.4-abc");
+    builder.WithFlag("mouse", "Force mouse to be displayed in release build.");
 
-    auto arguments = builder->getCommandLineInterface();
+    auto arguments = builder.getCommandLineInterface();
 
     qDebug() << "Show Mouse? " << ( arguments["mouse"].toBool() ? "Yes" : "No" );
 
