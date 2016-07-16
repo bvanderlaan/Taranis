@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/bvanderlaan/Taranis.svg?branch=master)](https://travis-ci.org/bvanderlaan/Taranis)
 
-Taranis is a tool which can be used in Qt projects to provide a command line interface for inputting start up parameters into your application.
+Taranis is a toolkit which can be used in Qt projects to provide a command line interface for inputting start up parameters into your application.
 
 GUI applications or background processes tend to have flags now and again to allow users to alter how the application will run. They might have 
 flags to change their logging level or alter server connection addresses. The code to process the command line arguments fed into an application
