@@ -229,12 +229,12 @@ QString CommandLineInterface::generateTitle() const
 void CommandLineInterface::doHelpAction() const
 {
     printf( "%s", helpMessage().toLatin1().data() );
-    QCoreApplication::exit(0);
+    exit(0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void CommandLineInterface::doVersionAction() const
 {
     printf( "%s", generateTitle().toLatin1().data() );
-    QCoreApplication::exit(0);
+    exit(0);
 }
