@@ -55,9 +55,90 @@ namespace Taranis
         CommandLineInterfaceBuilder& operator=(CommandLineInterfaceBuilder&& other);
         operator CommandLineInterface() const;
 
+        /**
+         * @brief WithName allows you to specify the name of your application.
+         * The Taranis CommandLineInterface will generate help text for you and
+         * this method allows you to provide the name of your application which
+         * will be used in said help text.
+         *
+         * @code{.cpp}
+         * CommandLineInterface::build().WithName("My Cool App");
+         * @endcode
+         *
+         * The above code would render the below help text.
+         *
+         * @code{.unparsed}
+         * $ mycoolapp --help
+         * My Cool App
+         * ===========
+         * Usage: mycoolapp [OPTION]
+         *   -?         Display this help and exits.
+         *   -h, --help Display this help and exits.
+         * @endcode
+         *
+         * @param name is the name of your application.
+         */
         CommandLineInterfaceBuilder& WithName(const QString& name );
+
+        /**
+         * @brief WithVersion allows you to specify the version of your application.
+         * The Taranis CommandLineInterface will generate help text for you and
+         * this method allows you to provide the version of your application which
+         * will be used in said help text.
+         *
+         * @code{.cpp}
+         * CommandLineInterface::build().WithName("My Cool App").WithVersion("1.2.3.4-rc1");
+         * @endcode
+         *
+         * The above code would render the below help text.
+         *
+         * @code{.unparsed}
+         * $ mycoolapp --help
+         * My Cool App - Version 1.2.3.4-rc1
+         * =================================
+         * Usage: mycoolapp [OPTION]
+         *   -?            Display this help and exits.
+         *   -h, --help    Display this help and exits.
+         *   -v, --version Display version information and exits.
+         * @endcode
+         *
+         * @param version is the version of your application and can be any string.
+         */
         CommandLineInterfaceBuilder& WithVersion(const QString& version );
+
+        /**
+         * @brief WithDescription allows you to specify a description for your application.
+         * The Taranis CommandLineInterface will generate help text for you and
+         * this method allows you to provide an optional description of your application which
+         * will be used in said help text.
+         *
+         * @code{.cpp}
+         * CommandLineInterface::build().WithName("My Cool App")
+         *                              .WithVersion("1.2.3.4-rc1")
+         *                              .WithDescription("This application is really cool!");
+         * @endcode
+         *
+         * The above code would render the below help text.
+         *
+         * @code{.unparsed}
+         * $ mycoolapp --help
+         * My Cool App - Version 1.2.3.4-rc1
+         * =================================
+         * This application is really cool!
+         *
+         * Usage: mycoolapp [OPTION]
+         *   -?            Display this help and exits.
+         *   -h, --help    Display this help and exits.
+         *   -v, --version Display version information and exits.
+         * @endcode
+         *
+         * @param description is a description of your application.
+         */
         CommandLineInterfaceBuilder& WithDescription(const QString& description );
+
+        /**
+         * @return Returns the constructed CommandLineInterface object.
+         */
         CommandLineInterface getCommandLineInterface() const;
 
         /**
