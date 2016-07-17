@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     builder.WithVersion("1.2.3.4-abc");
     builder.WithFlag("mouse", "Force mouse to be displayed in release build.");
 
-    auto arguments = builder.getCommandLineInterface();
+    CommandLineInterface arguments = builder.getCommandLineInterface();
 
     qDebug() << "Show Mouse? " << ( arguments["mouse"].toBool() ? "Yes" : "No" );
 
