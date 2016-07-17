@@ -133,7 +133,7 @@ namespace Taranis
          * 'version' argument is not about setting the version or turning on a version flag but rather about executing the display
          * version action so the user can see the version of your application on screen.
          *
-         * * @code{.cpp}
+         * @code{.cpp}
          * CommandLineInterface::build().WithFlag("restart", "Will restart the service.",
          *                                          [this](QVariant) {
          *                                                this->restart();
