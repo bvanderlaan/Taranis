@@ -64,8 +64,7 @@ namespace Taranis
 
         /**
          * @brief build is a static helper method to easily access a builder of CommandLineInterface objects.
-         * @return Returns a pointer to a builder.
-         * @warning The pointer is yours.
+         * @return Returns a command line interface builder.
          */
         static CommandLineInterfaceBuilder build();
 
