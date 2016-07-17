@@ -96,6 +96,68 @@ namespace Taranis
         QStringList m_acceptedArgumentPrefixs;
         static const QString VERSIONARGUMENT;
     };
+
+    /**
+     * @example main.example1.cpp
+     * This example shows how to construct a CommandLineInterface object using the static CommandLineInterface::build() method
+     * and the CommandLineInterfaceBuilder's fluent interface. Next it shows you how to read the value of the flag from the
+     * constructed object.
+     *
+     * If you run this example when the user provides the mouse flag such as -mouse, --mouse, -m, /m, /mouse
+     * You see see the output <i>Show Mouse? Yes</i> otherwise you'll see <i>Show Mouse? No</i>.
+     */
+    /**
+     * @example main.example2.cpp
+     * This example shows how to construct a CommandLineInterface object using the static CommandLineInterface::build() method
+     * and the CommandLineInterfaceBuilder's fluent interface. Next it shows how to provide a call back which would be executed
+     * if the user provided in this case the mouse flag.
+     *
+     * In this example you see that there is no need to hold onto the CommandLineInterface object as the call backs
+     * are called automatically after construction.
+     *
+     * If you run this example when the user provides the mouse flag such as -mouse, --mouse, -m, /m, /mouse
+     * You see see the output <i>Show Mouse? Yes</i> otherwise you'll see <i>Show Mouse? No</i>.
+     */
+    /**
+     * @example main.example3.cpp
+     * This example shows how to construct a CommandLineInterface object using the static CommandLineInterface::build() method
+     * and the CommandLineInterfaceBuilder's fluent interface. Next it shows how to requeste the constructed CommandLineInterface
+     * object from the builder. Finally it shows how to access the values the user inputed on the command line.
+     *
+     * @see main.example1.cpp for a one line way of doing the same thing.
+     *
+     * If you run this example when the user provides the mouse flag such as -mouse, --mouse, -m, /m, /mouse
+     * You see see the output <i>Show Mouse? Yes</i> otherwise you'll see <i>Show Mouse? No</i>.
+     */
+
+    /**
+     * @example main.example4.cpp
+     * This example shows how to construct a CommandLineInterface object using the static CommandLineInterface::build() method
+     * then define a command line interface using the <i>With</i> methods in a traditional way. Finally it then shows how
+     * to requeste the CommandLineInterface object from the builder before showing how to access the values the user inputed
+     * on the command line.
+     *
+     * If you run this example when the user provides the mouse flag such as -mouse, --mouse, -m, /m, /mouse
+     * You see see the output <i>Show Mouse? Yes</i> otherwise you'll see <i>Show Mouse? No</i>.
+     */
+    /**
+     * @example main.example5.cpp
+     * This example shows how to construct a CommandLineInterfaceBuilder object then how to use it to constructe a
+     * CommandLineInterface object using the <i>With</i> methods. Next it show show to request the CommandLineInterface
+     * object from the builder before showing how to access the values the user inputed on the command line.
+     *
+     * If you run this example when the user provides the mouse flag such as -mouse, --mouse, -m, /m, /mouse
+     * You see see the output <i>Show Mouse? Yes</i> otherwise you'll see <i>Show Mouse? No</i>.
+     */
+    /**
+     * @example main.example6.cpp
+     * This example shows how to construct a CommandLineInterfaceBuilder object then how to use it to constructe a
+     * CommandLineInterface object using the <i>With</i> methods. Next it show show to request the CommandLineInterface
+     * object from the builder before showing how to access the values the user inputed on the command line.
+     *
+     * If you run this example when the user provides the mouse flag such as -mouse, --mouse, -m, /m, /mouse
+     * You see see the output <i>Show Mouse? Yes</i> otherwise you'll see <i>Show Mouse? No</i>.
+     */
 }
 
 #endif // COMMANDLINEINTERFACE_HPP
