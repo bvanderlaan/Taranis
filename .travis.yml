@@ -47,6 +47,7 @@ addons:
     packages:
       - qt5-qmake
       - qt5-default
+      - doxygen
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
