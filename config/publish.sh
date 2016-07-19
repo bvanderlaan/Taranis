@@ -1,5 +1,5 @@
 #!/bin/sh
-REPO_PATH=git@github.com:bvanderlaan/Taranis.git
+REPO_PATH=https://github.com/bvanderlaan/Taranis.git
 DOCS_PATH=gh-pages/docs
 HTML_PATH=build/doc/html
 COMMIT_USER="Documentation Builder"
