@@ -57,6 +57,7 @@ before_install:
 before_script:
   - if [[ "$COMPILER" ]]; then export CXX=$COMPILER; fi
   - if [[ "$COMPILER" ]]; then $CXX --version; fi
+  - doxygen --version;
 
 script:
   - qmake Taranis.pro
