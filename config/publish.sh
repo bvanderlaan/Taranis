@@ -11,7 +11,7 @@ set -e
 echo 'Uploading documentation to the gh-pages branch...'
 
 # Checkout and clean out the docs folder
-git clone -b gh-pages "${REPO_PATH}" --single-branch
+git clone -b gh-pages "${REPO_PATH}" --single-branch gh-pages
 cd "${DOCS_PATH}"
 git rm -rf .
 cd -
