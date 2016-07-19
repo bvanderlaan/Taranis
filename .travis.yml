@@ -64,4 +64,5 @@ script:
   - make
   - make check
   - make doc
+  - chmod +x config/publish.sh
   - config/publish.sh
