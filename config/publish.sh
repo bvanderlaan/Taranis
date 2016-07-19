@@ -16,6 +16,9 @@ cd "${DOCS_PATH}"
 git rm -rf .
 cd -
 
+echo "${HTML_PATH}"
+ls "${HTML_PATH}"
+
 if [ -d "${HTML_PATH}"] && [ -f "${HTML_PATH}/index.html" ]; then
     # copy the newly created documents into the gh-pages docs folder.
     cp -R "${HTML_PATH}" "${DOCS_PATH}"
