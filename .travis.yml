@@ -62,3 +62,4 @@ script:
   - qmake Taranis.pro
   - make
   - make check
+  - make doc
