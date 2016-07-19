@@ -8,7 +8,7 @@ COMMIT_EMAIL="brad.vanderlaan@gmail.com"
 # Exit with nonzero exit code if anything fails
 set -e
 
-@echo 'Uploading documentation to the gh-pages branch...'
+echo 'Uploading documentation to the gh-pages branch...'
 
 # Checkout and clean out the docs folder
 git clone -b gh-pages "${REPO_PATH}" --single-branch
@@ -29,8 +29,8 @@ if [ -d "${HTML_PATH}"] && [ -f "${HTML_PATH}/index.html" ]; then
     git push origin gh-pages > /dev/null 2>&1
     cd -
 else
-    @echo '' >&2
-    @echo 'Warning: No documentation (html) files have been found!' >&2
-    @echo 'Warning: Not going to push the documentation to GitHub!' >&2
+    echo '' >&2
+    echo 'Warning: No documentation (html) files have been found!' >&2
+    echo 'Warning: Not going to push the documentation to GitHub!' >&2
     exit 1
 fi
