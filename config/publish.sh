@@ -18,6 +18,10 @@ if [ ${TRAVIS_OS_NAME} != "linux" ]; then exit 0; fi
 # Only update docs for the first or only build job. This way we are not updating the docs 
 # multiple times on a matrix configuration.
 BUILD_JOB_SEP_POS=$(expr index ${TRAVIS_JOB_NUMBER} .)
+
+echo ${BUILD_JOB_SEP_POS}
+echo ${TRAVIS_JOB_NUMBER#*.}
+
 if [ ${BUILD_JOB_SEP_POS} > 0 ] && [ ${TRAVIS_JOB_NUMBER#*.} > 1 ]; then exit 0; fi
 
 # Exit with nonzero exit code if anything fails
