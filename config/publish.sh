@@ -14,9 +14,9 @@ BUILD_JOB_SEP_POS=$(expr index ${TRAVIS_JOB_NUMBER} .)
 
 echo ${TRAVIS_JOB_NUMBER}
 echo ${BUILD_JOB_SEP_POS}
-echo ${TRAVIS_JOB_NUMBER:${BUILD_JOB_SEP_POS}}
+echo ${TRAVIS_JOB_NUMBER#*.}
 
-if [ ${BUILD_JOB_SEP_POS} > 0 ] && [ ${TRAVIS_JOB_NUMBER:${BUILD_JOB_SEP_POS}} > 1 ]; then exit 0; fi
+if [ ${BUILD_JOB_SEP_POS} > 0 ] && [ ${TRAVIS_JOB_NUMBER#*.} > 1 ]; then exit 0; fi
 
 # Exit with nonzero exit code if anything fails
 set -e
