@@ -1,0 +1,7 @@
+/**
+ * This overrides some default Doxygen styles to improve readability.
+ */
+
+ #projectlogo {
+     vertical-align: middle !important;
+ }
