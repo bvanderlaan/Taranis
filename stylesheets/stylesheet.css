@@ -520,6 +520,7 @@ aside#sidebar p.repo-owner a {
   margin-bottom: 40px;
 }
 
+a.doc-button,
 a.button {
   width: 134px;
   height: 58px;
@@ -530,23 +531,32 @@ a.button {
   line-height: 1.2;
   color: #fff;
 }
+
+a.doc-button small,
 a.button small {
   display: block;
   font-size: 11px;
 }
+
 header a.button {
   position: absolute;
   top: 0;
   right: 0;
   background: transparent url(../images/github-button.png) 0 0 no-repeat;
 }
+
+aside a.doc-button,
 aside a.button {
   display: block;
   width: 138px;
   padding-left: 64px;
   margin-bottom: 20px;
-  font-size: 21px;
+  font-size: 18px;
   background: transparent url(../images/download-button.png) 0 0 no-repeat;
+}
+
+aside a.doc-button {
+  background: transparent url(../images/documentation-button.png) 0 0 no-repeat;
 }
 
 code, pre {
@@ -862,6 +872,8 @@ footer a:hover {
     background-image: none;
     border-top: solid 1px #ddd;
   }
+
+  aside#sidebar a.doc-button,
   aside#sidebar a.button {
     display: none;
   }
