@@ -20,36 +20,65 @@
     <header>
       <div class="inner">
         <h1>Taranis</h1>
-        <h2>Taranis is a tool which can be used in Qt projects to provide a command line interface for inputting start up parameters into your application.</h2>
+        <h2>Taranis is a toolkit which can be used in Qt projects to provide a command line interface for inputting start up parameters into your application.</h2>
         <a href="https://github.com/bvanderlaan/Taranis" class="button"><small>View project on</small> GitHub</a>
       </div>
     </header>
-
     <div id="content-wrapper">
       <div class="inner clearfix">
-        <section id="main-content">
-          <p>GUI applications or background processes tend to have flags now and again to allow users to alter how the application will run. They might have flags to change their logging level or alter server connection addresses. The code to process the command line arguments fed into an application is largely boiler plate but to do it nicely is a bit of a pain.</p>
+        <div id="main-content">
+          <section id="introduction">
+            <p>
+              GUI applications or background processes tend to have flags now and again to allow users to alter how the application will run. They might have flags to 
+              change their logging level or alter server connection addresses. The code to process the command line arguments fed into an application is largely boiler 
+              plate but to do it nicely is a bit of a pain as there are lots of variants in how values can be inputted by the user.
+            </p>
+            <mark>
+              Why re-invent the wheel? Just use Taranis!
+            </mark>
+            <p>
+              Taranis is a class you can instantiate which will handle parsing whatever type of command line argument your application requires. It will deal with case 
+              sensitivity and differences in flag syntax such as backslashes (/), dashes (-), or double dashes (--) as well as differences in conventions such as 
+              triggering help with either an 'h' or a question mark (?). Taranis will also provide long and short forms of your desired flags such as '--help' or '-h'.
+            </p>
+            <p>
+              Taranis will also take care of generating help text and printing it to the console when the help flag is provided and optionally provide a standard
+              version flag so users can check what version of your application they have via the command line.
+            </p>
+          </section>
+          <section id="Usage">
+            <h2>
+              <a id="usage" class="anchor" href="#usage" aria-hidden="true">
+                <span aria-hidden="true" class="octicon octicon-link"></span>
+              </a>
+              Usage
+            </h2>
 
-<p>Taranis is a class you can instantiate which will handle parsing whatever type of command line argument your application requires. It will deal with case sensitivity and differences in flag syntax such as backslashes (/), dashes (-), or double dashes (--) as well as differences in conventions such as triggering help with either an 'h' or a question mark (?). Taranis will also provide long and short forms of your desired flags such as '--help' or '-h'.</p>
-
-<p>Taranis will also take care of generating help text and printing it to the console when the help flag is provided.</p>
-
-<h2>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
-
-<p>TBD</p>
-
-<h2>
-<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
-
-<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/bvanderlaan/taranis">https://github.com/bvanderlaan/taranis</a>. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the <a href="http://contributor-covenant.org">Contributor Covenant</a> code of conduct.</p>
-
-<h2>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
-
-<p>The library is available as open source under the terms of the <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
-        </section>
-
+            <p>TBD</p>
+          </section>
+          <section id="Contributing">
+            <h2>
+              <a id="contributing" class="anchor" href="#contributing" aria-hidden="true">
+                <span aria-hidden="true" class="octicon octicon-link"></span>
+              </a>
+              Contributing
+              </h2>
+              <p>
+                Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/bvanderlaan/taranis">https://github.com/bvanderlaan/taranis</a>. 
+                This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the 
+                <a href="http://contributor-covenant.org">Contributor Covenant</a> code of conduct.
+              </p>
+            </section>
+            <section id="License">
+              <h2>
+                <a id="license" class="anchor" href="#license" aria-hidden="true">
+                  <span aria-hidden="true" class="octicon octicon-link"></span>
+                </a>
+                License
+              </h2>
+              <p>The library is available as open source under the terms of the <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
+            </section>
+        </div>
         <aside id="sidebar">
           <a href="https://github.com/bvanderlaan/Taranis/zipball/master" class="button">
             <small>Download</small>
@@ -60,13 +89,11 @@
             .tar.gz file
           </a>
 
-          <p class="repo-owner"><a href="https://github.com/bvanderlaan/Taranis"></a> is maintained by <a href="https://github.com/bvanderlaan">bvanderlaan</a>.</p>
-
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+          <p class="repo-owner"><a href="https://github.com/bvanderlaan/Taranis">Taranis</a> is maintained by <br/><a href="https://github.com/bvanderlaan">Brad van der Laan</a>.</p>
+          <p>This page was originally generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
         </aside>
       </div>
     </div>
-
-  
+    <footer></footer>
   </body>
 </html>
