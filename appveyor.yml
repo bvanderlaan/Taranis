@@ -23,10 +23,10 @@ build:
 
 build_script:
   - qmake Taranis.pro
-  - make
+  - mingw32-make
 
 test_script:
-  - make check
+  - mingw32-make check
 
 after_test:
-  - make doc
+  - mingw32-make doc
