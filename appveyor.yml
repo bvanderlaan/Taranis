@@ -26,7 +26,7 @@ build_script:
   - mingw32-make
 
 test_script:
-  - cmd: c:\projects\taranis\TaranisTest\$(configuration)\TaranisTest.exe 
+  - cmd: c:\projects\taranis\TaranisTest\%CONFIGURATION%\TaranisTest.exe 
 
 after_test:
   - mingw32-make doc
