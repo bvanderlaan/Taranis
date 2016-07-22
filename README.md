@@ -1,6 +1,7 @@
 # Taranis
 
 [![Build Status](https://travis-ci.org/bvanderlaan/Taranis.svg?branch=master)](https://travis-ci.org/bvanderlaan/Taranis)
+[![Build status](https://ci.appveyor.com/api/projects/status/bfcjgkstm2r064e2?svg=true)](https://ci.appveyor.com/project/bvanderlaan/taranis)
 
 Taranis is a toolkit which can be used in Qt projects to provide a command line interface for inputting start up parameters into your application.
 
