@@ -25,8 +25,11 @@ build_script:
   - qmake Taranis.pro
   - mingw32-make
 
+artifacts:
+  - path: c:\projects\taranis\TaranisTest\**\*.*
+
 test_script:
-  - cmd: dir c:\projects\taranis\TaranisTest 
+  - cmd: dir c:\projects\taranis\TaranisTest\release 
   - mingw32-make check
 
 after_test:
