@@ -26,7 +26,7 @@ build_script:
   - mingw32-make
 
 test_script:
-  - cmd: echo c:\projects\taranis\TaranisTest 
+  - cmd: dir c:\projects\taranis\TaranisTest 
   - mingw32-make check
 
 after_test:
