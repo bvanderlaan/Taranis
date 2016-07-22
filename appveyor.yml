@@ -19,7 +19,7 @@ install:
   - set PATH=%PATH%;%QTDIR%\bin;C:\MinGW\bin
 
 build:
-  verbosity: minimal
+  verbosity: detailed
 
 build_script:
   - qmake Taranis.pro
