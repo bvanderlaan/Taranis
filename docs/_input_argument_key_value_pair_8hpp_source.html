@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;QStringList&gt;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;QVariant&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">namespace </span>Taranis</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
@@ -109,21 +109,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        ~<a class="code" href="class_taranis_1_1_input_argument_key_value_pair.html">InputArgumentKeyValuePair</a>() {}</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        QString key() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        QVariant value() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        QString m_key;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        QVariant m_value;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        QStringList m_valueSeperators;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        QString m_originalArgumentString;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        QPair&lt;QString,int&gt; getSeperatorInfo(<span class="keyword">const</span> QString argument) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">void</span> updateKeyValuePair(<span class="keyword">const</span> QPair&lt;QString,int&gt; seperatorInfo);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    };</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif // INPUTARGUMENTKEYVALUEPAIR_HPP</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        QString value() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        QString seperator() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        QString m_key;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        QString m_value;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        QString m_seperator;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        QStringList m_valueSeperators;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        QString m_originalArgumentString;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        QPair&lt;QString,int&gt; getSeperatorInfo(<span class="keyword">const</span> QString argument) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">void</span> updateKeyValuePair(<span class="keyword">const</span> QPair&lt;QString,int&gt; seperatorInfo);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    };</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif // INPUTARGUMENTKEYVALUEPAIR_HPP</span></div>
 <div class="ttc" id="class_taranis_1_1_input_argument_key_value_pair_html"><div class="ttname"><a href="class_taranis_1_1_input_argument_key_value_pair.html">Taranis::InputArgumentKeyValuePair</a></div><div class="ttdoc">The InputArgumentKeyValuePair class represents input data consisting of a key and a value...</div><div class="ttdef"><b>Definition:</b> <a href="_input_argument_key_value_pair_8hpp_source.html#l00047">InputArgumentKeyValuePair.hpp:47</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

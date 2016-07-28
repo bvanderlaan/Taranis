@@ -118,7 +118,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">for</span>( <span class="keyword">auto</span> seperator : m_valueSeperators )</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">int</span> seperator_index = argument.indexOf(seperator);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">if</span> ( ( (seperator_index &gt;=0) &amp;&amp; (seperator_index &lt; index ) ) || (index == -1) )</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">if</span> ( ( seperator_index &gt;= 0 ) &amp;&amp; ( (seperator_index &lt; index ) || ( index == -1 ) ) )</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            index = seperator_index;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            sep = seperator;</div>
@@ -131,9 +131,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    QString seperator = seperatorInfo.first;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">int</span> index = seperatorInfo.second;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">if</span> ( index &gt;= 0 )</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">if</span> ( index &gt;= 0 )</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        m_seperator = seperator;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        m_value = m_originalArgumentString.right( m_originalArgumentString.length() - index - seperator.length() );</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        m_key = m_originalArgumentString.left(index);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span>;</div>
@@ -145,15 +145,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">return</span> m_key;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;QVariant InputArgumentKeyValuePair::value()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;QString InputArgumentKeyValuePair::value()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword"></span>{</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">return</span> m_value;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">bool</span> InputArgumentKeyValuePair::isValid()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;QString InputArgumentKeyValuePair::seperator()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">return</span> ( m_value.isValid() &amp;&amp; !m_key.isEmpty() );</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">return</span> m_seperator;</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">bool</span> InputArgumentKeyValuePair::isValid()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">return</span> ( !m_value.isEmpty() &amp;&amp; !m_key.isEmpty() );</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
 <div class="ttc" id="class_taranis_1_1_input_argument_key_value_pair_html"><div class="ttname"><a href="class_taranis_1_1_input_argument_key_value_pair.html">Taranis::InputArgumentKeyValuePair</a></div><div class="ttdoc">The InputArgumentKeyValuePair class represents input data consisting of a key and a value...</div><div class="ttdef"><b>Definition:</b> <a href="_input_argument_key_value_pair_8hpp_source.html#l00047">InputArgumentKeyValuePair.hpp:47</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
