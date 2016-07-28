@@ -27,7 +27,7 @@
 using namespace Taranis;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-InputArgument::InputArgument(const QString arg, QList<QString> acceptedArgumentPrefixs, QObject *parent) :
+InputArgument::InputArgument(const QString arg, QStringList acceptedArgumentPrefixs, QObject *parent) :
     QObject(parent),
     m_originalInput( arg ),
     m_acceptedArgumentPrefixs(acceptedArgumentPrefixs)
@@ -56,6 +56,7 @@ bool InputArgument::updatePrefix()
             return true;
         }
     }
+
     return false;
 }
 
@@ -63,6 +64,7 @@ bool InputArgument::updatePrefix()
 void InputArgument::updateValue()
 {
     InputArgumentKeyValuePair argumentPair(m_argument);
+    m_nameValueSeperator = argumentPair.seperator();
 
     if ( argumentPair.isValid() )
     {
@@ -93,4 +95,10 @@ QVariant InputArgument::value() const
 bool InputArgument::isValid() const
 {
     return !m_argument.isEmpty() && !m_prefix.isEmpty();
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+QString InputArgument::nameValueSeperator() const
+{
+    return m_nameValueSeperator;
 }

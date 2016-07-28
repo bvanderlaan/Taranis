@@ -26,7 +26,7 @@
 
 #include <QObject>
 #include <QStringList>
-#include <QVariant>
+#include <QString>
 
 namespace Taranis
 {
@@ -52,12 +52,14 @@ namespace Taranis
         ~InputArgumentKeyValuePair() {}
 
         QString key() const;
-        QVariant value() const;
+        QString value() const;
+        QString seperator() const;
         bool isValid() const;
 
     private:
         QString m_key;
-        QVariant m_value;
+        QString m_value;
+        QString m_seperator;
         QStringList m_valueSeperators;
         QString m_originalArgumentString;
 

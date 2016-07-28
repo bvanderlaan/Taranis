@@ -50,7 +50,7 @@ QPair<QString, int> InputArgumentKeyValuePair::getSeperatorInfo(const QString ar
     for( auto seperator : m_valueSeperators )
     {
         int seperator_index = argument.indexOf(seperator);
-        if ( ( (seperator_index >=0) && (seperator_index < index ) ) || (index == -1) )
+        if ( ( seperator_index >= 0 ) && ( (seperator_index < index ) || ( index == -1 ) ) )
         {
             index = seperator_index;
             sep = seperator;
@@ -64,9 +64,9 @@ void InputArgumentKeyValuePair::updateKeyValuePair(const QPair<QString, int> sep
 {
     QString seperator = seperatorInfo.first;
     int index = seperatorInfo.second;
-
     if ( index >= 0 )
     {
+        m_seperator = seperator;
         m_value = m_originalArgumentString.right( m_originalArgumentString.length() - index - seperator.length() );
         m_key = m_originalArgumentString.left(index);
         return;
@@ -80,13 +80,19 @@ QString InputArgumentKeyValuePair::key() const
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-QVariant InputArgumentKeyValuePair::value() const
+QString InputArgumentKeyValuePair::value() const
 {
     return m_value;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
+QString InputArgumentKeyValuePair::seperator() const
+{
+    return m_seperator;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 bool InputArgumentKeyValuePair::isValid() const
 {
-    return ( m_value.isValid() && !m_key.isEmpty() );
+    return ( !m_value.isEmpty() && !m_key.isEmpty() );
 }

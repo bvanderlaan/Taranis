@@ -102,8 +102,11 @@ namespace Taranis
             /// Arguments with Values
             void testArgumentWithValueUsingEqualsNoSpace();
             void testArgumentWithValueUsingEqualsWithEqualsInValueNoSpace();
+            void testArgumentWithValueUsingEqualsUsingSpace();
             void testArgumentWithValueUsingColonNoSpace();
             void testArgumentWithValueUsingColonWithColonInValueNoSpace();
+            void testArgumentWithValueUsingColonUsingSpace();
+            void testArgumentWithValueUsingSpace();
 
             /// InputArgument
             void testIsValidWhenItIs();
@@ -132,6 +135,7 @@ namespace Taranis
             void testArgumentValueWhenColonSeperatorAndSpaceInValueNoSpaceUsed();
             void testArgumentValueWhenColonSeperatorAndEqualsInValueNoSpacesUsed();
             void testArgumentValueWhenEqualsSeperatorAndColonInValueNoSpacesUsed();
+
         };
     }
 }

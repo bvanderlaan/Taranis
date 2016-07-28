@@ -579,6 +579,16 @@ void TaranisTestSuite::testArgumentWithValueUsingEqualsWithEqualsInValueNoSpace(
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentWithValueUsingEqualsUsingSpace()
+{
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello=","world"})
+            .WithValue("hello", "test")
+            .getCommandLineInterface();
+
+    QCOMPARE( arguments["hello"].toString(), QString("world") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingColonNoSpace()
 {
     auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello:world"})
@@ -596,6 +606,26 @@ void TaranisTestSuite::testArgumentWithValueUsingColonWithColonInValueNoSpace()
             .getCommandLineInterface();
 
     QCOMPARE( arguments["hello"].toString(), QString("world:earth") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentWithValueUsingColonUsingSpace()
+{
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello:", "world"})
+            .WithValue("hello", "test")
+            .getCommandLineInterface();
+
+    QCOMPARE( arguments["hello"].toString(), QString("world") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentWithValueUsingSpace()
+{
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello","world"})
+            .WithValue("hello", "test")
+            .getCommandLineInterface();
+
+    QCOMPARE( arguments["hello"].toString(), QString("world") );
 }
 
 /////////////////////////////////////////////////////////////////////////////

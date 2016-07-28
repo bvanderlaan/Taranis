@@ -74,19 +74,38 @@ QStringList CommandLineInterface::arguments() const
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface& CommandLineInterface::process()
-{
-    foreach( QString a, m_inputArguments )
+{  
+    int numOfArguments = m_inputArguments.count();
+    for( int i = 0; i < numOfArguments; ++i )
     {
-        InputArgument arg( a, m_acceptedArgumentPrefixs );
-        if ( arg.isValid() )
+        InputArgument* arg = new InputArgument( m_inputArguments.at(i), m_acceptedArgumentPrefixs );
+        if ( ( numOfArguments > 1 ) && (i < numOfArguments - 1 ) && ( arg->isValid()) )
         {
-            QString key = arg.name().toLower();
-            if ( m_arguments.contains( key ) )
+            bool isNextArgumentValid = InputArgument( m_inputArguments.at(i+1), m_acceptedArgumentPrefixs ).isValid();
+            if ( !isNextArgumentValid )
             {
-                m_arguments[key]->callback()(arg.value());
+                QString multiPartInput = QString("%1%2%3")
+                                                .arg(m_inputArguments.at(i))
+                                                .arg( arg->nameValueSeperator().isEmpty() ? ":" : "" )
+                                                .arg(m_inputArguments.at(i+1));
+
+                delete arg;
+                arg = new InputArgument( multiPartInput , m_acceptedArgumentPrefixs );
+                ++i;
             }
         }
+
+        if ( arg->isValid() )
+        {
+            QString key = arg->name().toLower();
+            if ( m_arguments.contains( key ) )
+            {
+                m_arguments[key]->callback()(arg->value());
+            }
+        }
+        delete arg;
     }
+
     return *this;
 }
 

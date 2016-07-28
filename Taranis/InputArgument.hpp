@@ -37,18 +37,20 @@ namespace Taranis
     {
         Q_OBJECT
     public:
-        explicit InputArgument(const QString arg, QList<QString> acceptedArgumentPrefixs, QObject *parent = 0);
-        ~InputArgument() {}
+        explicit InputArgument(const QString arg, QStringList acceptedArgumentPrefixs, QObject *parent = 0);
+        virtual ~InputArgument() {}
 
         QString name() const;
         QString prefix() const;
         bool isValid() const;
+        QString nameValueSeperator() const;
         QVariant value() const;
 
     private:
         const QString m_originalInput;
         QString m_argument;
         QString m_prefix;
+        QString m_nameValueSeperator;
         QVariant m_value;
         QStringList m_acceptedArgumentPrefixs;
         void clipPrefix();
