@@ -143,7 +143,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">for</span>( <span class="keywordtype">int</span> i = 0; i &lt; numOfArguments; ++i )</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="class_taranis_1_1_input_argument.html">InputArgument</a>* arg = <span class="keyword">new</span> <a class="code" href="class_taranis_1_1_input_argument.html">InputArgument</a>( m_inputArguments.at(i), m_acceptedArgumentPrefixs );</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">if</span> ( ( numOfArguments &gt; 1 ) &amp;&amp; (i &lt; numOfArguments - 1 ) &amp;&amp; ( arg-&gt;isValid()) )</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">if</span> ( ( numOfArguments &gt; 1 ) &amp;&amp; (i &lt; numOfArguments - 1 ) &amp;&amp; arg-&gt;isValid() &amp;&amp; !arg-&gt;hasValue() )</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        {</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordtype">bool</span> isNextArgumentValid = <a class="code" href="class_taranis_1_1_input_argument.html">InputArgument</a>( m_inputArguments.at(i+1), m_acceptedArgumentPrefixs ).isValid();</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">if</span> ( !isNextArgumentValid )</div>
