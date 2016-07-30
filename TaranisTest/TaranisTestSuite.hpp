@@ -107,6 +107,7 @@ namespace Taranis
             void testArgumentWithValueUsingColonWithColonInValueNoSpace();
             void testArgumentWithValueUsingColonUsingSpace();
             void testArgumentWithValueUsingSpace();
+            void testArgumentWithValueNoSpaceAndSecondInvalidArgument();
 
             /// InputArgument
             void testIsValidWhenItIs();

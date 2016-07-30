@@ -45,6 +45,7 @@ namespace Taranis
         bool isValid() const;
         QString nameValueSeperator() const;
         QVariant value() const;
+        bool hasValue() const;
 
     private:
         const QString m_originalInput;

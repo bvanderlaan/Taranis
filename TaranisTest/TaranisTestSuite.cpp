@@ -629,6 +629,16 @@ void TaranisTestSuite::testArgumentWithValueUsingSpace()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentWithValueNoSpaceAndSecondInvalidArgument()
+{
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello:world","fubar"})
+            .WithValue("hello", "test")
+            .getCommandLineInterface();
+
+    QCOMPARE( arguments["hello"].toString(), QString("world") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testIsValidWhenItIs()
 {
     InputArgument arg( "--help", {"--"} );

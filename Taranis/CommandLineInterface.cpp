@@ -79,7 +79,7 @@ CommandLineInterface& CommandLineInterface::process()
     for( int i = 0; i < numOfArguments; ++i )
     {
         InputArgument* arg = new InputArgument( m_inputArguments.at(i), m_acceptedArgumentPrefixs );
-        if ( ( numOfArguments > 1 ) && (i < numOfArguments - 1 ) && ( arg->isValid()) )
+        if ( ( numOfArguments > 1 ) && (i < numOfArguments - 1 ) && arg->isValid() && !arg->hasValue() )
         {
             bool isNextArgumentValid = InputArgument( m_inputArguments.at(i+1), m_acceptedArgumentPrefixs ).isValid();
             if ( !isNextArgumentValid )
