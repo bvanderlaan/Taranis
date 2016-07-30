@@ -150,6 +150,12 @@ Lastly the server argument also shows up in the built in help message displayed 
 To learn more on how to use Taranis in your applications feel free to [view the documentation](https://bvanderlaan.github.io/Taranis/docs) which includes 
 multiple examples.
 
+## Donations
+
+If you like Taranis and want to support it and other open source work that I do you can do so via [Gratipay](https://gratipay.com/~bvanderlaan/).
+
+[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)](https://gratipay.com/~bvanderlaan/)
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/bvanderlaan/taranis. This project is intended to be a safe, welcoming space for 
