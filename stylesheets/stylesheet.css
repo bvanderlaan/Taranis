@@ -873,7 +873,6 @@ footer a:hover {
     border-top: solid 1px #ddd;
   }
 
-  aside#sidebar a.doc-button,
   aside#sidebar a.button {
     display: none;
   }
