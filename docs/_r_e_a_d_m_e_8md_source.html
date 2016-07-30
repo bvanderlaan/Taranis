@@ -94,28 +94,172 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;Taranis is a toolkit which can be used in Qt projects to provide a command line <span class="keyword">interface </span>for inputting start up parameters into your application.</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;GUI applications or background processes tend to have flags now and again to allow users to alter how the application will run. They might have </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;flags to change their logging level or alter server connection addresses. The code to process the command line arguments fed into an application</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;is largely boiler plate but to do it nicely is a bit of a pain.</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;GUI applications or background processes tend to have flags now and again to allow users to alter how the application will run. They might have flags </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;to change their logging level or alter server connection addresses. The code to process the command line arguments fed into an application is largely </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;boiler plate but to do it nicely is a bit of a pain as there are lots of variants in how values can be inputted by the user.</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;Taranis is a class you can instantiate which will handle parsing whatever type of command line argument your application requires. It will deal with</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;case sensitivity and differences in flag syntax such as backslashes (/), dashes (-), or double dashes (--) as well as differences in conventions such as</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;triggering help with either an &#39;h&#39; or a question mark (?). Taranis will also provide long and short forms of your desired flags such as &#39;--help&#39; or &#39;-h&#39;.</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;Taranis will also take care of generating help text and printing it to the console when the help flag is provided.</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;*Why re-invent the wheel? Just use Taranis!*</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;Taranis is a <span class="keyword">class </span>you can instantiate which will handle parsing whatever type of command line argument your application requires. It will deal with </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;case sensitivity and differences in flag syntax such as backslashes (/), dashes (-), or double dashes (--) as well as differences in conventions such </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;as triggering help with either an *h* or a question mark (?). Taranis will also provide <span class="keywordtype">long</span> and <span class="keywordtype">short</span> forms of your desired flags such as *--help* or *-h*.</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;## Usage</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;## What you <span class="keyword">get</span> with Taranis</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;TBD</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;## Contributing</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;Bug reports and pull requests are welcome on GitHub at https:<span class="comment">//github.com/bvanderlaan/taranis. This project is intended to be a safe, welcoming space for </span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;collaboration, and contributors are expected to adhere to the [Contributor Covenant](http:<span class="comment">//contributor-covenant.org) code of conduct.</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;## License</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;The library is available as open source under the terms of the [MIT License](http:<span class="comment">//opensource.org/licenses/MIT).</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;When you use Taranis to process command line inputs you <span class="keyword">get</span> all the niceties you come to expect as a user from a command line <span class="keyword">interface </span>for free! </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;Simply define what arguments your application will support and let Taranis do the rest.</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;The niceties you get with Taranis include:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;* Case insensitive flag comparisons.</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;* Flag short names, you register an argument called server and Taranis will accept server as well as s</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;* Built in version argument. Tell Taranis your applications version and it will allow users to query for it on the command line.</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;* Built in help argument. Its always nice to have help now and again and with Taranis you&#39;ll be able to print out some help text for your users describing the command line interface for your application via the help command for free.</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">## Usage</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;To use Taranis you need to build a **CommandLineInterface** object which you do through the **CommandLineInterface::build()** method. The build method has a </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;fluid interface allowing you to define the command line interface your application will have by using the *With* methods.</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">### Example 1 - A simple Command Line Interface</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span>```</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">  #include &lt;QCoreApplication&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"></span><span class="preprocessor">  #include &quot;Taranis/CommandLineInterface.hpp&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor"></span><span class="preprocessor">  #include &quot;myWidget.hpp&quot;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span>  using namespace Taranis;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  int main(int argc, char *argv[])</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;      QCoreApplication a(argc, argv);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;      MyWidget w;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;      CommandLineInterface arguments = CommandLineInterface::build()</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                          .WithName(<span class="stringliteral">&quot;My Cool App&quot;</span>)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                          .WithVersion(<span class="stringliteral">&quot;1.2.3.4-abc&quot;</span>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      w.show();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      <span class="keywordflow">return</span> a.exec();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;```         </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;With the above your application will now be sporting a command line <span class="keyword">interface </span>which accepts two flags</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;* **--version:** Will print your applications version to the terminal then exit your application.</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;* **--help:** Will print a typical help message to the terminal then exit your application.</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;Users can now query your applications version by typing:</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;&gt; $ myApp.exe --version</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;or </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;&gt; $ myApp.exe -v</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;Users can also <span class="keyword">get</span> some help text which will display your applications name and version along with the description of the version and help command line arguments.</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;&gt; $ myApp.exe --help</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;or</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;&gt; $ myApp.exe -h</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;or </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;&gt; $ myApp.exe -?</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">### Example 2 - A Custom Command Line Interface</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor"></span>```</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">  #include &lt;QCoreApplication&gt;</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">  #include &quot;Taranis/CommandLineInterface.hpp&quot;</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">  #include &quot;myWidget.hpp&quot;</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <span class="keyword">using namespace </span>Taranis;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      QCoreApplication a(argc, argv);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      MyWidget w;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      <a class="code" href="class_taranis_1_1_command_line_interface.html">CommandLineInterface</a> arguments = <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>()</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                          .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#aefa9f5c21cdf3e34c262ca2b702fcb10">WithName</a>(<span class="stringliteral">&quot;My Cool App&quot;</span>)</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                          .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#a31a35c680850bc2d9e80b23cddd7865f">WithDescription</a>(<span class="stringliteral">&quot;This application is really good and has a CLI to boot!&quot;</span>)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                          .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#adf5d9f2f637fcd569bf2dc656b2b517b">WithVersion</a>(<span class="stringliteral">&quot;1.2.3.4-abc&quot;</span>);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                          .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#a4e9b92dce63b7a05d0442178ff5f9fc4">WithFlag</a>(<span class="stringliteral">&quot;debug&quot;</span>, <span class="stringliteral">&quot;Enable debug mode&quot;</span>)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      <span class="keywordflow">if</span>( arguments[<span class="stringliteral">&quot;debug&quot;</span>].toBool() ) </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;          w.enableDebug();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;      }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;      </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;      w.show();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;      <span class="keywordflow">return</span> a.exec();</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;```            </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;In <span class="keyword">this</span> example you <span class="keyword">get</span> all the same features as in Example 1 however now your application will accept the --debug flag. </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;Users can type any of the following commands to enable debug mode.</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;&gt; $ myApp.exe --Debug</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;&gt; $ myApp.exe --debug</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;&gt; $ myApp.exe -d</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;Not only does your application have a debug mode flag but your flag will now be shown in the built in help message displayed when users use the *--help* argument.</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;### Example 3 - A Custom Command Line Interface which Accepts Values</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;```</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">  #include &lt;QCoreApplication&gt;</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">  #include &lt;QHostAddress&gt;</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">  #include &quot;Taranis/CommandLineInterface.hpp&quot;</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">  #include &quot;myWidget.hpp&quot;</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  <span class="keyword">using namespace </span>Taranis;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;      QCoreApplication a(argc, argv);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;      MyWidget w;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;      <a class="code" href="class_taranis_1_1_command_line_interface.html">CommandLineInterface</a> arguments = <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>()</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                          .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#aefa9f5c21cdf3e34c262ca2b702fcb10">WithName</a>(<span class="stringliteral">&quot;My Cool App&quot;</span>)</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                          .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#adf5d9f2f637fcd569bf2dc656b2b517b">WithVersion</a>(<span class="stringliteral">&quot;1.2.3.4-abc&quot;</span>);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                          .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#a4e9b92dce63b7a05d0442178ff5f9fc4">WithFlag</a>(<span class="stringliteral">&quot;debug&quot;</span>, <span class="stringliteral">&quot;Enable debug mode.&quot;</span>)</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                          .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#ad0eea7bb6f31b815399193d38394a6f5">WithValue</a>(<span class="stringliteral">&quot;server&quot;</span>, <span class="stringliteral">&quot;The IP address to the server.&quot;</span>)</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;      <span class="keywordflow">if</span> ( arguments[<span class="stringliteral">&quot;debug&quot;</span>].toBool() ) {...}</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;      <span class="keywordflow">if</span> ( arguments[<span class="stringliteral">&quot;server&quot;</span>].isValid() )</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;      {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;          w.setServerIp( QHostAddress( arguments[<span class="stringliteral">&quot;server&quot;</span>].toString() ) );</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;      }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;      </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      w.show();</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;      <span class="keywordflow">return</span> a.exec();</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  }</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;```            </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;In <span class="keyword">this</span> example we added another argument but <span class="keyword">this</span> one expects a value. Users can input the value in a number of ways.</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;&gt; $ myApp.exe --server 1.2.3.4</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;&gt; $ myApp.exe --server=1.2.3.4</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;&gt; $ myApp.exe --server:1.2.3.4</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;Just like with flags you also <span class="keyword">get</span> a <span class="keywordtype">short</span> form of your value argument.</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;&gt; $ myApp.exe --s 1.2.3.4</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;&gt; $ myApp.exe --s=1.2.3.4</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;&gt; $ myApp.exe --s:1.2.3.4</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;Lastly the server argument also shows up in the built in help message displayed when users use the *--help* argument.</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;To learn more on how to use Taranis in your applications feel free to [view the documentation](https:<span class="comment">//bvanderlaan.github.io/Taranis/docs) which includes </span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;multiple examples.</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;## Donations</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;If you like Taranis and want to support it and other open source work that I <span class="keywordflow">do</span> you can <span class="keywordflow">do</span> so via [Gratipay](https:<span class="comment">//gratipay.com/~bvanderlaan/).</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;[![Support via Gratipay](https:<span class="comment">//cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)](https://gratipay.com/~bvanderlaan/)</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="preprocessor">## Contributing</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;Bug reports and pull requests are welcome on GitHub at https:<span class="comment">//github.com/bvanderlaan/taranis. This project is intended to be a safe, welcoming space for </span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;collaboration, and contributors are expected to adhere to the [Contributor Covenant](http:<span class="comment">//contributor-covenant.org) code of conduct.</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">## License</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;The library is available as open source under the terms of the [MIT License](http:<span class="comment">//opensource.org/licenses/MIT).</span></div>
+<div class="ttc" id="class_taranis_1_1_command_line_interface_builder_html_a4e9b92dce63b7a05d0442178ff5f9fc4"><div class="ttname"><a href="class_taranis_1_1_command_line_interface_builder.html#a4e9b92dce63b7a05d0442178ff5f9fc4">Taranis::CommandLineInterfaceBuilder::WithFlag</a></div><div class="ttdeci">CommandLineInterfaceBuilder &amp; WithFlag(const QString &amp;flag, const QString &amp;description)</div><div class="ttdoc">WithFlag will add a flag to your CLI. You can access the flag value, which will be true if the user u...</div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_builder_8cpp_source.html#l00141">CommandLineInterfaceBuilder.cpp:141</a></div></div>
+<div class="ttc" id="class_taranis_1_1_command_line_interface_builder_html_aefa9f5c21cdf3e34c262ca2b702fcb10"><div class="ttname"><a href="class_taranis_1_1_command_line_interface_builder.html#aefa9f5c21cdf3e34c262ca2b702fcb10">Taranis::CommandLineInterfaceBuilder::WithName</a></div><div class="ttdeci">CommandLineInterfaceBuilder &amp; WithName(const QString &amp;name)</div><div class="ttdoc">WithName allows you to specify the name of your application. The Taranis CommandLineInterface will ge...</div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_builder_8cpp_source.html#l00120">CommandLineInterfaceBuilder.cpp:120</a></div></div>
+<div class="ttc" id="class_taranis_1_1_command_line_interface_builder_html_ad0eea7bb6f31b815399193d38394a6f5"><div class="ttname"><a href="class_taranis_1_1_command_line_interface_builder.html#ad0eea7bb6f31b815399193d38394a6f5">Taranis::CommandLineInterfaceBuilder::WithValue</a></div><div class="ttdeci">CommandLineInterfaceBuilder &amp; WithValue(const QString &amp;name, const QString &amp;description)</div><div class="ttdoc">WithValue will add an agrument which expects a value to your CLI. You can access the argument value b...</div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_builder_8cpp_source.html#l00157">CommandLineInterfaceBuilder.cpp:157</a></div></div>
+<div class="ttc" id="class_taranis_1_1_command_line_interface_html"><div class="ttname"><a href="class_taranis_1_1_command_line_interface.html">Taranis::CommandLineInterface</a></div><div class="ttdoc">The CommandLineInterface class represents a command line interface. Your application will accept comm...</div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_8hpp_source.html#l00045">CommandLineInterface.hpp:45</a></div></div>
+<div class="ttc" id="class_taranis_1_1_command_line_interface_html_a4f4218cf73245829dc5d07a7b91ec261"><div class="ttname"><a href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">Taranis::CommandLineInterface::build</a></div><div class="ttdeci">static CommandLineInterfaceBuilder build()</div><div class="ttdoc">build is a static helper method to easily access a builder of CommandLineInterface objects...</div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_8cpp_source.html#l00126">CommandLineInterface.cpp:126</a></div></div>
+<div class="ttc" id="class_taranis_1_1_command_line_interface_builder_html_adf5d9f2f637fcd569bf2dc656b2b517b"><div class="ttname"><a href="class_taranis_1_1_command_line_interface_builder.html#adf5d9f2f637fcd569bf2dc656b2b517b">Taranis::CommandLineInterfaceBuilder::WithVersion</a></div><div class="ttdeci">CommandLineInterfaceBuilder &amp; WithVersion(const QString &amp;version)</div><div class="ttdoc">WithVersion allows you to specify the version of your application. The Taranis CommandLineInterface w...</div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_builder_8cpp_source.html#l00127">CommandLineInterfaceBuilder.cpp:127</a></div></div>
+<div class="ttc" id="class_taranis_1_1_command_line_interface_builder_html_a31a35c680850bc2d9e80b23cddd7865f"><div class="ttname"><a href="class_taranis_1_1_command_line_interface_builder.html#a31a35c680850bc2d9e80b23cddd7865f">Taranis::CommandLineInterfaceBuilder::WithDescription</a></div><div class="ttdeci">CommandLineInterfaceBuilder &amp; WithDescription(const QString &amp;description)</div><div class="ttdoc">WithDescription allows you to specify a description for your application. The Taranis CommandLineInte...</div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_builder_8cpp_source.html#l00134">CommandLineInterfaceBuilder.cpp:134</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -84,11 +84,82 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><p><a href="https://travis-ci.org/bvanderlaan/Taranis">![Build Status](https://travis-ci.org/bvanderlaan/Taranis.svg?branch=master)</a> <a href="https://ci.appveyor.com/project/bvanderlaan/taranis">![Build status](https://ci.appveyor.com/api/projects/status/bfcjgkstm2r064e2?svg=true)</a></p>
 <p><a class="el" href="namespace_taranis.html">Taranis</a> is a toolkit which can be used in Qt projects to provide a command line interface for inputting start up parameters into your application.</p>
-<p>GUI applications or background processes tend to have flags now and again to allow users to alter how the application will run. They might have flags to change their logging level or alter server connection addresses. The code to process the command line arguments fed into an application is largely boiler plate but to do it nicely is a bit of a pain.</p>
-<p><a class="el" href="namespace_taranis.html">Taranis</a> is a class you can instantiate which will handle parsing whatever type of command line argument your application requires. It will deal with case sensitivity and differences in flag syntax such as backslashes (/), dashes (-), or double dashes (&ndash;) as well as differences in conventions such as triggering help with either an 'h' or a question mark (?). <a class="el" href="namespace_taranis.html">Taranis</a> will also provide long and short forms of your desired flags such as '&ndash;help' or '-h'.</p>
-<p><a class="el" href="namespace_taranis.html">Taranis</a> will also take care of generating help text and printing it to the console when the help flag is provided.</p>
+<p>GUI applications or background processes tend to have flags now and again to allow users to alter how the application will run. They might have flags to change their logging level or alter server connection addresses. The code to process the command line arguments fed into an application is largely boiler plate but to do it nicely is a bit of a pain as there are lots of variants in how values can be inputted by the user.</p>
+<p><em>Why re-invent the wheel? Just use Taranis!</em></p>
+<p><a class="el" href="namespace_taranis.html">Taranis</a> is a class you can instantiate which will handle parsing whatever type of command line argument your application requires. It will deal with case sensitivity and differences in flag syntax such as backslashes (/), dashes (-), or double dashes (&ndash;) as well as differences in conventions such as triggering help with either an <em>h</em> or a question mark (?). <a class="el" href="namespace_taranis.html">Taranis</a> will also provide long and short forms of your desired flags such as *&ndash;help* or *-h*.</p>
+<h2>What you get with <a class="el" href="namespace_taranis.html">Taranis</a></h2>
+<p>When you use <a class="el" href="namespace_taranis.html">Taranis</a> to process command line inputs you get all the niceties you come to expect as a user from a command line interface for free! Simply define what arguments your application will support and let <a class="el" href="namespace_taranis.html">Taranis</a> do the rest.</p>
+<p>The niceties you get with <a class="el" href="namespace_taranis.html">Taranis</a> include:</p>
+<ul>
+<li>Case insensitive flag comparisons.</li>
+<li>Flag short names, you register an argument called server and <a class="el" href="namespace_taranis.html">Taranis</a> will accept server as well as s</li>
+<li>Built in version argument. Tell <a class="el" href="namespace_taranis.html">Taranis</a> your applications version and it will allow users to query for it on the command line.</li>
+<li>Built in help argument. Its always nice to have help now and again and with <a class="el" href="namespace_taranis.html">Taranis</a> you'll be able to print out some help text for your users describing the command line interface for your application via the help command for free.</li>
+</ul>
 <h2>Usage</h2>
-<p>TBD</p>
+<p>To use <a class="el" href="namespace_taranis.html">Taranis</a> you need to build a <b>CommandLineInterface</b> object which you do through the <b>CommandLineInterface::build()</b> method. The build method has a fluid interface allowing you to define the command line interface your application will have by using the <em>With</em> methods.</p>
+<h3>Example 1 - A simple Command Line Interface</h3>
+<p>``` #include &lt;QCoreApplication&gt; #include "Taranis/CommandLineInterface.hpp" #include "myWidget.hpp" using namespace <a class="el" href="namespace_taranis.html">Taranis</a>; int main(int argc, char *argv[]) { QCoreApplication a(argc, argv); MyWidget w;</p>
+<p>CommandLineInterface arguments = CommandLineInterface::build() .WithName("My Cool App") .WithVersion("1.2.3.4-abc"); w.show(); return a.exec(); } ```</p>
+<p>With the above your application will now be sporting a command line interface which accepts two flags</p>
+<ul>
+<li>**&ndash;version:** Will print your applications version to the terminal then exit your application.</li>
+<li>**&ndash;help:** Will print a typical help message to the terminal then exit your application. Users can now query your applications version by typing: <blockquote class="doxtable">
+<p>$ myApp.exe &ndash;version</p>
+<p></p>
+</blockquote>
+</li>
+</ul>
+<p>or </p>
+<blockquote class="doxtable">
+<p>$ myApp.exe -v</p>
+<p></p>
+</blockquote>
+<p>Users can also get some help text which will display your applications name and version along with the description of the version and help command line arguments. </p>
+<blockquote class="doxtable">
+<p>$ myApp.exe &ndash;help</p>
+<p></p>
+</blockquote>
+<p>or </p>
+<blockquote class="doxtable">
+<p>$ myApp.exe -h</p>
+<p></p>
+</blockquote>
+<p>or </p>
+<blockquote class="doxtable">
+<p>$ myApp.exe -?</p>
+<p></p>
+</blockquote>
+<h3>Example 2 - A Custom Command Line Interface</h3>
+<p>``` #include &lt;QCoreApplication&gt; #include "Taranis/CommandLineInterface.hpp" #include "myWidget.hpp" using namespace <a class="el" href="namespace_taranis.html">Taranis</a>; int main(int argc, char *argv[]) { QCoreApplication a(argc, argv); MyWidget w;</p>
+<p>CommandLineInterface arguments = CommandLineInterface::build() .WithName("My Cool App") .WithDescription("This application is really good and has a CLI to boot!") .WithVersion("1.2.3.4-abc"); .WithFlag("debug", "Enable debug mode")</p>
+<p>if( arguments["debug"].toBool() ) { w.enableDebug(); }</p>
+<p>w.show(); return a.exec(); } ```</p>
+<p>In this example you get all the same features as in Example 1 however now your application will accept the &ndash;debug flag. Users can type any of the following commands to enable debug mode.</p>
+<blockquote class="doxtable">
+<p>$ myApp.exe &ndash;Debug $ myApp.exe &ndash;debug $ myApp.exe -d</p>
+<p></p>
+</blockquote>
+<p>Not only does your application have a debug mode flag but your flag will now be shown in the built in help message displayed when users use the *&ndash;help* argument.</p>
+<h3>Example 3 - A Custom Command Line Interface which Accepts Values</h3>
+<p>``` #include &lt;QCoreApplication&gt; #include &lt;QHostAddress&gt; #include "Taranis/CommandLineInterface.hpp" #include "myWidget.hpp" using namespace <a class="el" href="namespace_taranis.html">Taranis</a>; int main(int argc, char *argv[]) { QCoreApplication a(argc, argv); MyWidget w;</p>
+<p>CommandLineInterface arguments = CommandLineInterface::build() .WithName("My Cool App") .WithVersion("1.2.3.4-abc"); .WithFlag("debug", "Enable debug mode.") .WithValue("server", "The IP address to the server.")</p>
+<p>if ( arguments["debug"].toBool() ) {...} if ( arguments["server"].isValid() ) { w.setServerIp( QHostAddress( arguments["server"].toString() ) ); }</p>
+<p>w.show(); return a.exec(); } ``` In this example we added another argument but this one expects a value. Users can input the value in a number of ways. </p>
+<blockquote class="doxtable">
+<p>$ myApp.exe &ndash;server 1.2.3.4 $ myApp.exe &ndash;server=1.2.3.4 $ myApp.exe &ndash;server:1.2.3.4</p>
+<p></p>
+</blockquote>
+<p>Just like with flags you also get a short form of your value argument.</p>
+<blockquote class="doxtable">
+<p>$ myApp.exe &ndash;s 1.2.3.4 $ myApp.exe &ndash;s=1.2.3.4 $ myApp.exe &ndash;s:1.2.3.4</p>
+<p></p>
+</blockquote>
+<p>Lastly the server argument also shows up in the built in help message displayed when users use the *&ndash;help* argument.</p>
+<p>To learn more on how to use <a class="el" href="namespace_taranis.html">Taranis</a> in your applications feel free to <a href="https://bvanderlaan.github.io/Taranis/docs">view the documentation</a> which includes multiple examples.</p>
+<h2>Donations</h2>
+<p>If you like <a class="el" href="namespace_taranis.html">Taranis</a> and want to support it and other open source work that I do you can do so via <a href="https://gratipay.com/~bvanderlaan/">Gratipay</a>.</p>
+<p><a href="https://gratipay.com/~bvanderlaan/">![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)</a></p>
 <h2>Contributing</h2>
 <p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/bvanderlaan/taranis">https://github.com/bvanderlaan/taranis</a>. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the <a href="http://contributor-covenant.org">Contributor Covenant</a> code of conduct.</p>
 <h2>License</h2>
