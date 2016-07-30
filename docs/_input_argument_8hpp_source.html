@@ -105,27 +105,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        Q_OBJECT</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="class_taranis_1_1_input_argument.html">InputArgument</a>(<span class="keyword">const</span> QString arg, QList&lt;QString&gt; acceptedArgumentPrefixs, QObject *parent = 0);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        ~<a class="code" href="class_taranis_1_1_input_argument.html">InputArgument</a>() {}</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="class_taranis_1_1_input_argument.html">InputArgument</a>(<span class="keyword">const</span> QString arg, QStringList acceptedArgumentPrefixs, QObject *parent = 0);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="class_taranis_1_1_input_argument.html">InputArgument</a>() {}</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        QString name() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        QString prefix() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        QVariant value() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">const</span> QString m_originalInput;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        QString m_argument;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        QString m_prefix;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        QVariant m_value;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        QStringList m_acceptedArgumentPrefixs;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">void</span> clipPrefix();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">bool</span> updatePrefix();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">void</span> updateValue();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    };</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif // INPUTARGUMENT_HPP</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        QString nameValueSeperator() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        QVariant value() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">bool</span> hasValue() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keyword">const</span> QString m_originalInput;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        QString m_argument;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        QString m_prefix;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        QString m_nameValueSeperator;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        QVariant m_value;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        QStringList m_acceptedArgumentPrefixs;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordtype">void</span> clipPrefix();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordtype">bool</span> updatePrefix();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">void</span> updateValue();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    };</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif // INPUTARGUMENT_HPP</span></div>
 <div class="ttc" id="class_taranis_1_1_input_argument_html"><div class="ttname"><a href="class_taranis_1_1_input_argument.html">Taranis::InputArgument</a></div><div class="ttdoc">The InputArgument class parses the users input string and identifies the prefix, argument name and va...</div><div class="ttdef"><b>Definition:</b> <a href="_input_argument_8hpp_source.html#l00036">InputArgument.hpp:36</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
