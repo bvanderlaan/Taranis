@@ -29,7 +29,126 @@ The niceties you get with Taranis include:
 
 ## Usage
 
-TBD
+To use Taranis you need to build a **CommandLineInterface** object which you do through the **CommandLineInterface::build()** method. The build method has a 
+fluid interface allowing you to define the command line interface your application will have by using the *With* methods.
+
+### Example 1 - A simple Command Line Interface
+```
+  #include <QCoreApplication>
+  #include "Taranis/CommandLineInterface.hpp"
+  #include "myWidget.hpp"
+  using namespace Taranis;
+  int main(int argc, char *argv[])
+  {
+      QCoreApplication a(argc, argv);
+      MyWidget w;
+
+      CommandLineInterface arguments = CommandLineInterface::build()
+                          .WithName("My Cool App")
+                          .WithVersion("1.2.3.4-abc");
+      w.show();
+      return a.exec();
+  }
+```         
+
+With the above your application will now be sporting a command line interface which accepts two flags
+
+* **--version:** Will print your applications version to the terminal then exit your application.
+* **--help:** Will print a typical help message to the terminal then exit your application.
+Users can now query your applications version by typing:
+> $ myApp.exe --version
+
+or 
+> $ myApp.exe -v
+
+Users can also get some help text which will display your applications name and version along with the description of the version and help command line arguments.
+> $ myApp.exe --help
+
+or
+> $ myApp.exe -h
+
+or 
+> $ myApp.exe -?
+
+### Example 2 - A Custom Command Line Interface
+```
+  #include <QCoreApplication>
+  #include "Taranis/CommandLineInterface.hpp"
+  #include "myWidget.hpp"
+  using namespace Taranis;
+  int main(int argc, char *argv[])
+  {
+      QCoreApplication a(argc, argv);
+      MyWidget w;
+
+      CommandLineInterface arguments = CommandLineInterface::build()
+                          .WithName("My Cool App")
+                          .WithDescription("This application is really good and has a CLI to boot!")
+                          .WithVersion("1.2.3.4-abc");
+                          .WithFlag("debug", "Enable debug mode")
+
+      if( arguments["debug"].toBool() ) 
+      {
+          w.enableDebug();
+      }
+      
+      w.show();
+      return a.exec();
+  }
+```            
+
+In this example you get all the same features as in Example 1 however now your application will accept the --debug flag. 
+Users can type any of the following commands to enable debug mode.
+
+> $ myApp.exe --Debug
+> $ myApp.exe --debug
+> $ myApp.exe -d
+
+Not only does your application have a debug mode flag but your flag will now be shown in the built in help message displayed when users use the *--help* argument.
+
+### Example 3 - A Custom Command Line Interface which Accepts Values
+```
+  #include <QCoreApplication>
+  #include <QHostAddress>
+  #include "Taranis/CommandLineInterface.hpp"
+  #include "myWidget.hpp"
+  using namespace Taranis;
+  int main(int argc, char *argv[])
+  {
+      QCoreApplication a(argc, argv);
+      MyWidget w;
+
+      CommandLineInterface arguments = CommandLineInterface::build()
+                          .WithName("My Cool App")
+                          .WithVersion("1.2.3.4-abc");
+                          .WithFlag("debug", "Enable debug mode.")
+                          .WithValue("server", "The IP address to the server.")
+
+      if ( arguments["debug"].toBool() ) {...}
+      if ( arguments["server"].isValid() )
+      {
+          w.setServerIp( QHostAddress( arguments["server"].toString() ) );
+      }
+      
+      w.show();
+      return a.exec();
+  }
+```            
+In this example we added another argument but this one expects a value. Users can input the value in a number of ways.
+> $ myApp.exe --server 1.2.3.4
+> $ myApp.exe --server=1.2.3.4
+> $ myApp.exe --server:1.2.3.4
+
+Just like with flags you also get a short form of your value argument.
+
+> $ myApp.exe --s 1.2.3.4
+> $ myApp.exe --s=1.2.3.4
+> $ myApp.exe --s:1.2.3.4
+
+Lastly the server argument also shows up in the built in help message displayed when users use the *--help* argument.
+
+To learn more on how to use Taranis in your applications feel free to [view the documentation](https://bvanderlaan.github.io/Taranis/docs) which includes 
+multiple examples.
 
 ## Contributing
 
