@@ -35,16 +35,33 @@
             </p>
             <mark>
               Why re-invent the wheel? Just use Taranis!
+
             </mark>
             <p>
               Taranis is a class you can instantiate which will handle parsing whatever type of command line argument your application requires. It will deal with case 
               sensitivity and differences in flag syntax such as backslashes (/), dashes (-), or double dashes (--) as well as differences in conventions such as 
-              triggering help with either an 'h' or a question mark (?). Taranis will also provide long and short forms of your desired flags such as '--help' or '-h'.
+              triggering help with either an <em>h</em> or a question mark (?). Taranis will also provide long and short forms of your desired flags such as 
+              <em>--help</em> or <em>-h</em>.
+            </p>
+          </section>
+          </section id="WhatYouGet">
+            <h2>What you get with Taranis</h2>
+            <p>
+              When you use Taranis to process command line inputs you get all the niceties you come to expect as a user from a command line interface for free!
+              Simply define what arguments your application will support and let Taranis do the rest.
             </p>
             <p>
-              Taranis will also take care of generating help text and printing it to the console when the help flag is provided and optionally provide a standard
-              version flag so users can check what version of your application they have via the command line.
+              The niceties you get with Taranis include:
             </p>
+            <ul>
+              <li>Case insensitive flag comparisons.</li>
+              <li>Flag short names, you register an argument called <em>server</em> and Taranis will accept <em>server</em> as well as <em>s</em></li>
+              <li>Built in version argument. Tell Taranis your application's version and it will allow users to query for it on the command line.</il>
+              <li>
+                Built in help argument. Its always nice to have help now and again and with Taranis you'll be able to print out some help text 
+                for your users describing the command line interface for your application via the help command for free.
+              </li>
+            </ul>
           </section>
           <section id="Usage">
             <h2>
