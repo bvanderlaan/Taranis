@@ -100,8 +100,8 @@ or
 In this example you get all the same features as in Example 1 however now your application will accept the --debug flag. 
 Users can type any of the following commands to enable debug mode.
 
-> $ myApp.exe --Debug
-> $ myApp.exe --debug
+> $ myApp.exe --Debug<br>
+> $ myApp.exe --debug<br>
 > $ myApp.exe -d
 
 Not only does your application have a debug mode flag but your flag will now be shown in the built in help message displayed when users use the *--help* argument.
@@ -135,14 +135,14 @@ Not only does your application have a debug mode flag but your flag will now be 
   }
 ```            
 In this example we added another argument but this one expects a value. Users can input the value in a number of ways.
-> $ myApp.exe --server 1.2.3.4
-> $ myApp.exe --server=1.2.3.4
+> $ myApp.exe --server 1.2.3.4<br>
+> $ myApp.exe --server=1.2.3.4<br>
 > $ myApp.exe --server:1.2.3.4
 
 Just like with flags you also get a short form of your value argument.
 
-> $ myApp.exe --s 1.2.3.4
-> $ myApp.exe --s=1.2.3.4
+> $ myApp.exe --s 1.2.3.4<br>
+> $ myApp.exe --s=1.2.3.4<br>
 > $ myApp.exe --s:1.2.3.4
 
 Lastly the server argument also shows up in the built in help message displayed when users use the *--help* argument.
