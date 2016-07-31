@@ -144,6 +144,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aad5b0f48e84c8f327b7ca8a830a04601"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html">CommandLineInterfaceBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html#aad5b0f48e84c8f327b7ca8a830a04601">WithValue</a> (const QString &amp;name, const QString &amp;description, std::function&lt; void(QVariant)&gt; action)</td></tr>
 <tr class="memdesc:aad5b0f48e84c8f327b7ca8a830a04601"><td class="mdescLeft">&#160;</td><td class="mdescRight">WithValue will add an agrument which expects a value to your CLI. You can have a handler executed if the user starts your application with this argument and have the value they provided passed in.  <a href="#aad5b0f48e84c8f327b7ca8a830a04601">More...</a><br/></td></tr>
 <tr class="separator:aad5b0f48e84c8f327b7ca8a830a04601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4423b339564da39ff2443d77e1553323"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html">CommandLineInterfaceBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html#a4423b339564da39ff2443d77e1553323">WithValue</a> (const QString &amp;name, const QString &amp;defaultValue, const QString &amp;description)</td></tr>
+<tr class="memdesc:a4423b339564da39ff2443d77e1553323"><td class="mdescLeft">&#160;</td><td class="mdescRight">WithValue will add an agrument which expects a value to your CLI. You can access the argument value by using the index operator with the arguments name.  <a href="#a4423b339564da39ff2443d77e1553323">More...</a><br/></td></tr>
+<tr class="separator:a4423b339564da39ff2443d77e1553323"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a857c45ec1add191db3ee4273f771254e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html">CommandLineInterfaceBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html#a857c45ec1add191db3ee4273f771254e">WithValue</a> (const QString &amp;name, const QString &amp;defaultValue, const QString &amp;description, std::function&lt; void(QVariant)&gt; action)</td></tr>
+<tr class="memdesc:a857c45ec1add191db3ee4273f771254e"><td class="mdescLeft">&#160;</td><td class="mdescRight">WithValue will add an agrument which expects a value to your CLI. You can have a handler executed if the user starts your application with this argument and have the value they provided passed in.  <a href="#a857c45ec1add191db3ee4273f771254e">More...</a><br/></td></tr>
+<tr class="separator:a857c45ec1add191db3ee4273f771254e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1434de0cb9cabd3afc9d03b08aa11a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html">CommandLineInterfaceBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html#ad1434de0cb9cabd3afc9d03b08aa11a0">WithAction</a> (const QString &amp;name, const QString &amp;description, std::function&lt; void(QVariant)&gt; action)</td></tr>
 <tr class="memdesc:ad1434de0cb9cabd3afc9d03b08aa11a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">WithAction will add an argument which when present will trigger an action to be performed. This works similar to flags as in the handler is only executed if the argument was provided when the application started but conseptually this type of argument is not about values and more about initiating an action. For example the 'version' argument is not about setting the version or turning on a version flag but rather about executing the display version action so the user can see the version of your application on screen.  <a href="#ad1434de0cb9cabd3afc9d03b08aa11a0">More...</a><br/></td></tr>
 <tr class="separator:ad1434de0cb9cabd3afc9d03b08aa11a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -242,7 +248,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>WithAction will add an argument which when present will trigger an action to be performed. This works similar to flags as in the handler is only executed if the argument was provided when the application started but conseptually this type of argument is not about values and more about initiating an action. For example the 'version' argument is not about setting the version or turning on a version flag but rather about executing the display version action so the user can see the version of your application on screen. </p>
-<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#a4e9b92dce63b7a05d0442178ff5f9fc4">WithFlag</a>(<span class="stringliteral">&quot;restart&quot;</span>, <span class="stringliteral">&quot;Will restart the service.&quot;</span>,</div>
+<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#ad1434de0cb9cabd3afc9d03b08aa11a0">WithAction</a>(<span class="stringliteral">&quot;restart&quot;</span>, <span class="stringliteral">&quot;Will restart the service.&quot;</span>,</div>
 <div class="line">                                         [<span class="keyword">this</span>](QVariant) {</div>
 <div class="line">                                               this-&gt;restart();</div>
 <div class="line">                                         });</div>
@@ -255,7 +261,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00173">173</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00195">195</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -448,7 +454,7 @@ Protected Member Functions</h2></td></tr>
 
 <p>WithValue will add an agrument which expects a value to your CLI. You can access the argument value by using the index operator with the arguments name. </p>
 <ul>
-<li><div class="fragment"><div class="line">CommandLineInterface myCLI = <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#a4e9b92dce63b7a05d0442178ff5f9fc4">WithFlag</a>(<span class="stringliteral">&quot;address&quot;</span>, <span class="stringliteral">&quot;Sets the address of the device to communicate with.&quot;</span>);</div>
+<li><div class="fragment"><div class="line">CommandLineInterface myCLI = <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#ad0eea7bb6f31b815399193d38394a6f5">WithValue</a>(<span class="stringliteral">&quot;address&quot;</span>, <span class="stringliteral">&quot;Sets the address of the device to communicate with.&quot;</span>);</div>
 <div class="line">device-&gt;setAddress( myCLI[<span class="stringliteral">&quot;address&quot;</span>].toString() );</div>
 </div><!-- fragment --></li>
 </ul>
@@ -495,7 +501,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>WithValue will add an agrument which expects a value to your CLI. You can have a handler executed if the user starts your application with this argument and have the value they provided passed in. </p>
-<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#a4e9b92dce63b7a05d0442178ff5f9fc4">WithFlag</a>(<span class="stringliteral">&quot;address&quot;</span>, <span class="stringliteral">&quot;Sets the address of the device to communicate with.&quot;</span>,</div>
+<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#ad0eea7bb6f31b815399193d38394a6f5">WithValue</a>(<span class="stringliteral">&quot;address&quot;</span>, <span class="stringliteral">&quot;Sets the address of the device to communicate with.&quot;</span>,</div>
 <div class="line">                                         [&amp;device](QVariant address) {</div>
 <div class="line">                                               device-&gt;setAddress( address.toString() );</div>
 <div class="line">                                         });</div>
@@ -508,7 +514,111 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00188">188</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4423b339564da39ff2443d77e1553323"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html">CommandLineInterfaceBuilder</a> &amp; CommandLineInterfaceBuilder::WithValue </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>defaultValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>description</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>WithValue will add an agrument which expects a value to your CLI. You can access the argument value by using the index operator with the arguments name. </p>
+<ul>
+<li><div class="fragment"><div class="line">CommandLineInterface myCLI = <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#ad0eea7bb6f31b815399193d38394a6f5">WithValue</a>(<span class="stringliteral">&quot;address&quot;</span>, <span class="stringliteral">&quot;127.0.0.1&quot;</span>, <span class="stringliteral">&quot;Sets the address of the device to communicate with.&quot;</span>);</div>
+<div class="line">device-&gt;setAddress( myCLI[<span class="stringliteral">&quot;address&quot;</span>].toString() );</div>
+</div><!-- fragment --></li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>is the name of the argument, example 'address'. You will get a short name, i.e. 'a', automatically. </td></tr>
+    <tr><td class="paramname">defaultValue</td><td>is the value to assign the argument if none is provided on the CLI. </td></tr>
+    <tr><td class="paramname">description</td><td>is the description of this argument which will be displaied in the help. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00166">166</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a857c45ec1add191db3ee4273f771254e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html">CommandLineInterfaceBuilder</a> &amp; CommandLineInterfaceBuilder::WithValue </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>defaultValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>description</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(QVariant)&gt;&#160;</td>
+          <td class="paramname"><em>action</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>WithValue will add an agrument which expects a value to your CLI. You can have a handler executed if the user starts your application with this argument and have the value they provided passed in. </p>
+<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#ad0eea7bb6f31b815399193d38394a6f5">WithValue</a>(<span class="stringliteral">&quot;address&quot;</span>, <span class="stringliteral">&quot;127.0.0.1&quot;</span>, <span class="stringliteral">&quot;Sets the address of the device to communicate with.&quot;</span>,</div>
+<div class="line">                                         [&amp;device](QVariant address) {</div>
+<div class="line">                                               device-&gt;setAddress( address.toString() );</div>
+<div class="line">                                         });</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>is the name of the argument, example 'address'. You will get a short name, i.e. 'a', automatically. </td></tr>
+    <tr><td class="paramname">defaultValue</td><td>is the value to assign the argument if none is provided on the CLI. </td></tr>
+    <tr><td class="paramname">description</td><td>is the description of this argument which will be displaied in the help. </td></tr>
+    <tr><td class="paramname">action</td><td>is the action handler you want performed if the argument is present. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00178">178</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
