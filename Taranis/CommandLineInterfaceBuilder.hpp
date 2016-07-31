@@ -181,7 +181,7 @@ namespace Taranis
          * You can access the argument value by using the index operator with the arguments name.
          *
          * * @code{.cpp}
-         * CommandLineInterface myCLI = CommandLineInterface::build().WithFlag("address", "Sets the address of the device to communicate with.");
+         * CommandLineInterface myCLI = CommandLineInterface::build().WithValue("address", "Sets the address of the device to communicate with.");
          * device->setAddress( myCLI["address"].toString() );
          * @endcode
          *
@@ -195,7 +195,7 @@ namespace Taranis
          * You can have a handler executed if the user starts your application with this argument and have the value they provided passed in.
          *
          * @code{.cpp}
-         * CommandLineInterface::build().WithFlag("address", "Sets the address of the device to communicate with.",
+         * CommandLineInterface::build().WithValue("address", "Sets the address of the device to communicate with.",
          *                                          [&device](QVariant address) {
          *                                                device->setAddress( address.toString() );
          *                                          });
@@ -208,6 +208,40 @@ namespace Taranis
         CommandLineInterfaceBuilder& WithValue( const QString& name, const QString& description, std::function<void(QVariant)> action );
 
         /**
+         * @brief WithValue will add an agrument which expects a value to your CLI.
+         * You can access the argument value by using the index operator with the arguments name.
+         *
+         * * @code{.cpp}
+         * CommandLineInterface myCLI = CommandLineInterface::build().WithValue("address", "127.0.0.1", "Sets the address of the device to communicate with.");
+         * device->setAddress( myCLI["address"].toString() );
+         * @endcode
+         *
+         * @param name is the name of the argument, example 'address'. You will get a short name, i.e. 'a', automatically.
+         * @param defaultValue is the value to assign the argument if none is provided on the CLI.
+         * @param description is the description of this argument which will be displaied in the help.
+         */
+        CommandLineInterfaceBuilder& WithValue( const QString& name, const QString& defaultValue, const QString& description );
+
+        /**
+         * @brief WithValue will add an agrument which expects a value to your CLI.
+         * You can have a handler executed if the user starts your application with this argument and have the value they provided passed in.
+         *
+         * @code{.cpp}
+         * CommandLineInterface::build().WithValue("address", "127.0.0.1", "Sets the address of the device to communicate with.",
+         *                                          [&device](QVariant address) {
+         *                                                device->setAddress( address.toString() );
+         *                                          });
+         * @endcode
+         *
+         * @param name is the name of the argument, example 'address'. You will get a short name, i.e. 'a', automatically.
+         * @param defaultValue is the value to assign the argument if none is provided on the CLI.
+         * @param description is the description of this argument which will be displaied in the help.
+         * @param action is the action handler you want performed if the argument is present.
+         */
+        CommandLineInterfaceBuilder& WithValue( const QString& name, const QString& defaultValue, const QString& description, std::function<void(QVariant)> action );
+
+
+        /**
          * @brief WithAction will add an argument which when present will trigger an action to be performed.
          * This works similar to flags as in the handler is only executed if the argument was provided when the application started
          * but conseptually this type of argument is not about values and more about initiating an action. For example the
@@ -215,7 +249,7 @@ namespace Taranis
          * version action so the user can see the version of your application on screen.
          *
          * @code{.cpp}
-         * CommandLineInterface::build().WithFlag("restart", "Will restart the service.",
+         * CommandLineInterface::build().WithAction("restart", "Will restart the service.",
          *                                          [this](QVariant) {
          *                                                this->restart();
          *                                          });

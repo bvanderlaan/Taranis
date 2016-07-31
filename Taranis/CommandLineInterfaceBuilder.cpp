@@ -163,6 +163,28 @@ CommandLineInterfaceBuilder &CommandLineInterfaceBuilder::WithValue(const QStrin
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterfaceBuilder &CommandLineInterfaceBuilder::WithValue(const QString &name, const QString &defaultValue, const QString &description)
+{
+    auto arg = new Argument( name, description, ArgumentType::String, [this, name](QVariant value){
+        m_cli->setValue(name, value);
+    });
+
+    arg->setValue( defaultValue );
+    m_cli->addArgument( arg );
+    return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterfaceBuilder &CommandLineInterfaceBuilder::WithValue(const QString &name, const QString &defaultValue, const QString &description, std::function<void (QVariant)> action)
+{
+    auto arg = new Argument( name, description, ArgumentType::String, action);
+
+    arg->setValue( defaultValue );
+    m_cli->addArgument( arg );
+    return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterfaceBuilder &CommandLineInterfaceBuilder::WithValue(const QString &name, const QString &description, action_callback action)
 {
     m_cli->addArgument( new Argument( name, description, ArgumentType::String, action) );

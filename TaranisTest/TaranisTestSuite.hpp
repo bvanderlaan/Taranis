@@ -109,6 +109,10 @@ namespace Taranis
             void testArgumentWithValueUsingSpace();
             void testArgumentWithValueNoSpaceAndSecondInvalidArgument();
 
+            // Arguments With Default Values
+            void testARgumentWithDefaultValueWhenAbsent();
+            void testARgumentWithDefaultValueWhenProvided();
+
             /// InputArgument
             void testIsValidWhenItIs();
             void testIsValidWhenItsNot();
