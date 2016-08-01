@@ -86,6 +86,7 @@ namespace Taranis
         void setDescription( const QString description );
         void addHelpArguments();
         void setValue( const QString key, const QVariant value );
+        virtual QString normilizeKey( const QString& key ) const;
 
     private:
         QString m_applicationName;

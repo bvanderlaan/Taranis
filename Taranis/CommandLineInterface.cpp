@@ -97,7 +97,7 @@ CommandLineInterface& CommandLineInterface::process()
 
         if ( arg->isValid() )
         {
-            QString key = arg->name().toLower();
+            QString key = normilizeKey( arg->name() );
             if ( m_arguments.contains( key ) )
             {
                 m_arguments[key]->callback()(arg->value());
@@ -110,11 +110,18 @@ CommandLineInterface& CommandLineInterface::process()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
+QString CommandLineInterface::normilizeKey(const QString &key) const
+{
+    return key.toLower();
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 QVariant CommandLineInterface::operator[](const QString key) const
 {
-    if ( m_arguments.contains(key) )
+    QString normilizedKey = normilizeKey( key );
+    if ( m_arguments.contains(normilizedKey) )
     {
-        return m_arguments[key]->value();
+        return m_arguments[normilizedKey]->value();
     }
     else
     {
@@ -131,10 +138,10 @@ CommandLineInterfaceBuilder CommandLineInterface::build()
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void CommandLineInterface::addArgument(Argument* arg)
 {
-    m_arguments[arg->name()] = arg;
+    m_arguments[normilizeKey( arg->name() )] = arg;
     if ( arg->hasShortName() )
     {
-        m_arguments[arg->shortName()] = arg;
+        m_arguments[normilizeKey( arg->shortName() )] = arg;
     }
 }
 
@@ -177,9 +184,10 @@ void CommandLineInterface::addHelpArguments()
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void CommandLineInterface::setValue(const QString key, const QVariant value)
 {
-    if ( m_arguments.contains(key) )
+    QString normilizedKey = normilizeKey( key );
+    if ( m_arguments.contains(normilizedKey) )
     {
-        m_arguments[key]->setValue(value);
+        m_arguments[normilizedKey]->setValue(value);
     }
     else
     {

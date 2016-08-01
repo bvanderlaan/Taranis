@@ -559,6 +559,86 @@ void TaranisTestSuite::testAccessViaIndexOperatorWhenArgumentIsUnknown()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentDefinedWithUpperCaseAndProvidedWithUpperCase()
+{
+    CommandLineInterface arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--Debug"})
+            .WithFlag("Debug", "Enables debug mode.");
+
+    QCOMPARE( arguments["Debug"].toBool(), true );
+    QCOMPARE( arguments["debug"].toBool(), true );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentDefinedWithUpperCaseAndProvidedWithLowerCase()
+{
+    CommandLineInterface arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--debug"})
+            .WithFlag("Debug", "Enables debug mode.");
+
+    QCOMPARE( arguments["Debug"].toBool(), true );
+    QCOMPARE( arguments["debug"].toBool(), true );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentDefinedWithLowerCaseAndProvidedWithUpperCase()
+{
+    CommandLineInterface arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--Debug"})
+            .WithFlag("debug", "Enables debug mode.");
+
+    QCOMPARE( arguments["Debug"].toBool(), true );
+    QCOMPARE( arguments["debug"].toBool(), true );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentDefinedWithLowerCaseAndProvidedWithLowerCase()
+{
+    CommandLineInterface arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--debug"})
+            .WithFlag("debug", "Enables debug mode.");
+
+    QCOMPARE( arguments["Debug"].toBool(), true );
+    QCOMPARE( arguments["debug"].toBool(), true );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentDefinedWithUpperCaseAndProvidedWithShortUpperCase()
+{
+    CommandLineInterface arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--D"})
+            .WithFlag("Debug", "Enables debug mode.");
+
+    QCOMPARE( arguments["Debug"].toBool(), true );
+    QCOMPARE( arguments["debug"].toBool(), true );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentDefinedWithUpperCaseAndProvidedWithShortLowerCase()
+{
+    CommandLineInterface arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--d"})
+            .WithFlag("Debug", "Enables debug mode.");
+
+    QCOMPARE( arguments["Debug"].toBool(), true );
+    QCOMPARE( arguments["debug"].toBool(), true );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentDefinedWithLowerCaseAndProvidedWithShortUpperCase()
+{
+    CommandLineInterface arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--D"})
+            .WithFlag("debug", "Enables debug mode.");
+
+    QCOMPARE( arguments["Debug"].toBool(), true );
+    QCOMPARE( arguments["debug"].toBool(), true );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testArgumentDefinedWithLowerCaseAndProvidedWithShortLowerCase()
+{
+    CommandLineInterface arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--d"})
+            .WithFlag("debug", "Enables debug mode.");
+
+    QCOMPARE( arguments["Debug"].toBool(), true );
+    QCOMPARE( arguments["debug"].toBool(), true );
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingEqualsNoSpace()
 {
     auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello=world"})

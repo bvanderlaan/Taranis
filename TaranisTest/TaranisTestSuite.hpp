@@ -94,10 +94,23 @@ namespace Taranis
             void testShortSlashVersionArgument();
             void testShortSlashVersionArgumentCaseInsensative();
 
+            /// Done Testing Built in Argument Processing ///
+
             /// Access values
             void testAccessViaIndexOperatorWhenValueExists();
             void testAccessViaIndexOperatorWhenValueDoesNotExist();
             void testAccessViaIndexOperatorWhenArgumentIsUnknown();
+
+            /// Test Case sensitivity
+            void testArgumentDefinedWithUpperCaseAndProvidedWithUpperCase();
+            void testArgumentDefinedWithUpperCaseAndProvidedWithLowerCase();
+            void testArgumentDefinedWithLowerCaseAndProvidedWithUpperCase();
+            void testArgumentDefinedWithLowerCaseAndProvidedWithLowerCase();
+            void testArgumentDefinedWithUpperCaseAndProvidedWithShortUpperCase();
+            void testArgumentDefinedWithUpperCaseAndProvidedWithShortLowerCase();
+            void testArgumentDefinedWithLowerCaseAndProvidedWithShortUpperCase();
+            void testArgumentDefinedWithLowerCaseAndProvidedWithShortLowerCase();
+
 
             /// Arguments with Values
             void testArgumentWithValueUsingEqualsNoSpace();
