@@ -171,12 +171,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setValue</b> (const Q
 <tr class="memitem:addfa8b46134eaa533aa6cb87143976df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="addfa8b46134eaa533aa6cb87143976df"></a>
 virtual QString&#160;</td><td class="memItemRight" valign="bottom"><b>normilizeKey</b> (const QString &amp;key) const </td></tr>
 <tr class="separator:addfa8b46134eaa533aa6cb87143976df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad31e8bdfb6c6db1f54b51d7530eb1562"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad31e8bdfb6c6db1f54b51d7530eb1562"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>validateArgumentName</b> (const <a class="el" href="class_taranis_1_1_argument.html">Argument</a> &amp;arg) const </td></tr>
+<tr class="separator:ad31e8bdfb6c6db1f54b51d7530eb1562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65ac403ed08d4ad42653f88f89d9e462"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65ac403ed08d4ad42653f88f89d9e462"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>validateArgumentShortName</b> (const <a class="el" href="class_taranis_1_1_argument.html">Argument</a> &amp;arg) const </td></tr>
+<tr class="separator:a65ac403ed08d4ad42653f88f89d9e462"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> class represents a command line interface. Your application will accept command line arguments which are defined in the <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> object. </p>
+<dl class="section warning"><dt>Warning</dt><dd>If your build the <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> wtih arguments which collide, that is arguments with the same name or have the same short names and this includes the two built in arguments <em>help</em> and <em>version</em> then exceptions will be thrown alerting you of the collisions. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example1_8cpp-example.html#_a0">main.example1.cpp</a>, <a class="el" href="main_8example3_8cpp-example.html#_a4">main.example3.cpp</a>, <a class="el" href="main_8example4_8cpp-example.html#_a1">main.example4.cpp</a>, <a class="el" href="main_8example5_8cpp-example.html#_a4">main.example5.cpp</a>, <a class="el" href="main_8example6_8cpp-example.html#_a2">main.example6.cpp</a>, <a class="el" href="main_8example7_8cpp-example.html#_a0">main.example7.cpp</a>, and <a class="el" href="main_8example8_8cpp-example.html#_a0">main.example8.cpp</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="_command_line_interface_8hpp_source.html#l00045">45</a> of file <a class="el" href="_command_line_interface_8hpp_source.html">CommandLineInterface.hpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_8hpp_source.html#l00050">50</a> of file <a class="el" href="_command_line_interface_8hpp_source.html">CommandLineInterface.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a4f4218cf73245829dc5d07a7b91ec261"></a>
 <div class="memitem">
@@ -203,7 +210,7 @@ virtual QString&#160;</td><td class="memItemRight" valign="bottom"><b>normilizeK
 <dl class="section return"><dt>Returns</dt><dd>Returns a command line interface builder. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example1_8cpp-example.html#a1">main.example1.cpp</a>, <a class="el" href="main_8example2_8cpp-example.html#a0">main.example2.cpp</a>, <a class="el" href="main_8example3_8cpp-example.html#a0">main.example3.cpp</a>, <a class="el" href="main_8example4_8cpp-example.html#a0">main.example4.cpp</a>, <a class="el" href="main_8example7_8cpp-example.html#a1">main.example7.cpp</a>, and <a class="el" href="main_8example8_8cpp-example.html#a1">main.example8.cpp</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="_command_line_interface_8cpp_source.html#l00133">133</a> of file <a class="el" href="_command_line_interface_8cpp_source.html">CommandLineInterface.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_8cpp_source.html#l00135">135</a> of file <a class="el" href="_command_line_interface_8cpp_source.html">CommandLineInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -230,7 +237,7 @@ virtual QString&#160;</td><td class="memItemRight" valign="bottom"><b>normilizeK
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the value of an argument or an invalid QVariant if the argument does not exist. </dd></dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_8cpp_source.html#l00119">119</a> of file <a class="el" href="_command_line_interface_8cpp_source.html">CommandLineInterface.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_8cpp_source.html#l00121">121</a> of file <a class="el" href="_command_line_interface_8cpp_source.html">CommandLineInterface.cpp</a>.</p>
 
 </div>
 </div>
