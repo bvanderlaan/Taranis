@@ -57,7 +57,7 @@ namespace Taranis
 
         /**
          * @brief You can use the index operator to access argument values.
-         * @param key is the key or name of the argument whose value you are looking for.
+         * @param key is the key or name of the argument whose value you are looking for. This look up is case insensitive.
          * @return Returns the value of an argument or an invalid QVariant if the argument does not exist.
          */
         QVariant operator[](const QString key) const;
