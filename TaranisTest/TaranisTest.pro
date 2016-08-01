@@ -10,7 +10,8 @@ TEMPLATE = app
 
 HEADERS += \
     TaranisTestSuite.hpp \
-    QVerifyNoExceptionThrown.hpp
+    QVerifyNoExceptionThrown.hpp \
+    QVerifyExceptionThrown.hpp
     
 SOURCES += main.cpp \
     TaranisTestSuite.cpp

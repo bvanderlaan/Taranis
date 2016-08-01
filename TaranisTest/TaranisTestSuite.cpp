@@ -24,6 +24,7 @@
 
 #include <QTest>
 #include <QDir>
+#include "QVerifyExceptionThrown.hpp" // For Qt 5.2.x and lower
 #include "QVerifyNoExceptionThrown.hpp"
 #include "TaranisTestSuite.hpp"
 #include "CommandLineInterface.hpp"
