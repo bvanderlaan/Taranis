@@ -141,26 +141,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">void</span> setDescription( <span class="keyword">const</span> QString description );</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordtype">void</span> addHelpArguments();</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">void</span> setValue( <span class="keyword">const</span> QString key, <span class="keyword">const</span> QVariant value );</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        QString m_applicationName;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        QString m_version;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        QString m_description;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        QMap&lt;QString, Argument*&gt; m_arguments;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        QStringList m_inputArguments;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        QStringList m_acceptedArgumentPrefixs;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> QString VERSIONARGUMENT;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    };</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;}</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#endif // COMMANDLINEINTERFACE_HPP</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keyword">virtual</span> QString normilizeKey( <span class="keyword">const</span> QString&amp; key ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        QString m_applicationName;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        QString m_version;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        QString m_description;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        QMap&lt;QString, Argument*&gt; m_arguments;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        QStringList m_inputArguments;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        QStringList m_acceptedArgumentPrefixs;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> QString VERSIONARGUMENT;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    };</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;}</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">#endif // COMMANDLINEINTERFACE_HPP</span></div>
 <div class="ttc" id="class_taranis_1_1_command_line_interface_html_ae2860b97b92e98a33c39dd4ad77f51fc"><div class="ttname"><a href="class_taranis_1_1_command_line_interface.html#ae2860b97b92e98a33c39dd4ad77f51fc">Taranis::CommandLineInterface::process</a></div><div class="ttdeci">virtual CommandLineInterface &amp; process()</div><div class="ttdoc">process will read the input arguments and parse them into Argument objects then execute their callbac...</div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_8cpp_source.html#l00076">CommandLineInterface.cpp:76</a></div></div>
 <div class="ttc" id="class_taranis_1_1_command_line_interface_html"><div class="ttname"><a href="class_taranis_1_1_command_line_interface.html">Taranis::CommandLineInterface</a></div><div class="ttdoc">The CommandLineInterface class represents a command line interface. Your application will accept comm...</div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_8hpp_source.html#l00045">CommandLineInterface.hpp:45</a></div></div>
 <div class="ttc" id="class_taranis_1_1_argument_html"><div class="ttname"><a href="class_taranis_1_1_argument.html">Taranis::Argument</a></div><div class="ttdoc">The Argument class represents a command line argument. This object has a name and a short name (quite...</div><div class="ttdef"><b>Definition:</b> <a href="_argument_8hpp_source.html#l00039">Argument.hpp:39</a></div></div>
-<div class="ttc" id="class_taranis_1_1_command_line_interface_html_a4f4218cf73245829dc5d07a7b91ec261"><div class="ttname"><a href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">Taranis::CommandLineInterface::build</a></div><div class="ttdeci">static CommandLineInterfaceBuilder build()</div><div class="ttdoc">build is a static helper method to easily access a builder of CommandLineInterface objects...</div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_8cpp_source.html#l00126">CommandLineInterface.cpp:126</a></div></div>
+<div class="ttc" id="class_taranis_1_1_command_line_interface_html_a4f4218cf73245829dc5d07a7b91ec261"><div class="ttname"><a href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">Taranis::CommandLineInterface::build</a></div><div class="ttdeci">static CommandLineInterfaceBuilder build()</div><div class="ttdoc">build is a static helper method to easily access a builder of CommandLineInterface objects...</div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_8cpp_source.html#l00133">CommandLineInterface.cpp:133</a></div></div>
 <div class="ttc" id="class_taranis_1_1_command_line_interface_builder_html"><div class="ttname"><a href="class_taranis_1_1_command_line_interface_builder.html">Taranis::CommandLineInterfaceBuilder</a></div><div class="ttdoc">The CommandLineInterfaceBuilder class is used to construct a command line interface object...</div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_builder_8hpp_source.html#l00045">CommandLineInterfaceBuilder.hpp:45</a></div></div>
-<div class="ttc" id="class_taranis_1_1_command_line_interface_html_a554c5f65d7a267e97b81daaae8c73f67"><div class="ttname"><a href="class_taranis_1_1_command_line_interface.html#a554c5f65d7a267e97b81daaae8c73f67">Taranis::CommandLineInterface::operator[]</a></div><div class="ttdeci">QVariant operator[](const QString key) const </div><div class="ttdoc">You can use the index operator to access argument values. </div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_8cpp_source.html#l00113">CommandLineInterface.cpp:113</a></div></div>
+<div class="ttc" id="class_taranis_1_1_command_line_interface_html_a554c5f65d7a267e97b81daaae8c73f67"><div class="ttname"><a href="class_taranis_1_1_command_line_interface.html#a554c5f65d7a267e97b81daaae8c73f67">Taranis::CommandLineInterface::operator[]</a></div><div class="ttdeci">QVariant operator[](const QString key) const </div><div class="ttdoc">You can use the index operator to access argument values. </div><div class="ttdef"><b>Definition:</b> <a href="_command_line_interface_8cpp_source.html#l00119">CommandLineInterface.cpp:119</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
