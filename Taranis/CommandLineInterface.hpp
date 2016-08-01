@@ -159,6 +159,27 @@ namespace Taranis
      * If you run this example when the user provides the mouse flag such as -mouse, --mouse, -m, /m, /mouse
      * You see see the output <i>Show Mouse? Yes</i> otherwise you'll see <i>Show Mouse? No</i>.
      */
+    /**
+     * @example main.example7.cpp
+     * This example shows how to define a command line interface which contains an argument which accepts values.
+     *
+     * If you run this example when the user provides the server argument such as --server 1.2.3.4, --server=1.2.3.4,
+     * --server:1.2.3.4, --server= 1.2.3.4, or --server: 1.2.3.4 you will see the output <i>Server IP: 1.2.3.4</i>.
+     */
+    /**
+     * @example main.example8.cpp
+     * This example shows how to define a command line interface which contains an argument which accepts values and
+     * contain a default value.
+     *
+     * If you have an optional argument which allows the user to input a value you can set a default value for said
+     * argument so that you don't have to check if the user inputted it. Just use the value given to you by the
+     * CommandLineInterface argument and if the user provided the argument then you'll get the user defined value
+     * and if not you'll get your default value.
+     *
+     * If you run this example when the user provides the server argument such as --server 1.2.3.4, --server=1.2.3.4,
+     * --server:1.2.3.4, --server= 1.2.3.4, or --server: 1.2.3.4 you will see the output <i>Server IP: 1.2.3.4</i> otherwise
+     * you'll get <i>Server IP: 127.0.0.1</i> with is the default IP provided in the <i>WithValue</i> method.
+     */
 }
 
 #endif // COMMANDLINEINTERFACE_HPP

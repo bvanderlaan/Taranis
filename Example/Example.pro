@@ -18,7 +18,9 @@ SOURCES += \
         main.example3.cpp \
         main.example4.cpp \
         main.example5.cpp \
-        main.example6.cpp
+        main.example6.cpp \
+        main.example7.cpp \
+        main.example8.cpp
 
 ## TARANIS ############################################################################
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Taranis/release/ -lTaranis
