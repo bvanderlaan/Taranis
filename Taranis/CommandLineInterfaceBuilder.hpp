@@ -41,6 +41,10 @@ namespace Taranis
      * @brief The CommandLineInterfaceBuilder class is used to construct a command line interface object.
      * You can specify what arguments your CLI object will process as well as optionally set a name,
      * version, and description of your application which will be displayed in the built in help text.
+     *
+     * @warning The QApplication object needs to exist before building a CommandLineInterface object. If
+     * you try to build a CLI object before the QApplication object exists an exception will be thrown
+     * alerting you of this fact.
      */
     class CommandLineInterfaceBuilder
     {

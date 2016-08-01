@@ -28,6 +28,7 @@
 #include "CommandLineInterface.hpp"
 #include "InputArgument.hpp"
 #include "Argument.hpp"
+#include "TaranisExceptions.hpp"
 
 using namespace Taranis;
 using action_callback = std::function<void(QVariant)>;
@@ -36,9 +37,10 @@ using action_callback = std::function<void(QVariant)>;
 CommandLineInterfaceBuilder::CommandLineInterfaceBuilder()
     : CommandLineInterfaceBuilder( "", "", QCoreApplication::arguments() )
 {
-    Q_ASSERT_X( qApp != nullptr, "CommandLineInterfaceBuilder",
-                "You must initialize QApplication before building a "
-                "CommandLineInterface.");
+    if ( qApp == nullptr )
+    {
+        throw QApplicationDoesNotExsistException();
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

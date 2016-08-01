@@ -13,7 +13,8 @@ SOURCES += \
     InputArgument.cpp \
     Argument.cpp \
     InputArgumentKeyValuePair.cpp \
-    CommandLineInterfaceBuilder.cpp
+    CommandLineInterfaceBuilder.cpp \
+    TaranisExceptions.cpp
 
 HEADERS += \
     taranis_global.hpp \
@@ -22,7 +23,8 @@ HEADERS += \
     Argument.hpp \
     ArgumentType.hpp \
     InputArgumentKeyValuePair.hpp \
-    CommandLineInterfaceBuilder.hpp
+    CommandLineInterfaceBuilder.hpp \
+    TaranisExceptions.hpp
 
 unix {
     target.path = /usr/lib
