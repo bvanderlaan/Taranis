@@ -41,6 +41,11 @@ namespace Taranis
     /**
      * @brief The CommandLineInterface class represents a command line interface.
      * Your application will accept command line arguments which are defined in the CommandLineInterface object.
+     *
+     * @warning If your build the CommandLineInterface wtih arguments which collide, that is
+     * arguments with the same name or have the same short names and this includes the two built in
+     * arguments <i>help</i> and <i>version</i> then exceptions will be thrown alerting you of the
+     * collisions.
      */
     class CommandLineInterface
     {
@@ -87,6 +92,8 @@ namespace Taranis
         void addHelpArguments();
         void setValue( const QString key, const QVariant value );
         virtual QString normilizeKey( const QString& key ) const;
+        virtual void validateArgumentName(const Argument& arg) const;
+        virtual void validateArgumentShortName(const Argument& arg) const;
 
     private:
         QString m_applicationName;
@@ -96,6 +103,7 @@ namespace Taranis
         QStringList m_inputArguments;
         QStringList m_acceptedArgumentPrefixs;
         static const QString VERSIONARGUMENT;
+        static const QString HELPARGUMENT;
     };
 
     /**

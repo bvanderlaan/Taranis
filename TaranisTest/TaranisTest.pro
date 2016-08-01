@@ -9,7 +9,8 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 HEADERS += \
-    TaranisTestSuite.hpp
+    TaranisTestSuite.hpp \
+    QVerifyNoExceptionThrown.hpp
     
 SOURCES += main.cpp \
     TaranisTestSuite.cpp

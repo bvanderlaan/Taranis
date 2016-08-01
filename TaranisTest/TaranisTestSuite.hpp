@@ -122,9 +122,20 @@ namespace Taranis
             void testArgumentWithValueUsingSpace();
             void testArgumentWithValueNoSpaceAndSecondInvalidArgument();
 
-            // Arguments With Default Values
+            /// Arguments With Default Values
             void testARgumentWithDefaultValueWhenAbsent();
             void testARgumentWithDefaultValueWhenProvided();
+
+            /// Argument Collisons
+            void testAddingArgumentsWithTheSameName();
+            void testAddingArgumentsWithSameNameButDifferentCase();
+            void testAddingARgumentsWithSameNameButOneIsAFlagAndTheOtherIsAnArgument();
+            void testAddingArgumentsWithDifferentNamesButSameShortName();
+            void testAddingArgumentsWithDifferentNamesButSameShortNameWithDifferentCase();
+            void testAddingArgumentWhichCollidesWithBuiltInHelpShortName();
+            void testAddingArgumentWhichCollidesWithBuiltInVersionShortName();
+            void testAddingArgumentWhichCollidesWithBuiltInVersionShortNameButNoVersionIsSet();
+            void testAddingArgumentWhichCollidesWithBuiltInVersionShortNameButNoVersionIsSetHoweverAnotherArgumentWithSameShortNameIs();
 
             /// InputArgument
             void testIsValidWhenItIs();

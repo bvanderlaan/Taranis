@@ -24,9 +24,11 @@
 
 #include <QTest>
 #include <QDir>
+#include "QVerifyNoExceptionThrown.hpp"
 #include "TaranisTestSuite.hpp"
 #include "CommandLineInterface.hpp"
 #include "InputArgument.hpp"
+#include "TaranisExceptions.hpp"
 
 using namespace Taranis::UnitTest;
 
@@ -641,101 +643,174 @@ void TaranisTestSuite::testArgumentDefinedWithLowerCaseAndProvidedWithShortLower
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingEqualsNoSpace()
 {
-    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello=world"})
-            .WithValue("hello", "test")
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--remote=1.2.3.4"})
+            .WithValue("remote", "test")
             .getCommandLineInterface();
 
-    QCOMPARE( arguments["hello"].toString(), QString("world") );
+    QCOMPARE( arguments["remote"].toString(), QString("1.2.3.4") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingEqualsWithEqualsInValueNoSpace()
 {
-    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello=world=earth"})
-            .WithValue("hello", "test")
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--remote=1.2.3.4=earth"})
+            .WithValue("remote", "test")
             .getCommandLineInterface();
 
-    QCOMPARE( arguments["hello"].toString(), QString("world=earth") );
+    QCOMPARE( arguments["remote"].toString(), QString("1.2.3.4=earth") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingEqualsUsingSpace()
 {
-    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello=","world"})
-            .WithValue("hello", "test")
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--remote=","1.2.3.4"})
+            .WithValue("remote", "test")
             .getCommandLineInterface();
 
-    QCOMPARE( arguments["hello"].toString(), QString("world") );
+    QCOMPARE( arguments["remote"].toString(), QString("1.2.3.4") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingColonNoSpace()
 {
-    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello:world"})
-            .WithValue("hello", "test")
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--remote:1.2.3.4"})
+            .WithValue("remote", "test")
             .getCommandLineInterface();
 
-    QCOMPARE( arguments["hello"].toString(), QString("world") );
+    QCOMPARE( arguments["remote"].toString(), QString("1.2.3.4") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingColonWithColonInValueNoSpace()
 {
-    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello:world:earth"})
-            .WithValue("hello", "test")
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--remote:1.2.3.4:earth"})
+            .WithValue("remote", "test")
             .getCommandLineInterface();
 
-    QCOMPARE( arguments["hello"].toString(), QString("world:earth") );
+    QCOMPARE( arguments["remote"].toString(), QString("1.2.3.4:earth") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingColonUsingSpace()
 {
-    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello:", "world"})
-            .WithValue("hello", "test")
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--remote:", "1.2.3.4"})
+            .WithValue("remote", "test")
             .getCommandLineInterface();
 
-    QCOMPARE( arguments["hello"].toString(), QString("world") );
+    QCOMPARE( arguments["remote"].toString(), QString("1.2.3.4") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueUsingSpace()
 {
-    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello","world"})
-            .WithValue("hello", "test")
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--remote","1.2.3.4"})
+            .WithValue("remote", "test")
             .getCommandLineInterface();
 
-    QCOMPARE( arguments["hello"].toString(), QString("world") );
+    QCOMPARE( arguments["remote"].toString(), QString("1.2.3.4") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testArgumentWithValueNoSpaceAndSecondInvalidArgument()
 {
-    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello:world","fubar"})
-            .WithValue("hello", "test")
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--remote:1.2.3.4","fubar"})
+            .WithValue("remote", "test")
             .getCommandLineInterface();
 
-    QCOMPARE( arguments["hello"].toString(), QString("world") );
+    QCOMPARE( arguments["remote"].toString(), QString("1.2.3.4") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testARgumentWithDefaultValueWhenAbsent()
 {
     auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {})
-            .WithValue("hello", "world", "This is a test, please stand by.")
+            .WithValue("remote", "1.2.3.4", "This is a test, please stand by.")
             .getCommandLineInterface();
 
-    QCOMPARE( arguments["hello"].toString(), QString("world") );
+    QCOMPARE( arguments["remote"].toString(), QString("1.2.3.4") );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testARgumentWithDefaultValueWhenProvided()
 {
-    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--hello","fubar"})
-            .WithValue("hello", "world", "This is a test, please stand by.")
+    auto arguments = CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--remote","192.168.228.64"})
+            .WithValue("remote", "1.2.3.4", "This is a test, please stand by.")
             .getCommandLineInterface();
 
-    QCOMPARE( arguments["hello"].toString(), QString("fubar") );
+    QCOMPARE( arguments["remote"].toString(), QString("192.168.228.64") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAddingArgumentsWithTheSameName()
+{
+    QVERIFY_EXCEPTION_THROWN(CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--d"})
+            .WithFlag("debug", "Enables debug mode.")
+            .WithFlag("debug", "Enables debug mode."), ArgumentRedefinitionException);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAddingArgumentsWithSameNameButDifferentCase()
+{
+    QVERIFY_EXCEPTION_THROWN(CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--d"})
+            .WithFlag("debug", "Enables debug mode.")
+            .WithFlag("Debug", "Enables debug mode."), ArgumentRedefinitionException);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAddingARgumentsWithSameNameButOneIsAFlagAndTheOtherIsAnArgument()
+{
+    QVERIFY_EXCEPTION_THROWN(CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--d"})
+            .WithFlag("log", "Enables logging.")
+            .WithValue("log", "Set log level."), ArgumentRedefinitionException);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAddingArgumentsWithDifferentNamesButSameShortName()
+{
+    QVERIFY_EXCEPTION_THROWN( CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--d"})
+            .WithValue("server", "Set server ip.")
+            .WithValue("serial", "Set serial number."), ShortNameCollisionException);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAddingArgumentsWithDifferentNamesButSameShortNameWithDifferentCase()
+{
+    QVERIFY_EXCEPTION_THROWN(CommandLineInterfaceBuilder("My Cool App", "1.2.3", {"--d"})
+            .WithValue("server", "Set server ip.")
+            .WithValue("Serial", "Set serial number."), ShortNameCollisionException);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAddingArgumentWhichCollidesWithBuiltInHelpShortName()
+{
+    QVERIFY_EXCEPTION_THROWN(CommandLineInterfaceBuilder()
+            .WithValue("here", "Canada", "Set current location."), HelpShortNameCollisionException);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAddingArgumentWhichCollidesWithBuiltInVersionShortName()
+{
+    QVERIFY_EXCEPTION_THROWN(CommandLineInterfaceBuilder()
+            .WithName("My Cool App")
+            .WithVersion("1.2.3.4-abc")
+            .WithFlag("verbose", "Enables verbose logging."), VersionShortNameCollisionException);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAddingArgumentWhichCollidesWithBuiltInVersionShortNameButNoVersionIsSet()
+{
+    QVERIFY_NO_EXCEPTION_THROWN(CommandLineInterfaceBuilder()
+                        .WithName("My Cool App")
+                                .WithFlag("verbose", "Enables verbose logging."));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAddingArgumentWhichCollidesWithBuiltInVersionShortNameButNoVersionIsSetHoweverAnotherArgumentWithSameShortNameIs()
+{
+    QVERIFY_EXCEPTION_THROWN(CommandLineInterfaceBuilder()
+            .WithName("My Cool App")
+            .WithFlag("victor", "Enables victor mode.")
+            .WithFlag("verbose", "Enables verbose logging."), ShortNameCollisionException);
 }
 
 /////////////////////////////////////////////////////////////////////////////

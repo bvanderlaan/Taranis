@@ -26,11 +26,13 @@
 #include <functional>
 #include "CommandLineInterface.hpp"
 #include "InputArgument.hpp"
+#include "TaranisExceptions.hpp"
 
 using namespace Taranis;
 using action_callback = std::function<void(QVariant)>;
 
 const QString CommandLineInterface::VERSIONARGUMENT = "version";
+const QString CommandLineInterface::HELPARGUMENT = "help";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterface::CommandLineInterface(const QString applicationName, QStringList arguments, QStringList acceptedArgumentPrefixes)
@@ -138,12 +140,64 @@ CommandLineInterfaceBuilder CommandLineInterface::build()
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void CommandLineInterface::addArgument(Argument* arg)
 {
+    validateArgumentName(*arg);
     m_arguments[normilizeKey( arg->name() )] = arg;
+
     if ( arg->hasShortName() )
     {
+        validateArgumentShortName(*arg);
         m_arguments[normilizeKey( arg->shortName() )] = arg;
     }
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void CommandLineInterface::validateArgumentName(const Argument& arg) const
+{
+    QString normilizedName = normilizeKey( arg.name() );
+    if ( m_arguments.contains( normilizedName ) )
+    {
+        if ( normilizedName == VERSIONARGUMENT )
+        {
+            // Ok to override
+            qWarning("The built in version argument is being overriden");
+        }
+        else if (( normilizedName == HELPARGUMENT ) || ( normilizedName == "?" ))
+        {
+            // Ok to overide
+            qWarning("The built in help argument is being overriden");
+        }
+        else
+        {
+            throw ArgumentRedefinitionException(arg.name());
+        }
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+void CommandLineInterface::validateArgumentShortName(const Argument &arg) const
+{
+    QString normalizedName = normilizeKey( arg.name() );
+    if ( normalizedName == HELPARGUMENT ) return;
+    if ( normalizedName == VERSIONARGUMENT ) return;
+
+    QString normilizedShortName = normilizeKey( arg.shortName() );
+    if ( m_arguments.contains( normilizedShortName ) )
+    {
+        if ( ( normilizedShortName == VERSIONARGUMENT.at(0) ) && m_arguments.contains(VERSIONARGUMENT) )
+        {
+            throw VersionShortNameCollisionException( arg.name() );
+        }
+        else if (( normilizedShortName == HELPARGUMENT.at(0) ) || ( normilizedShortName == "?" ))
+        {
+            throw HelpShortNameCollisionException( arg.name() );
+        }
+        else
+        {
+            throw ShortNameCollisionException(arg.name(), m_arguments[normilizedShortName]->name());
+        }
+    }
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void CommandLineInterface::setVersion(const QString version)
@@ -177,7 +231,7 @@ void CommandLineInterface::setDescription(const QString description)
 void CommandLineInterface::addHelpArguments()
 {
     action_callback helpCallback = std::bind( &CommandLineInterface::doHelpAction, this );
-    addArgument( new Argument( "help", "Display this help and exit", ArgumentType::Action, helpCallback) );
+    addArgument( new Argument( HELPARGUMENT, "Display this help and exit", ArgumentType::Action, helpCallback) );
     addArgument( new Argument( "?", "Display this help and exit", ArgumentType::Action, helpCallback) );
 }
 
