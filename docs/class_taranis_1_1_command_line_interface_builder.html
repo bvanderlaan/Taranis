@@ -127,6 +127,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adf5d9f2f637fcd569bf2dc656b2b517b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html">CommandLineInterfaceBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html#adf5d9f2f637fcd569bf2dc656b2b517b">WithVersion</a> (const QString &amp;version)</td></tr>
 <tr class="memdesc:adf5d9f2f637fcd569bf2dc656b2b517b"><td class="mdescLeft">&#160;</td><td class="mdescRight">WithVersion allows you to specify the version of your application. The <a class="el" href="namespace_taranis.html">Taranis</a> <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> will generate help text for you and this method allows you to provide the version of your application which will be used in said help text.  <a href="#adf5d9f2f637fcd569bf2dc656b2b517b">More...</a><br/></td></tr>
 <tr class="separator:adf5d9f2f637fcd569bf2dc656b2b517b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a14ed3facb1e95b76234f3f25a8371c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html">CommandLineInterfaceBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html#a2a14ed3facb1e95b76234f3f25a8371c">WithVersion</a> (const QString &amp;version, std::function&lt; void(QVariant)&gt; action)</td></tr>
+<tr class="memdesc:a2a14ed3facb1e95b76234f3f25a8371c"><td class="mdescLeft">&#160;</td><td class="mdescRight">WithVersion allows you to specify the version of your application and what action to perform when the <em>version</em> argument is provided. The <a class="el" href="namespace_taranis.html">Taranis</a> <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> will generate help text for you and this method allows you to provide the version of your application which will be used in said help text.  <a href="#a2a14ed3facb1e95b76234f3f25a8371c">More...</a><br/></td></tr>
+<tr class="separator:a2a14ed3facb1e95b76234f3f25a8371c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31a35c680850bc2d9e80b23cddd7865f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html">CommandLineInterfaceBuilder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html#a31a35c680850bc2d9e80b23cddd7865f">WithDescription</a> (const QString &amp;description)</td></tr>
 <tr class="memdesc:a31a35c680850bc2d9e80b23cddd7865f"><td class="mdescLeft">&#160;</td><td class="mdescRight">WithDescription allows you to specify a description for your application. The <a class="el" href="namespace_taranis.html">Taranis</a> <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> will generate help text for you and this method allows you to provide an optional description of your application which will be used in said help text.  <a href="#a31a35c680850bc2d9e80b23cddd7865f">More...</a><br/></td></tr>
 <tr class="separator:a31a35c680850bc2d9e80b23cddd7865f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,9 +159,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ac53ab4cbef306ec9b7d4acb27964783a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac53ab4cbef306ec9b7d4acb27964783a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CommandLineInterfaceBuilder</b> (const QString applicationName, const QString version, QStringList arguments)</td></tr>
-<tr class="separator:ac53ab4cbef306ec9b7d4acb27964783a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f023126cfb3982593b50ba85ae123fc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f023126cfb3982593b50ba85ae123fc"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CommandLineInterfaceBuilder</b> (const QString applicationName, QStringList arguments)</td></tr>
+<tr class="separator:a8f023126cfb3982593b50ba85ae123fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1745d837d33032b5746af634da6148ed"><td class="memItemLeft" align="right" valign="top">virtual QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html#a1745d837d33032b5746af634da6148ed">getAcceptedArgumentPrefixes</a> ()</td></tr>
 <tr class="memdesc:a1745d837d33032b5746af634da6148ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">getAcceptedArgumentPrefixes returns a list of argument prefixes, such as -, &ndash;, or /  <a href="#a1745d837d33032b5746af634da6148ed">More...</a><br/></td></tr>
 <tr class="separator:a1745d837d33032b5746af634da6148ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,7 +198,7 @@ Protected Member Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Only arguments which have one of these prefixes will be parsed by the CLI. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a list of argument prefixes that the CLI will accept. </dd></dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00074">74</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00073">73</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -214,7 +217,7 @@ Protected Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Returns the constructed <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> object. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example5_8cpp-example.html#a5">main.example5.cpp</a>, and <a class="el" href="main_8example6_8cpp-example.html#a3">main.example6.cpp</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00092">92</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00091">91</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -249,7 +252,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>WithAction will add an argument which when present will trigger an action to be performed. This works similar to flags as in the handler is only executed if the argument was provided when the application started but conseptually this type of argument is not about values and more about initiating an action. For example the 'version' argument is not about setting the version or turning on a version flag but rather about executing the display version action so the user can see the version of your application on screen. </p>
-<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#ad1434de0cb9cabd3afc9d03b08aa11a0">WithAction</a>(<span class="stringliteral">&quot;restart&quot;</span>, <span class="stringliteral">&quot;Will restart the service.&quot;</span>,</div>
+<div class="fragment"><div class="line">CommandLineInterface cli = <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#ad1434de0cb9cabd3afc9d03b08aa11a0">WithAction</a>(<span class="stringliteral">&quot;restart&quot;</span>, <span class="stringliteral">&quot;Will restart the service.&quot;</span>,</div>
 <div class="line">                                         [<span class="keyword">this</span>](QVariant) {</div>
 <div class="line">                                               this-&gt;restart();</div>
 <div class="line">                                         });</div>
@@ -262,7 +265,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00197">197</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00205">205</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -281,9 +284,9 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>WithDescription allows you to specify a description for your application. The <a class="el" href="namespace_taranis.html">Taranis</a> <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> will generate help text for you and this method allows you to provide an optional description of your application which will be used in said help text. </p>
-<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#aefa9f5c21cdf3e34c262ca2b702fcb10">WithName</a>(<span class="stringliteral">&quot;My Cool App&quot;</span>)</div>
-<div class="line">                             .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#adf5d9f2f637fcd569bf2dc656b2b517b">WithVersion</a>(<span class="stringliteral">&quot;1.2.3.4-rc1&quot;</span>)</div>
-<div class="line">                             .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#a31a35c680850bc2d9e80b23cddd7865f">WithDescription</a>(<span class="stringliteral">&quot;This application is really cool!&quot;</span>);</div>
+<div class="fragment"><div class="line">CommandLineInterface cli = <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#aefa9f5c21cdf3e34c262ca2b702fcb10">WithName</a>(<span class="stringliteral">&quot;My Cool App&quot;</span>)</div>
+<div class="line">                                                        .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#adf5d9f2f637fcd569bf2dc656b2b517b">WithVersion</a>(<span class="stringliteral">&quot;1.2.3.4-rc1&quot;</span>)</div>
+<div class="line">                                                        .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#a31a35c680850bc2d9e80b23cddd7865f">WithDescription</a>(<span class="stringliteral">&quot;This application is really cool!&quot;</span>);</div>
 </div><!-- fragment --><p>The above code would render the below help text.</p>
 <div class="fragment"><div class="line">$ mycoolapp --help</div>
 <div class="line">My Cool App - Version 1.2.3.4-rc1</div>
@@ -301,7 +304,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00136">136</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00144">144</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -341,7 +344,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example1_8cpp-example.html#a4">main.example1.cpp</a>, <a class="el" href="main_8example2_8cpp-example.html#a3">main.example2.cpp</a>, <a class="el" href="main_8example3_8cpp-example.html#a3">main.example3.cpp</a>, <a class="el" href="main_8example5_8cpp-example.html#a3">main.example5.cpp</a>, and <a class="el" href="main_8example6_8cpp-example.html#a1">main.example6.cpp</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00143">143</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00151">151</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -390,7 +393,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00152">152</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00160">160</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -409,7 +412,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>WithName allows you to specify the name of your application. The <a class="el" href="namespace_taranis.html">Taranis</a> <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> will generate help text for you and this method allows you to provide the name of your application which will be used in said help text. </p>
-<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#aefa9f5c21cdf3e34c262ca2b702fcb10">WithName</a>(<span class="stringliteral">&quot;My Cool App&quot;</span>);</div>
+<div class="fragment"><div class="line">CommandLineInterface cli = <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#aefa9f5c21cdf3e34c262ca2b702fcb10">WithName</a>(<span class="stringliteral">&quot;My Cool App&quot;</span>);</div>
 </div><!-- fragment --><p>The above code would render the below help text.</p>
 <div class="fragment"><div class="line">$ mycoolapp --help</div>
 <div class="line">My Cool App</div>
@@ -425,7 +428,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example1_8cpp-example.html#a2">main.example1.cpp</a>, <a class="el" href="main_8example2_8cpp-example.html#a1">main.example2.cpp</a>, <a class="el" href="main_8example3_8cpp-example.html#a1">main.example3.cpp</a>, <a class="el" href="main_8example5_8cpp-example.html#a1">main.example5.cpp</a>, <a class="el" href="main_8example7_8cpp-example.html#a2">main.example7.cpp</a>, and <a class="el" href="main_8example8_8cpp-example.html#a2">main.example8.cpp</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00122">122</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00121">121</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -468,7 +471,7 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example7_8cpp-example.html#a4">main.example7.cpp</a>, and <a class="el" href="main_8example8_8cpp-example.html#a4">main.example8.cpp</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00159">159</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00167">167</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -503,7 +506,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>WithValue will add an agrument which expects a value to your CLI. You can have a handler executed if the user starts your application with this argument and have the value they provided passed in. </p>
-<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#ad0eea7bb6f31b815399193d38394a6f5">WithValue</a>(<span class="stringliteral">&quot;address&quot;</span>, <span class="stringliteral">&quot;Sets the address of the device to communicate with.&quot;</span>,</div>
+<div class="fragment"><div class="line">CommandLineInterface cli = <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#ad0eea7bb6f31b815399193d38394a6f5">WithValue</a>(<span class="stringliteral">&quot;address&quot;</span>, <span class="stringliteral">&quot;Sets the address of the device to communicate with.&quot;</span>,</div>
 <div class="line">                                         [&amp;device](QVariant address) {</div>
 <div class="line">                                               device-&gt;setAddress( address.toString() );</div>
 <div class="line">                                         });</div>
@@ -516,7 +519,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00190">190</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00198">198</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -565,7 +568,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00168">168</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00176">176</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -606,7 +609,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>WithValue will add an agrument which expects a value to your CLI. You can have a handler executed if the user starts your application with this argument and have the value they provided passed in. </p>
-<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#ad0eea7bb6f31b815399193d38394a6f5">WithValue</a>(<span class="stringliteral">&quot;address&quot;</span>, <span class="stringliteral">&quot;127.0.0.1&quot;</span>, <span class="stringliteral">&quot;Sets the address of the device to communicate with.&quot;</span>,</div>
+<div class="fragment"><div class="line">CommandLineInterface cli = <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#ad0eea7bb6f31b815399193d38394a6f5">WithValue</a>(<span class="stringliteral">&quot;address&quot;</span>, <span class="stringliteral">&quot;127.0.0.1&quot;</span>, <span class="stringliteral">&quot;Sets the address of the device to communicate with.&quot;</span>,</div>
 <div class="line">                                         [&amp;device](QVariant address) {</div>
 <div class="line">                                               device-&gt;setAddress( address.toString() );</div>
 <div class="line">                                         });</div>
@@ -620,7 +623,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00180">180</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00188">188</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -639,7 +642,8 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>WithVersion allows you to specify the version of your application. The <a class="el" href="namespace_taranis.html">Taranis</a> <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> will generate help text for you and this method allows you to provide the version of your application which will be used in said help text. </p>
-<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#aefa9f5c21cdf3e34c262ca2b702fcb10">WithName</a>(<span class="stringliteral">&quot;My Cool App&quot;</span>).<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#adf5d9f2f637fcd569bf2dc656b2b517b">WithVersion</a>(<span class="stringliteral">&quot;1.2.3.4-rc1&quot;</span>);</div>
+<div class="fragment"><div class="line">CommandLineInterface cli = <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>().<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#aefa9f5c21cdf3e34c262ca2b702fcb10">WithName</a>(<span class="stringliteral">&quot;My Cool App&quot;</span>)</div>
+<div class="line">                                                        .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#adf5d9f2f637fcd569bf2dc656b2b517b">WithVersion</a>(<span class="stringliteral">&quot;1.2.3.4-rc1&quot;</span>);</div>
 </div><!-- fragment --><p>The above code would render the below help text.</p>
 <div class="fragment"><div class="line">$ mycoolapp --help</div>
 <div class="line">My Cool App - Version 1.2.3.4-rc1</div>
@@ -648,6 +652,9 @@ Protected Member Functions</h2></td></tr>
 <div class="line">  -?            Display <span class="keyword">this</span> help and exits.</div>
 <div class="line">  -h, --help    Display <span class="keyword">this</span> help and exits.</div>
 <div class="line">  -v, --version Display version information and exits.</div>
+</div><!-- fragment --><p>This method also adds the built in <em>version</em> argument allowing users to query the version of your application from the command line.</p>
+<div class="fragment"><div class="line">$ mycoolapp --version</div>
+<div class="line">My Cool App - Version 1.2.3.4-rc1</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">version</td><td>is the version of your application and can be any string. </td></tr>
@@ -656,7 +663,64 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example1_8cpp-example.html#a3">main.example1.cpp</a>, <a class="el" href="main_8example2_8cpp-example.html#a2">main.example2.cpp</a>, <a class="el" href="main_8example3_8cpp-example.html#a2">main.example3.cpp</a>, <a class="el" href="main_8example5_8cpp-example.html#a2">main.example5.cpp</a>, <a class="el" href="main_8example7_8cpp-example.html#a3">main.example7.cpp</a>, and <a class="el" href="main_8example8_8cpp-example.html#a3">main.example8.cpp</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00129">129</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00128">128</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2a14ed3facb1e95b76234f3f25a8371c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_taranis_1_1_command_line_interface_builder.html">CommandLineInterfaceBuilder</a> &amp; CommandLineInterfaceBuilder::WithVersion </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>version</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(QVariant)&gt;&#160;</td>
+          <td class="paramname"><em>action</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>WithVersion allows you to specify the version of your application and what action to perform when the <em>version</em> argument is provided. The <a class="el" href="namespace_taranis.html">Taranis</a> <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> will generate help text for you and this method allows you to provide the version of your application which will be used in said help text. </p>
+<div class="fragment"><div class="line">QString version(<span class="stringliteral">&quot;1.2.3.4-rc1&quot;</span>);</div>
+<div class="line">CommandLineInterface cli = <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>()</div>
+<div class="line">        .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#aefa9f5c21cdf3e34c262ca2b702fcb10">WithName</a>(<span class="stringliteral">&quot;My Cool App&quot;</span>)</div>
+<div class="line">        .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#adf5d9f2f637fcd569bf2dc656b2b517b">WithVersion</a>(version,</div>
+<div class="line">               [&amp;version](QVariant) {</div>
+<div class="line">                        printf( <span class="stringliteral">&quot;%s&quot;</span>, QString(<span class="stringliteral">&quot;Beta Release Version %1.&quot;</span>).arg(version).toLatin1().data() );</div>
+<div class="line">                        exit(0);</div>
+<div class="line">               });</div>
+</div><!-- fragment --><p>The above code would render the below help text.</p>
+<div class="fragment"><div class="line">$ mycoolapp --help</div>
+<div class="line">My Cool App - Version 1.2.3.4-rc1</div>
+<div class="line">=================================</div>
+<div class="line">Usage: mycoolapp [OPTION]</div>
+<div class="line">  -?            Display <span class="keyword">this</span> help and exits.</div>
+<div class="line">  -h, --help    Display <span class="keyword">this</span> help and exits.</div>
+<div class="line">  -v, --version Display version information and exits.</div>
+</div><!-- fragment --><p>This method also adds the built in <em>version</em> argument allowing users to query the version of your application from the command line.</p>
+<div class="fragment"><div class="line">$ mycoolapp --version</div>
+<div class="line">Version 1.2.3.4-rc1</div>
+</div><!-- fragment --><p>The intended use case of this method is to allow you to specify other actions when the user queries for the version like show it in a dialog box vs. the terminal.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">version</td><td>is the version of your application and can be any string. </td></tr>
+    <tr><td class="paramname">action</td><td>is the action handler you want performed if the version argument is present. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00135">135</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
