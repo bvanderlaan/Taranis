@@ -66,7 +66,7 @@ namespace Taranis
          * will be used in said help text.
          *
          * @code{.cpp}
-         * CommandLineInterface::build().WithName("My Cool App");
+         * CommandLineInterface cli = CommandLineInterface::build().WithName("My Cool App");
          * @endcode
          *
          * The above code would render the below help text.
@@ -91,7 +91,8 @@ namespace Taranis
          * will be used in said help text.
          *
          * @code{.cpp}
-         * CommandLineInterface::build().WithName("My Cool App").WithVersion("1.2.3.4-rc1");
+         * CommandLineInterface cli = CommandLineInterface::build().WithName("My Cool App")
+         *                                                         .WithVersion("1.2.3.4-rc1");
          * @endcode
          *
          * The above code would render the below help text.
@@ -106,6 +107,14 @@ namespace Taranis
          *   -v, --version Display version information and exits.
          * @endcode
          *
+         * This method also adds the built in <i>version</i> argument allowing users to query
+         * the version of your application from the command line.
+         *
+         * @code{.unparsed}
+         * $ mycoolapp --version
+         * My Cool App - Version 1.2.3.4-rc1
+         * @endcode
+         *
          * @param version is the version of your application and can be any string.
          */
         CommandLineInterfaceBuilder& WithVersion(const QString& version );
@@ -117,9 +126,9 @@ namespace Taranis
          * will be used in said help text.
          *
          * @code{.cpp}
-         * CommandLineInterface::build().WithName("My Cool App")
-         *                              .WithVersion("1.2.3.4-rc1")
-         *                              .WithDescription("This application is really cool!");
+         * CommandLineInterface cli = CommandLineInterface::build().WithName("My Cool App")
+         *                                                         .WithVersion("1.2.3.4-rc1")
+         *                                                         .WithDescription("This application is really cool!");
          * @endcode
          *
          * The above code would render the below help text.
@@ -199,7 +208,7 @@ namespace Taranis
          * You can have a handler executed if the user starts your application with this argument and have the value they provided passed in.
          *
          * @code{.cpp}
-         * CommandLineInterface::build().WithValue("address", "Sets the address of the device to communicate with.",
+         * CommandLineInterface cli = CommandLineInterface::build().WithValue("address", "Sets the address of the device to communicate with.",
          *                                          [&device](QVariant address) {
          *                                                device->setAddress( address.toString() );
          *                                          });
@@ -231,7 +240,7 @@ namespace Taranis
          * You can have a handler executed if the user starts your application with this argument and have the value they provided passed in.
          *
          * @code{.cpp}
-         * CommandLineInterface::build().WithValue("address", "127.0.0.1", "Sets the address of the device to communicate with.",
+         * CommandLineInterface cli = CommandLineInterface::build().WithValue("address", "127.0.0.1", "Sets the address of the device to communicate with.",
          *                                          [&device](QVariant address) {
          *                                                device->setAddress( address.toString() );
          *                                          });
@@ -253,7 +262,7 @@ namespace Taranis
          * version action so the user can see the version of your application on screen.
          *
          * @code{.cpp}
-         * CommandLineInterface::build().WithAction("restart", "Will restart the service.",
+         * CommandLineInterface cli = CommandLineInterface::build().WithAction("restart", "Will restart the service.",
          *                                          [this](QVariant) {
          *                                                this->restart();
          *                                          });
