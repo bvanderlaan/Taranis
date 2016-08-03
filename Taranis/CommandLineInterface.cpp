@@ -177,7 +177,6 @@ void CommandLineInterface::validateArgumentShortName(const Argument &arg) const
 {
     QString normalizedName = normilizeKey( arg.name() );
     if ( normalizedName == HELPARGUMENT ) return;
-    if ( normalizedName == VERSIONARGUMENT ) return;
 
     QString normilizedShortName = normilizeKey( arg.shortName() );
     if ( m_arguments.contains( normilizedShortName ) )
