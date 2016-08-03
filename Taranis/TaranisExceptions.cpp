@@ -75,6 +75,10 @@ QApplicationDoesNotExsistException::QApplicationDoesNotExsistException() :
 ////////////////////////////////////////////////////////////////////////////////////////////////
 VersionShortNameCollisionException::VersionShortNameCollisionException(const QString &argName) :
     ShortNameCollisionException(QString("The short name for the argument {%1} collides with the short name for the built in {version} argument.").arg(argName))
-{
+{}
 
-}
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+VersionArgumentRedefinitionException::VersionArgumentRedefinitionException() :
+    ArgumentRedefinitionException("version")
+{}

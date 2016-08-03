@@ -797,7 +797,30 @@ void TaranisTestSuite::testAddingArgumentsWithDifferentNamesButSameShortNameWith
 void TaranisTestSuite::testAddingArgumentWhichCollidesWithBuiltInHelpShortName()
 {
     QVERIFY_EXCEPTION_THROWN(CommandLineInterfaceBuilder()
-            .WithValue("here", "Canada", "Set current location."), HelpShortNameCollisionException);
+                             .WithValue("here", "Canada", "Set current location."), HelpShortNameCollisionException);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAddingArgumentWithSameNameAsBuiltInVersionArgument()
+{
+    QVERIFY_EXCEPTION_THROWN(CommandLineInterfaceBuilder()
+                             .WithVersion("1.2.3.4")
+                             .WithValue("version", "Show me the version!"), VersionArgumentRedefinitionException);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAddingArgumentWithSameNameAsBuiltInVersionArgumentButDifferentCase()
+{
+    QVERIFY_EXCEPTION_THROWN(CommandLineInterfaceBuilder()
+                             .WithVersion("1.2.3.4")
+                             .WithValue("VERSION", "Show me the version!"), VersionArgumentRedefinitionException);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testAddingArgumentWithSameNameAsBuiltInVersionArgumentButVersionNotSet()
+{
+    QVERIFY_NO_EXCEPTION_THROWN(CommandLineInterfaceBuilder()
+                                   .WithFlag("version","Show me the version!"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

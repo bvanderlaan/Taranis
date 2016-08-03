@@ -158,8 +158,7 @@ void CommandLineInterface::validateArgumentName(const Argument& arg) const
     {
         if ( normilizedName == VERSIONARGUMENT )
         {
-            // Ok to override
-            qWarning("The built in version argument is being overriden");
+            throw VersionArgumentRedefinitionException();
         }
         else if (( normilizedName == HELPARGUMENT ) || ( normilizedName == "?" ))
         {

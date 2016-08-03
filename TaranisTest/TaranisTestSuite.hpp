@@ -134,6 +134,9 @@ namespace Taranis
             void testAddingArgumentsWithDifferentNamesButSameShortName();
             void testAddingArgumentsWithDifferentNamesButSameShortNameWithDifferentCase();
             void testAddingArgumentWhichCollidesWithBuiltInHelpShortName();
+            void testAddingArgumentWithSameNameAsBuiltInVersionArgument();
+            void testAddingArgumentWithSameNameAsBuiltInVersionArgumentButDifferentCase();
+            void testAddingArgumentWithSameNameAsBuiltInVersionArgumentButVersionNotSet();
             void testAddingArgumentWhichCollidesWithBuiltInVersionShortName();
             void testAddingArgumentWhichCollidesWithBuiltInVersionShortNameButNoVersionIsSet();
             void testAddingArgumentWhichCollidesWithBuiltInVersionShortNameButNoVersionIsSetHoweverAnotherArgumentWithSameShortNameIs();

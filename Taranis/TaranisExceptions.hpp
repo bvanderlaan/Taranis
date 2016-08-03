@@ -120,6 +120,33 @@ namespace Taranis
     };
 
     /**
+     * @brief The VersionArgumentRedefinitionException class is an exception which occures when an argument is defined with the same name as the built in <i>version</i> argument.
+     * So if the user defines a CLI with a version and a flag with the name <i>version</i> this exception will be thrown.
+     *
+     * @code{.cpp}
+     * CommandLineInterface::build()
+     *              .WithVersion("1.2.3.4")
+     *              .WithFlag("version", "Show me the version!");
+     * @endcode
+     *
+     * The above would generate this exception becuase the defined flag has the same name as the built in version argument.
+     *
+     * Note however that this exception is only thrown if the <i>version</i> argument is in play. Take for instance the below,
+     * no exceptoin will be thrown because in this case the <i>version</i> argument has not been defined.
+     *
+     * @code{.cpp}
+     * CommandLineInterface::build()
+     *              .WithFlag("version", "Show me the version!");
+     * @endcode
+     */
+    class VersionArgumentRedefinitionException : public ArgumentRedefinitionException
+    {
+    public:
+        VersionArgumentRedefinitionException();
+        virtual ~VersionArgumentRedefinitionException() throw() {}
+    };
+
+    /**
      * @brief The HelpShortNameCollisionException class is an exception which occures when an argument is defined which will collide with the help short name.
      *
      * @code{.cpp}
