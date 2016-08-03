@@ -120,6 +120,51 @@ namespace Taranis
         CommandLineInterfaceBuilder& WithVersion(const QString& version );
 
         /**
+         * @brief WithVersion allows you to specify the version of your application and what action to perform when the <i>version</i> argument is provided.
+         * The Taranis CommandLineInterface will generate help text for you and
+         * this method allows you to provide the version of your application which
+         * will be used in said help text.
+         *
+         * @code{.cpp}
+         *   QString version("1.2.3.4-rc1");
+         *   CommandLineInterface cli = CommandLineInterface::build()
+         *           .WithName("My Cool App")
+         *           .WithVersion(version,
+         *                  [&version](QVariant) {
+         *                           printf( "%s", QString("Beta Release Version %1.").arg(version).toLatin1().data() );
+         *                           exit(0);
+         *                  });
+         * @endcode
+         *
+         * The above code would render the below help text.
+         *
+         * @code{.unparsed}
+         * $ mycoolapp --help
+         * My Cool App - Version 1.2.3.4-rc1
+         * =================================
+         * Usage: mycoolapp [OPTION]
+         *   -?            Display this help and exits.
+         *   -h, --help    Display this help and exits.
+         *   -v, --version Display version information and exits.
+         * @endcode
+         *
+         * This method also adds the built in <i>version</i> argument allowing users to query
+         * the version of your application from the command line.
+         *
+         * @code{.unparsed}
+         * $ mycoolapp --version
+         * Version 1.2.3.4-rc1
+         * @endcode
+         *
+         * The intended use case of this method is to allow you to specify other actions when the user
+         * queries for the version like show it in a dialog box vs. the terminal.
+         *
+         * @param version is the version of your application and can be any string.
+         * @param action is the action handler you want performed if the version argument is present.
+         */
+        CommandLineInterfaceBuilder& WithVersion(const QString& version, std::function<void(QVariant)> action );
+
+        /**
          * @brief WithDescription allows you to specify a description for your application.
          * The Taranis CommandLineInterface will generate help text for you and
          * this method allows you to provide an optional description of your application which
@@ -276,7 +321,7 @@ namespace Taranis
 
 
     protected:
-        explicit CommandLineInterfaceBuilder(const QString applicationName, const QString version, QStringList arguments);
+        explicit CommandLineInterfaceBuilder(const QString applicationName, QStringList arguments);
         /**
          * @brief getAcceptedArgumentPrefixes returns a list of argument prefixes, such as -, --, or /
          * @note Only arguments which have one of these prefixes will be parsed by the CLI.

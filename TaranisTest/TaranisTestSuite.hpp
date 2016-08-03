@@ -43,6 +43,7 @@ namespace Taranis
             /// Test Setting Name and Version
             void testSetName();
             void testSetVersion();
+            void testSetVersionWithCustomAction();
             void testSetDescription();
 
             /// Test Help Message Generation

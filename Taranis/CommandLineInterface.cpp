@@ -202,17 +202,9 @@ void CommandLineInterface::validateArgumentShortName(const Argument &arg) const
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void CommandLineInterface::setVersion(const QString version)
 {
+    Q_ASSERT_X( !version.isEmpty(), "CLI::setVersion", "Version should not be empty." );
+
     m_version = version;
-    if ( m_version.isEmpty() )
-    {
-        delete m_arguments.value(VERSIONARGUMENT);
-        m_arguments.remove(VERSIONARGUMENT);
-    }
-    else
-    {
-        action_callback versionCallback = std::bind( &CommandLineInterface::doVersionAction, this );
-        addArgument( new Argument( VERSIONARGUMENT, "Display version information and exit", ArgumentType::Action, versionCallback) );
-    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

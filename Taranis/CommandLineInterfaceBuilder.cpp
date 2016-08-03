@@ -35,7 +35,7 @@ using action_callback = std::function<void(QVariant)>;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterfaceBuilder::CommandLineInterfaceBuilder()
-    : CommandLineInterfaceBuilder( "", "", QCoreApplication::arguments() )
+    : CommandLineInterfaceBuilder( "", QCoreApplication::arguments() )
 {
     if ( qApp == nullptr )
     {
@@ -63,11 +63,10 @@ CommandLineInterfaceBuilder::~CommandLineInterfaceBuilder()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLineInterfaceBuilder::CommandLineInterfaceBuilder(const QString applicationName, const QString version, QStringList arguments)
+CommandLineInterfaceBuilder::CommandLineInterfaceBuilder(const QString applicationName, QStringList arguments)
 {
-   QStringList acceptedArgumentPrefixs = getAcceptedArgumentPrefixes();
-    m_cli = new CommandLineInterface(applicationName, arguments, acceptedArgumentPrefixs);
-    m_cli->setVersion(version);
+     QStringList acceptedArgumentPrefixs = getAcceptedArgumentPrefixes();
+     m_cli = new CommandLineInterface(applicationName, arguments, acceptedArgumentPrefixs);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -128,7 +127,16 @@ CommandLineInterfaceBuilder &CommandLineInterfaceBuilder::WithName(const QString
 ////////////////////////////////////////////////////////////////////////////////////////////////
 CommandLineInterfaceBuilder& CommandLineInterfaceBuilder::WithVersion(const QString &version)
 {
+    action_callback versionCallback = std::bind( &CommandLineInterface::doVersionAction, m_cli );
+    return WithVersion( version, versionCallback );
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLineInterfaceBuilder &CommandLineInterfaceBuilder::WithVersion(const QString &version, std::function<void (QVariant)> action)
+{
     m_cli->setVersion( version );
+    m_cli->addArgument( new Argument( CommandLineInterface::VERSIONARGUMENT, "Display version information and exit", ArgumentType::Action, action) );
+
     return *this;
 }
 
