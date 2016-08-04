@@ -8,15 +8,17 @@ COMMIT_EMAIL="brad.vanderlaan@gmail.com"
 # Only update docs on master branch.
 if [ ${TRAVIS_BRANCH} != "master" ]; then exit 0; fi
 
-# The version of OSX (10.9) used by default on Travis-ci has an older version of bash (3.2.1)
-# which uses a different expr syntax. to deal with this issue quickly and since the first build
-# is a linux machine simply skip publication of the doxygen documentation on osx machines.
-if [ ${TRAVIS_OS_NAME} != "linux" ]; then exit 0; fi
+# Below we ensure that we only publish for the second build job. The second build
+# job is on OSX and the OSX machine on Travis-CI has Doxygen 1.8.11 where as the Linux
+# machines is only on Doxygen 1.8.6. The later verison of Doxygen ignores the markdown badge
+# links in the Readme.md file as image tags with anchors does not seem to be supported in 
+# Doxygen Markdown. In 1.8.6 they still get shown as a link but the link text is the markdown
+# for an image which is quite ugly. Using 1.8.11 does not give me the badges but at least the
+# resulting HTML is prettier.
 
-# Only update docs for the first or only build job. This way we are not updating the docs 
+# Only update docs for the second build job. This way we are not updating the docs 
 # multiple times on a matrix configuration.
-BUILD_JOB_SEP_POS=$(expr index ${TRAVIS_JOB_NUMBER} .)
-if [ ${BUILD_JOB_SEP_POS} -gt 0 ] && [ ${TRAVIS_JOB_NUMBER#*.} -gt 1 ]; then exit 0; fi
+if [ ${TRAVIS_JOB_NUMBER#*.} -ne 2 ]; then exit 0; fi
 
 # Exit with nonzero exit code if anything fails
 set -e
