@@ -33,6 +33,7 @@ To use Taranis you need to build a **CommandLineInterface** object which you do 
 fluid interface allowing you to define the command line interface your application will have by using the *With* methods.
 
 ### Example 1 - A simple Command Line Interface
+
 ~~~{.cpp}
   #include <QCoreApplication>
   #include "Taranis/CommandLineInterface.hpp"
@@ -72,6 +73,7 @@ or
 > $ myApp.exe -?
 
 ### Example 2 - A Custom Command Line Interface
+
 ~~~{.cpp}
   #include <QCoreApplication>
   #include "Taranis/CommandLineInterface.hpp"
@@ -108,6 +110,7 @@ Users can type any of the following commands to enable debug mode.
 Not only does your application have a debug mode flag but your flag will now be shown in the built in help message displayed when users use the *--help* argument.
 
 ### Example 3 - A Custom Command Line Interface which Accepts Values
+
 ~~~{.cpp}
   #include <QCoreApplication>
   #include <QHostAddress>
