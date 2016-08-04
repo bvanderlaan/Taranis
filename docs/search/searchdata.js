@@ -4,8 +4,7 @@ var indexSectionsWithContent =
   1: "achiqstv",
   2: "t",
   3: "bcgopw",
-  4: "a",
-  5: "ct"
+  4: "ct"
 };
 
 var indexSectionNames =
@@ -14,8 +13,7 @@ var indexSectionNames =
   1: "classes",
   2: "namespaces",
   3: "functions",
-  4: "enums",
-  5: "pages"
+  4: "pages"
 };
 
 var indexSectionLabels =
@@ -24,7 +22,6 @@ var indexSectionLabels =
   1: "Classes",
   2: "Namespaces",
   3: "Functions",
-  4: "Enumerations",
-  5: "Pages"
+  4: "Pages"
 };
 

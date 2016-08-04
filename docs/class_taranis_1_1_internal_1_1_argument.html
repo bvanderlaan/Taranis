@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Taranis: Taranis::Argument Class Reference</title>
+<title>Taranis: Taranis::Internal::Argument Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,27 +87,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespace_taranis.html">Taranis</a></li><li class="navelem"><a class="el" href="class_taranis_1_1_argument.html">Argument</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespace_taranis.html">Taranis</a></li><li class="navelem"><b>Internal</b></li><li class="navelem"><a class="el" href="class_taranis_1_1_internal_1_1_argument.html">Argument</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="class_taranis_1_1_argument-members.html">List of all members</a>  </div>
+<a href="class_taranis_1_1_internal_1_1_argument-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Taranis::Argument Class Reference</div>  </div>
+<div class="title">Taranis::Internal::Argument Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>The <a class="el" href="class_taranis_1_1_argument.html" title="The Argument class represents a command line argument. This object has a name and a short name (quite...">Argument</a> class represents a command line argument. This object has a name and a short name (quite, q), a description, a type, and the value provided by the user on the CLI.  
- <a href="class_taranis_1_1_argument.html#details">More...</a></p>
+<p>The <a class="el" href="class_taranis_1_1_internal_1_1_argument.html" title="The Argument class represents a command line argument. This object has a name and a short name (quite...">Argument</a> class represents a command line argument. This object has a name and a short name (quite, q), a description, a type, and the value provided by the user on the CLI.  
+ <a href="class_taranis_1_1_internal_1_1_argument.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_argument_8hpp_source.html">Argument.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a00382bad42aecae323011a948e993866"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00382bad42aecae323011a948e993866"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Argument</b> (const QString name, const QString description, const <a class="el" href="namespace_taranis.html#a4fcda68d19875dcf7bfe781b98915a61">ArgumentType</a> type, std::function&lt; void(QVariant)&gt; <a class="el" href="class_taranis_1_1_argument.html#abf122c69c3dca826550029896479652c">callback</a>)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Argument</b> (const QString name, const QString description, const ArgumentType type, std::function&lt; void(QVariant)&gt; <a class="el" href="class_taranis_1_1_internal_1_1_argument.html#abf122c69c3dca826550029896479652c">callback</a>)</td></tr>
 <tr class="separator:a00382bad42aecae323011a948e993866"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa64ae173cc5313d2740b4a2b61e155e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa64ae173cc5313d2740b4a2b61e155e9"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () const </td></tr>
@@ -122,7 +122,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasShortName</b> () c
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>description</b> () const </td></tr>
 <tr class="separator:a07a3b4baffcb40985fa7d10da54e2beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad44b764027d46247f6ad92012aa268dd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad44b764027d46247f6ad92012aa268dd"></a>
-<a class="el" href="namespace_taranis.html#a4fcda68d19875dcf7bfe781b98915a61">ArgumentType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> () const </td></tr>
+ArgumentType&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> () const </td></tr>
 <tr class="separator:ad44b764027d46247f6ad92012aa268dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91fe1589c4a6b77e3ed3d296f98c16a3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91fe1589c4a6b77e3ed3d296f98c16a3"></a>
 QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>value</b> () const </td></tr>
@@ -131,14 +131,14 @@ QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>value</b> () cons
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setValue</b> (QVariant value)</td></tr>
 <tr class="separator:ab394e9558c0b1b951c8a4199d74aa965"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf122c69c3dca826550029896479652c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf122c69c3dca826550029896479652c"></a>
-std::function&lt; void(QVariant)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_taranis_1_1_argument.html#abf122c69c3dca826550029896479652c">callback</a> ()</td></tr>
+std::function&lt; void(QVariant)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_taranis_1_1_internal_1_1_argument.html#abf122c69c3dca826550029896479652c">callback</a> ()</td></tr>
 <tr class="memdesc:abf122c69c3dca826550029896479652c"><td class="mdescLeft">&#160;</td><td class="mdescRight">callback is the function you want performed when the argument is detected on the CLI. The call back could be as simple as setting a value to be read by your program later or it could be a handler that performs some action when an argument is present and/or at a given value. <br /></td></tr>
 <tr class="separator:abf122c69c3dca826550029896479652c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="class_taranis_1_1_argument.html" title="The Argument class represents a command line argument. This object has a name and a short name (quite...">Argument</a> class represents a command line argument. This object has a name and a short name (quite, q), a description, a type, and the value provided by the user on the CLI. </p>
+<div class="textblock"><p>The <a class="el" href="class_taranis_1_1_internal_1_1_argument.html" title="The Argument class represents a command line argument. This object has a name and a short name (quite...">Argument</a> class represents a command line argument. This object has a name and a short name (quite, q), a description, a type, and the value provided by the user on the CLI. </p>
 
-<p>Definition at line <a class="el" href="_argument_8hpp_source.html#l00039">39</a> of file <a class="el" href="_argument_8hpp_source.html">Argument.hpp</a>.</p>
+<p>Definition at line <a class="el" href="_argument_8hpp_source.html#l00041">41</a> of file <a class="el" href="_argument_8hpp_source.html">Argument.hpp</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>Taranis/<a class="el" href="_argument_8hpp_source.html">Argument.hpp</a></li>
 <li>Taranis/<a class="el" href="_argument_8cpp_source.html">Argument.cpp</a></li>
