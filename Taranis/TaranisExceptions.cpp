@@ -24,7 +24,7 @@
 
 #include "TaranisExceptions.hpp"
 
-using namespace Taranis;
+using namespace Taranis::Exceptions;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 TaranisException::TaranisException(const QString &message) :

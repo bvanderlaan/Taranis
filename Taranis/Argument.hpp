@@ -31,39 +31,42 @@
 
 namespace Taranis
 {
-    /**
-     * @brief The Argument class represents a command line argument.
-     * This object has a name and a short name (quite, q), a description,
-     * a type, and the value provided by the user on the CLI.
-     */
-    class Argument
+    namespace Internal
     {
-    public:
-        Argument(const QString name, const QString description, const ArgumentType type, std::function<void(QVariant)> callback);
-        ~Argument() {}
-
-        QString name() const;
-        QString shortName() const;
-        bool hasShortName() const;
-        QString description() const;
-        ArgumentType type() const;
-        QVariant value() const;
-        void setValue( QVariant value );
-
         /**
-         * @brief callback is the function you want performed when the argument is detected on the CLI.
-         * The call back could be as simple as setting a value to be read by your program later or it could
-         * be a handler that performs some action when an argument is present and/or at a given value.
+         * @brief The Argument class represents a command line argument.
+         * This object has a name and a short name (quite, q), a description,
+         * a type, and the value provided by the user on the CLI.
          */
-        std::function<void(QVariant)> callback();
+        class Argument
+        {
+        public:
+            Argument(const QString name, const QString description, const ArgumentType type, std::function<void(QVariant)> callback);
+            ~Argument() {}
 
-    private:
-        QString m_name;
-        QString m_description;
-        ArgumentType m_type;
-        QVariant m_value;
-        std::function<void(QVariant)> m_actionCallback;
-    };
+            QString name() const;
+            QString shortName() const;
+            bool hasShortName() const;
+            QString description() const;
+            ArgumentType type() const;
+            QVariant value() const;
+            void setValue( QVariant value );
+
+            /**
+             * @brief callback is the function you want performed when the argument is detected on the CLI.
+             * The call back could be as simple as setting a value to be read by your program later or it could
+             * be a handler that performs some action when an argument is present and/or at a given value.
+             */
+            std::function<void(QVariant)> callback();
+
+        private:
+            QString m_name;
+            QString m_description;
+            ArgumentType m_type;
+            QVariant m_value;
+            std::function<void(QVariant)> m_actionCallback;
+        };
+    }
 }
 
 #endif // ARGUMENT_HPP

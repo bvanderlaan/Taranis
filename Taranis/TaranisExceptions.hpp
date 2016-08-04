@@ -30,166 +30,168 @@
 
 namespace Taranis
 {
-    /**
-     * @brief The TaranisException class is the base general exception class.
-     */
-    class TaranisException : public std::exception
+    namespace Exceptions
     {
-    public:
-        TaranisException( const QString& message );
-        virtual ~TaranisException() throw() {}
-        const char *what() const throw() Q_DECL_OVERRIDE;
+        /**
+         * @brief The TaranisException class is the base general exception class.
+         */
+        class TaranisException : public std::exception
+        {
+        public:
+            TaranisException( const QString& message );
+            virtual ~TaranisException() throw() {}
+            const char *what() const throw() Q_DECL_OVERRIDE;
 
-    private:
-        QString m_message;
-    };
+        private:
+            QString m_message;
+        };
 
-    /**
-     * @brief The QApplicationDoesNotExsistException class defines an exception which is thrown if the CommandLineInterface object is created without a QApplication object.
-     * If you build the CommandLineInterface object before Instantiating a QApplication object then the CLI won't have access to the command line arguments and thus won't
-     * work. This exception will be thrown to alert you of this fact as quickly as possible.
-     *
-     * @code{.cpp}
-     * using namespace Taranis;
-     *  int main(int argc, char *argv[])
-     *  {
-     *      CommandLineInterface::build()
-     *                          .WithName("My Cool App")
-     *                          .WithVersion("1.2.3.4-abc")
-     *                          .WithFlag("mouse", "Force mouse to be displayed in release build.");
-     *
-     *      QCoreApplication a(argc, argv);
-     *      return a.exec();
-     *  }
-     * @endcode
-     *
-     * The above will result in this exception being thrown. Instantiate QCoreApplicaiton <i>before</i> building the CLI object.
-     */
-    class QApplicationDoesNotExsistException : public TaranisException
-    {
-    public:
-        QApplicationDoesNotExsistException();
-        virtual ~QApplicationDoesNotExsistException() throw() {}
-    };
+        /**
+         * @brief The QApplicationDoesNotExsistException class defines an exception which is thrown if the CommandLineInterface object is created without a QApplication object.
+         * If you build the CommandLineInterface object before Instantiating a QApplication object then the CLI won't have access to the command line arguments and thus won't
+         * work. This exception will be thrown to alert you of this fact as quickly as possible.
+         *
+         * @code{.cpp}
+         * using namespace Taranis;
+         *  int main(int argc, char *argv[])
+         *  {
+         *      CommandLineInterface::build()
+         *                          .WithName("My Cool App")
+         *                          .WithVersion("1.2.3.4-abc")
+         *                          .WithFlag("mouse", "Force mouse to be displayed in release build.");
+         *
+         *      QCoreApplication a(argc, argv);
+         *      return a.exec();
+         *  }
+         * @endcode
+         *
+         * The above will result in this exception being thrown. Instantiate QCoreApplicaiton <i>before</i> building the CLI object.
+         */
+        class QApplicationDoesNotExsistException : public TaranisException
+        {
+        public:
+            QApplicationDoesNotExsistException();
+            virtual ~QApplicationDoesNotExsistException() throw() {}
+        };
 
-    /**
-     * @brief The ShortNameCollisionException class is an exception which occures when two arguments have the same short name.
-     * So if the user defines a CLI with two arguments which both have the same starting character this exception will be thrown
-     * because both arguments will have the same short name.
-     *
-     * @code{.cpp}
-     * CommandLineInterface::build()
-     *              .WithValue("server", "Set the server ip address.")
-     *              .WithValue("serial", "Set the serial number.");
-     * @endcode
-     *
-     * The above would generate this exception becuase both arguments would want to use
-     * the same short name <b>-s</b>.
-     *
-     * @param newArgName is the name of the argument being added which collides with a pre-existing argument.
-     * @param existingArgName is the name of the argument which already exists that is being collided with.
-     *
-     */
-    class ShortNameCollisionException : public TaranisException
-    {
-    public:
-        ShortNameCollisionException(const QString& newArgName, const QString& existingArgName);
-        ShortNameCollisionException(const QString& message);
-        virtual ~ShortNameCollisionException() throw() {}
-    };
+        /**
+         * @brief The ShortNameCollisionException class is an exception which occures when two arguments have the same short name.
+         * So if the user defines a CLI with two arguments which both have the same starting character this exception will be thrown
+         * because both arguments will have the same short name.
+         *
+         * @code{.cpp}
+         * CommandLineInterface::build()
+         *              .WithValue("server", "Set the server ip address.")
+         *              .WithValue("serial", "Set the serial number.");
+         * @endcode
+         *
+         * The above would generate this exception becuase both arguments would want to use
+         * the same short name <b>-s</b>.
+         *
+         * @param newArgName is the name of the argument being added which collides with a pre-existing argument.
+         * @param existingArgName is the name of the argument which already exists that is being collided with.
+         *
+         */
+        class ShortNameCollisionException : public TaranisException
+        {
+        public:
+            ShortNameCollisionException(const QString& newArgName, const QString& existingArgName);
+            ShortNameCollisionException(const QString& message);
+            virtual ~ShortNameCollisionException() throw() {}
+        };
 
-    /**
-     * @brief The ArgumentRedefinitionException class is an exception which occures when two arguments have the same name.
-     * So if the user defines a CLI with two arguments which both have the same name this exception will be thrown.
-     *
-     * @code{.cpp}
-     * CommandLineInterface::build()
-     *              .WithValue("server", "Set the server ip address.")
-     *              .WithValue("server", "Set the server name.");
-     * @endcode
-     *
-     * The above would generate this exception becuase both arguments have the same name.
-     *
-     * @param argName is the name of the argument which has been declared more then once.
-     */
-    class ArgumentRedefinitionException : public TaranisException
-    {
-    public:
-        ArgumentRedefinitionException(const QString& argName);
-        virtual ~ArgumentRedefinitionException() throw() {}
-    };
+        /**
+         * @brief The ArgumentRedefinitionException class is an exception which occures when two arguments have the same name.
+         * So if the user defines a CLI with two arguments which both have the same name this exception will be thrown.
+         *
+         * @code{.cpp}
+         * CommandLineInterface::build()
+         *              .WithValue("server", "Set the server ip address.")
+         *              .WithValue("server", "Set the server name.");
+         * @endcode
+         *
+         * The above would generate this exception becuase both arguments have the same name.
+         *
+         * @param argName is the name of the argument which has been declared more then once.
+         */
+        class ArgumentRedefinitionException : public TaranisException
+        {
+        public:
+            ArgumentRedefinitionException(const QString& argName);
+            virtual ~ArgumentRedefinitionException() throw() {}
+        };
 
-    /**
-     * @brief The VersionArgumentRedefinitionException class is an exception which occures when an argument is defined with the same name as the built in <i>version</i> argument.
-     * So if the user defines a CLI with a version and a flag with the name <i>version</i> this exception will be thrown.
-     *
-     * @code{.cpp}
-     * CommandLineInterface::build()
-     *              .WithVersion("1.2.3.4")
-     *              .WithFlag("version", "Show me the version!");
-     * @endcode
-     *
-     * The above would generate this exception becuase the defined flag has the same name as the built in version argument.
-     *
-     * Note however that this exception is only thrown if the <i>version</i> argument is in play. Take for instance the below,
-     * no exceptoin will be thrown because in this case the <i>version</i> argument has not been defined.
-     *
-     * @code{.cpp}
-     * CommandLineInterface::build()
-     *              .WithFlag("version", "Show me the version!");
-     * @endcode
-     */
-    class VersionArgumentRedefinitionException : public ArgumentRedefinitionException
-    {
-    public:
-        VersionArgumentRedefinitionException();
-        virtual ~VersionArgumentRedefinitionException() throw() {}
-    };
+        /**
+         * @brief The VersionArgumentRedefinitionException class is an exception which occures when an argument is defined with the same name as the built in <i>version</i> argument.
+         * So if the user defines a CLI with a version and a flag with the name <i>version</i> this exception will be thrown.
+         *
+         * @code{.cpp}
+         * CommandLineInterface::build()
+         *              .WithVersion("1.2.3.4")
+         *              .WithFlag("version", "Show me the version!");
+         * @endcode
+         *
+         * The above would generate this exception becuase the defined flag has the same name as the built in version argument.
+         *
+         * Note however that this exception is only thrown if the <i>version</i> argument is in play. Take for instance the below,
+         * no exceptoin will be thrown because in this case the <i>version</i> argument has not been defined.
+         *
+         * @code{.cpp}
+         * CommandLineInterface::build()
+         *              .WithFlag("version", "Show me the version!");
+         * @endcode
+         */
+        class VersionArgumentRedefinitionException : public ArgumentRedefinitionException
+        {
+        public:
+            VersionArgumentRedefinitionException();
+            virtual ~VersionArgumentRedefinitionException() throw() {}
+        };
 
-    /**
-     * @brief The HelpShortNameCollisionException class is an exception which occures when an argument is defined which will collide with the help short name.
-     *
-     * @code{.cpp}
-     * CommandLineInterface::build()
-     *              .WithValue("here", "Canada", "Set current location.");
-     * @endcode
-     *
-     * The above would generate this exception becuase the short name for <i>here</i> is
-     * <i>h</i> which collides with the short name for the built in <i>help</i> argument.
-     *
-     * @param argumentName is the name of the argument whose short name collides with the build in <i>help</i> argument.
-     */
-    class HelpShortNameCollisionException : public ShortNameCollisionException
-    {
-    public:
-        HelpShortNameCollisionException(const QString& argumentName);
-        virtual ~HelpShortNameCollisionException() throw() {}
-    };
+        /**
+         * @brief The HelpShortNameCollisionException class is an exception which occures when an argument is defined which will collide with the help short name.
+         *
+         * @code{.cpp}
+         * CommandLineInterface::build()
+         *              .WithValue("here", "Canada", "Set current location.");
+         * @endcode
+         *
+         * The above would generate this exception becuase the short name for <i>here</i> is
+         * <i>h</i> which collides with the short name for the built in <i>help</i> argument.
+         *
+         * @param argumentName is the name of the argument whose short name collides with the build in <i>help</i> argument.
+         */
+        class HelpShortNameCollisionException : public ShortNameCollisionException
+        {
+        public:
+            HelpShortNameCollisionException(const QString& argumentName);
+            virtual ~HelpShortNameCollisionException() throw() {}
+        };
 
-    /**
-     * @brief The VersionShortNameCollisionException class is an exception which occures when an argument is defined which will collide with the version short name.
-     *
-     * @code{.cpp}
-     * CommandLineInterface::build()
-     *              .WithVersion("1.2.3.4-abc")
-     *              .WithFlag("verbose", "Enables verbose logging.");
-     * @endcode
-     *
-     * The above would generate this exception becuase the short name for <i>verbose</i> is
-     * <i>v</i> which collides with the short name for the built in <i>version</i> argument.
-     * @note This exception is only thrown if the version argument exists. If the user does
-     * not provide a version then no collision will occure therefore no exception will be thrown.
-     *
-     * @param argName is the name of the argument whose short name collides with the build in <i>version</i> argument.
-     */
-    class VersionShortNameCollisionException : public ShortNameCollisionException
-    {
-    public:
-        VersionShortNameCollisionException(const QString& argName);
-        virtual ~VersionShortNameCollisionException() throw() {}
+        /**
+         * @brief The VersionShortNameCollisionException class is an exception which occures when an argument is defined which will collide with the version short name.
+         *
+         * @code{.cpp}
+         * CommandLineInterface::build()
+         *              .WithVersion("1.2.3.4-abc")
+         *              .WithFlag("verbose", "Enables verbose logging.");
+         * @endcode
+         *
+         * The above would generate this exception becuase the short name for <i>verbose</i> is
+         * <i>v</i> which collides with the short name for the built in <i>version</i> argument.
+         * @note This exception is only thrown if the version argument exists. If the user does
+         * not provide a version then no collision will occure therefore no exception will be thrown.
+         *
+         * @param argName is the name of the argument whose short name collides with the build in <i>version</i> argument.
+         */
+        class VersionShortNameCollisionException : public ShortNameCollisionException
+        {
+        public:
+            VersionShortNameCollisionException(const QString& argName);
+            virtual ~VersionShortNameCollisionException() throw() {}
 
-    };
-
+        };
+    }
 }
 
 #endif // TARANISEXCEPTIONS_HPP

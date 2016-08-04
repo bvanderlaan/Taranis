@@ -31,6 +31,8 @@
 #include "TaranisExceptions.hpp"
 
 using namespace Taranis;
+using namespace Taranis::Internal;
+using namespace Taranis::Exceptions;
 using action_callback = std::function<void(QVariant)>;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

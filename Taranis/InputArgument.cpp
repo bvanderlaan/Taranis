@@ -24,7 +24,7 @@
 #include "InputArgument.hpp"
 #include "InputArgumentKeyValuePair.hpp"
 
-using namespace Taranis;
+using namespace Taranis::Internal;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 InputArgument::InputArgument(const QString arg, QStringList acceptedArgumentPrefixs, QObject *parent) :

@@ -34,7 +34,6 @@ namespace Taranis
     {
         class TaranisTestSuite;
     }
-    class Argument;
     class CommandLineInterface;
 
     /**

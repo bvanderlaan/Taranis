@@ -23,7 +23,7 @@
  */
 #include "InputArgumentKeyValuePair.hpp"
 
-using namespace Taranis;
+using namespace Taranis::Internal;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 InputArgumentKeyValuePair::InputArgumentKeyValuePair(const QString arg, QObject* parent) :

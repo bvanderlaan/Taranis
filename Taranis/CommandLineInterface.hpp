@@ -28,7 +28,6 @@
 #include <QMap>
 #include <QVariant>
 #include <QStringList>
-#include "Argument.hpp"
 #include "CommandLineInterfaceBuilder.hpp"
 
 namespace Taranis
@@ -36,6 +35,10 @@ namespace Taranis
     namespace UnitTest
     {
         class TaranisTestSuite;
+    }
+    namespace Internal
+    {
+        class Argument;
     }
 
     /**
@@ -85,21 +88,21 @@ namespace Taranis
         virtual void doHelpAction() const;
         virtual void doVersionAction() const;
         virtual QString generateTitle() const;
-        void addArgument( Argument* arg );
+        void addArgument( Internal::Argument* arg );
         void setVersion( const QString version );
         void setName( const QString name );
         void setDescription( const QString description );
         void addHelpArguments();
         void setValue( const QString key, const QVariant value );
         virtual QString normilizeKey( const QString& key ) const;
-        virtual void validateArgumentName(const Argument& arg) const;
-        virtual void validateArgumentShortName(const Argument& arg) const;
+        virtual void validateArgumentName(const Internal::Argument& arg) const;
+        virtual void validateArgumentShortName(const Internal::Argument& arg) const;
 
     private:
         QString m_applicationName;
         QString m_version;
         QString m_description;
-        QMap<QString, Argument*> m_arguments;
+        QMap<QString, Internal::Argument*> m_arguments;
         QStringList m_inputArguments;
         QStringList m_acceptedArgumentPrefixs;
         static const QString VERSIONARGUMENT;

@@ -30,34 +30,37 @@
 
 namespace Taranis
 {
-    /**
-     * @brief The InputArgument class parses the users input string and identifies the prefix, argument name and value.
-     */
-    class InputArgument : public QObject
+    namespace Internal
     {
-        Q_OBJECT
-    public:
-        explicit InputArgument(const QString arg, QStringList acceptedArgumentPrefixs, QObject *parent = 0);
-        virtual ~InputArgument() {}
+        /**
+         * @brief The InputArgument class parses the users input string and identifies the prefix, argument name and value.
+         */
+        class InputArgument : public QObject
+        {
+            Q_OBJECT
+        public:
+            explicit InputArgument(const QString arg, QStringList acceptedArgumentPrefixs, QObject *parent = 0);
+            virtual ~InputArgument() {}
 
-        QString name() const;
-        QString prefix() const;
-        bool isValid() const;
-        QString nameValueSeperator() const;
-        QVariant value() const;
-        bool hasValue() const;
+            QString name() const;
+            QString prefix() const;
+            bool isValid() const;
+            QString nameValueSeperator() const;
+            QVariant value() const;
+            bool hasValue() const;
 
-    private:
-        const QString m_originalInput;
-        QString m_argument;
-        QString m_prefix;
-        QString m_nameValueSeperator;
-        QVariant m_value;
-        QStringList m_acceptedArgumentPrefixs;
-        void clipPrefix();
-        bool updatePrefix();
-        void updateValue();
-    };
+        private:
+            const QString m_originalInput;
+            QString m_argument;
+            QString m_prefix;
+            QString m_nameValueSeperator;
+            QVariant m_value;
+            QStringList m_acceptedArgumentPrefixs;
+            void clipPrefix();
+            bool updatePrefix();
+            void updateValue();
+        };
+    }
 }
 
 #endif // INPUTARGUMENT_HPP

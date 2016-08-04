@@ -23,7 +23,7 @@
  */
 #include "Argument.hpp"
 
-using namespace Taranis;
+using namespace Taranis::Internal;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 Argument::Argument(const QString name, const QString description, const ArgumentType type, std::function<void(QVariant)> callback) :

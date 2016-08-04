@@ -32,6 +32,8 @@
 #include "TaranisExceptions.hpp"
 
 using namespace Taranis::UnitTest;
+using namespace Taranis::Exceptions;
+using namespace Taranis::Internal;
 
 /////////////////////////////////////////////////////////////////////////////
 TaranisTestSuite::TaranisTestSuite(QObject *parent) : QObject(parent)
@@ -850,6 +852,7 @@ void TaranisTestSuite::testAddingArgumentWhichCollidesWithBuiltInVersionShortNam
 }
 
 /////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testIsValidWhenItIs()
 {
     InputArgument arg( "--help", {"--"} );

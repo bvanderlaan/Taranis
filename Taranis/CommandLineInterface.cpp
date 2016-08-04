@@ -27,8 +27,11 @@
 #include "CommandLineInterface.hpp"
 #include "InputArgument.hpp"
 #include "TaranisExceptions.hpp"
+#include "Argument.hpp"
 
 using namespace Taranis;
+using namespace Taranis::Exceptions;
+using namespace Taranis::Internal;
 using action_callback = std::function<void(QVariant)>;
 
 const QString CommandLineInterface::VERSIONARGUMENT = "version";
