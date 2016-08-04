@@ -9,11 +9,11 @@ GUI applications or background processes tend to have flags now and again to all
 to change their logging level or alter server connection addresses. The code to process the command line arguments fed into an application is largely 
 boiler plate but to do it nicely is a bit of a pain as there are lots of variants in how values can be inputted by the user.
 
-***Why re-invent the wheel? Just use Taranis!***
+## Why re-invent the wheel? Just use Taranis!
 
 Taranis is a class you can instantiate which will handle parsing whatever type of command line argument your application requires. It will deal with 
 case sensitivity and differences in flag syntax such as backslashes (/), dashes (-), or double dashes (--) as well as differences in conventions such 
-as triggering help with either an *h* or a question mark (?). Taranis will also provide long and short forms of your desired flags such as *--help* or *-h*.
+as triggering help with either an *h* or a question mark (?). Taranis will also provide long and short forms of your desired flags such as <em>--help</em> or <em>-h</em>.
 
 ## What you get with Taranis
 
@@ -54,8 +54,8 @@ fluid interface allowing you to define the command line interface your applicati
 
 With the above your application will now be sporting a command line interface which accepts two flags
 
-* **--version:** Will print your applications version to the terminal then exit your application.
-* **--help:** Will print a typical help message to the terminal then exit your application.
+* <strong>--version:</strong> Will print your applications version to the terminal then exit your application.
+* <strong>--help:</strong> Will print a typical help message to the terminal then exit your application.
 Users can now query your applications version by typing:
 
 > $ myApp.exe --version
@@ -107,7 +107,7 @@ Users can type any of the following commands to enable debug mode.
 > $ myApp.exe --debug<br>
 > $ myApp.exe -d
 
-Not only does your application have a debug mode flag but your flag will now be shown in the built in help message displayed when users use the *--help* argument.
+Not only does your application have a debug mode flag but your flag will now be shown in the built in help message displayed when users use the <em>--help</em> argument.
 
 ### Example 3 - A Custom Command Line Interface which Accepts Values
 
@@ -150,7 +150,7 @@ Just like with flags you also get a short form of your value argument.
 > $ myApp.exe --s=1.2.3.4<br>
 > $ myApp.exe --s:1.2.3.4
 
-Lastly the server argument also shows up in the built in help message displayed when users use the *--help* argument.
+Lastly the server argument also shows up in the built in help message displayed when users use the <em>--help</em> argument.
 
 To learn more on how to use Taranis in your applications feel free to [view the documentation](https://bvanderlaan.github.io/Taranis/docs) which includes 
 multiple examples.
