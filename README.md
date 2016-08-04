@@ -9,7 +9,7 @@ GUI applications or background processes tend to have flags now and again to all
 to change their logging level or alter server connection addresses. The code to process the command line arguments fed into an application is largely 
 boiler plate but to do it nicely is a bit of a pain as there are lots of variants in how values can be inputted by the user.
 
-*Why re-invent the wheel? Just use Taranis!*
+***Why re-invent the wheel? Just use Taranis!***
 
 Taranis is a class you can instantiate which will handle parsing whatever type of command line argument your application requires. It will deal with 
 case sensitivity and differences in flag syntax such as backslashes (/), dashes (-), or double dashes (--) as well as differences in conventions such 
