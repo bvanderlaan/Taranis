@@ -21,6 +21,6 @@ win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Taranis/release/ -l
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../Taranis/debug/ -lTaranis
 else:unix: LIBS += -L$$OUT_PWD/../Taranis/ -lTaranis
 
-INCLUDEPATH += $$PWD/../Taranis
+INCLUDEPATH += $$PWD/../Taranis $$PWD/../Taranis/internal
 DEPENDPATH += $$PWD/../Taranis
 #######################################################################################

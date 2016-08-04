@@ -8,23 +8,25 @@ TEMPLATE = lib
 
 DEFINES += TARANIS_LIBRARY
 
+INCLUDEPATH += internal
+
 SOURCES += \
     CommandLineInterface.cpp \
-    InputArgument.cpp \
-    Argument.cpp \
-    InputArgumentKeyValuePair.cpp \
     CommandLineInterfaceBuilder.cpp \
-    TaranisExceptions.cpp
+    TaranisExceptions.cpp \
+    internal/InputArgument.cpp \
+    internal/Argument.cpp \
+    internal/InputArgumentKeyValuePair.cpp
 
 HEADERS += \
     taranis_global.hpp \
     CommandLineInterface.hpp \
-    InputArgument.hpp \
-    Argument.hpp \
-    ArgumentType.hpp \
-    InputArgumentKeyValuePair.hpp \
     CommandLineInterfaceBuilder.hpp \
-    TaranisExceptions.hpp
+    TaranisExceptions.hpp \
+    internal/InputArgument.hpp \
+    internal/Argument.hpp \
+    internal/ArgumentType.hpp \
+    internal/InputArgumentKeyValuePair.hpp
 
 unix {
     target.path = /usr/lib
