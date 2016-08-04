@@ -43,7 +43,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -101,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>The <a class="el" href="class_taranis_1_1_exceptions_1_1_q_application_does_not_exsist_exception.html" title="The QApplicationDoesNotExsistException class defines an exception which is thrown if the CommandLineI...">QApplicationDoesNotExsistException</a> class defines an exception which is thrown if the <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> object is created without a QApplication object. If you build the <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> object before Instantiating a QApplication object then the CLI won't have access to the command line arguments and thus won't work. This exception will be thrown to alert you of this fact as quickly as possible.  
  <a href="class_taranis_1_1_exceptions_1_1_q_application_does_not_exsist_exception.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_taranis_exceptions_8hpp_source.html">TaranisExceptions.hpp</a>&gt;</code></p>
+<p><code>#include &lt;TaranisExceptions.hpp&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Taranis::Exceptions::QApplicationDoesNotExsistException:</div>
 <div class="dyncontent">
@@ -125,11 +124,9 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>what</b> () c
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_taranis_1_1_exceptions_1_1_q_application_does_not_exsist_exception.html" title="The QApplicationDoesNotExsistException class defines an exception which is thrown if the CommandLineI...">QApplicationDoesNotExsistException</a> class defines an exception which is thrown if the <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> object is created without a QApplication object. If you build the <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> object before Instantiating a QApplication object then the CLI won't have access to the command line arguments and thus won't work. This exception will be thrown to alert you of this fact as quickly as possible. </p>
 <div class="fragment"><div class="line"><span class="keyword">using namespace </span><a class="code" href="namespace_taranis.html">Taranis</a>;</div><div class="line"> <span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div><div class="line"> {</div><div class="line">     <a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>()</div><div class="line">                         .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#aefa9f5c21cdf3e34c262ca2b702fcb10">WithName</a>(<span class="stringliteral">&quot;My Cool App&quot;</span>)</div><div class="line">                         .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#adf5d9f2f637fcd569bf2dc656b2b517b">WithVersion</a>(<span class="stringliteral">&quot;1.2.3.4-abc&quot;</span>)</div><div class="line">                         .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#a4e9b92dce63b7a05d0442178ff5f9fc4">WithFlag</a>(<span class="stringliteral">&quot;mouse&quot;</span>, <span class="stringliteral">&quot;Force mouse to be displayed in release build.&quot;</span>);</div><div class="line"></div><div class="line">     QCoreApplication a(argc, argv);</div><div class="line">     <span class="keywordflow">return</span> a.exec();</div><div class="line"> }</div></div><!-- fragment --><p>The above will result in this exception being thrown. Instantiate QCoreApplicaiton <em>before</em> building the CLI object. </p>
-
-<p>Definition at line <a class="el" href="_taranis_exceptions_8hpp_source.html#l00070">70</a> of file <a class="el" href="_taranis_exceptions_8hpp_source.html">TaranisExceptions.hpp</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>Taranis/<a class="el" href="_taranis_exceptions_8hpp_source.html">TaranisExceptions.hpp</a></li>
-<li>Taranis/<a class="el" href="_taranis_exceptions_8cpp_source.html">TaranisExceptions.cpp</a></li>
+<li>Taranis/TaranisExceptions.hpp</li>
+<li>Taranis/TaranisExceptions.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

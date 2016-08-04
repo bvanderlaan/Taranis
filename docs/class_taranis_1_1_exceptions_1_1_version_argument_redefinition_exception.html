@@ -43,7 +43,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -101,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>The <a class="el" href="class_taranis_1_1_exceptions_1_1_version_argument_redefinition_exception.html" title="The VersionArgumentRedefinitionException class is an exception which occures when an argument is defi...">VersionArgumentRedefinitionException</a> class is an exception which occures when an argument is defined with the same name as the built in <em>version</em> argument. So if the user defines a CLI with a version and a flag with the name <em>version</em> this exception will be thrown.  
  <a href="class_taranis_1_1_exceptions_1_1_version_argument_redefinition_exception.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_taranis_exceptions_8hpp_source.html">TaranisExceptions.hpp</a>&gt;</code></p>
+<p><code>#include &lt;TaranisExceptions.hpp&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Taranis::Exceptions::VersionArgumentRedefinitionException:</div>
 <div class="dyncontent">
@@ -131,11 +130,9 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>what</b> () c
 <div class="textblock"><p>The <a class="el" href="class_taranis_1_1_exceptions_1_1_version_argument_redefinition_exception.html" title="The VersionArgumentRedefinitionException class is an exception which occures when an argument is defi...">VersionArgumentRedefinitionException</a> class is an exception which occures when an argument is defined with the same name as the built in <em>version</em> argument. So if the user defines a CLI with a version and a flag with the name <em>version</em> this exception will be thrown. </p>
 <div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>()</div><div class="line">             .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#adf5d9f2f637fcd569bf2dc656b2b517b">WithVersion</a>(<span class="stringliteral">&quot;1.2.3.4&quot;</span>)</div><div class="line">             .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#a4e9b92dce63b7a05d0442178ff5f9fc4">WithFlag</a>(<span class="stringliteral">&quot;version&quot;</span>, <span class="stringliteral">&quot;Show me the version!&quot;</span>);</div></div><!-- fragment --><p>The above would generate this exception becuase the defined flag has the same name as the built in version argument.</p>
 <p>Note however that this exception is only thrown if the <em>version</em> argument is in play. Take for instance the below, no exceptoin will be thrown because in this case the <em>version</em> argument has not been defined.</p>
-<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>()</div><div class="line">             .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#a4e9b92dce63b7a05d0442178ff5f9fc4">WithFlag</a>(<span class="stringliteral">&quot;version&quot;</span>, <span class="stringliteral">&quot;Show me the version!&quot;</span>);</div></div><!-- fragment --> 
-<p>Definition at line <a class="el" href="_taranis_exceptions_8hpp_source.html#l00144">144</a> of file <a class="el" href="_taranis_exceptions_8hpp_source.html">TaranisExceptions.hpp</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>Taranis/<a class="el" href="_taranis_exceptions_8hpp_source.html">TaranisExceptions.hpp</a></li>
-<li>Taranis/<a class="el" href="_taranis_exceptions_8cpp_source.html">TaranisExceptions.cpp</a></li>
+<div class="fragment"><div class="line"><a class="code" href="class_taranis_1_1_command_line_interface.html#a4f4218cf73245829dc5d07a7b91ec261">CommandLineInterface::build</a>()</div><div class="line">             .<a class="code" href="class_taranis_1_1_command_line_interface_builder.html#a4e9b92dce63b7a05d0442178ff5f9fc4">WithFlag</a>(<span class="stringliteral">&quot;version&quot;</span>, <span class="stringliteral">&quot;Show me the version!&quot;</span>);</div></div><!-- fragment --> </div><hr/>The documentation for this class was generated from the following files:<ul>
+<li>Taranis/TaranisExceptions.hpp</li>
+<li>Taranis/TaranisExceptions.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

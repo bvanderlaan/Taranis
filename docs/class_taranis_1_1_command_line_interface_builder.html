@@ -43,7 +43,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -103,7 +102,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>The <a class="el" href="class_taranis_1_1_command_line_interface_builder.html" title="The CommandLineInterfaceBuilder class is used to construct a command line interface object...">CommandLineInterfaceBuilder</a> class is used to construct a command line interface object. You can specify what arguments your CLI object will process as well as optionally set a name, version, and description of your application which will be displayed in the built in help text.  
  <a href="class_taranis_1_1_command_line_interface_builder.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_command_line_interface_builder_8hpp_source.html">CommandLineInterfaceBuilder.hpp</a>&gt;</code></p>
+<p><code>#include &lt;CommandLineInterfaceBuilder.hpp&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -171,9 +170,7 @@ Protected Member Functions</h2></td></tr>
 <div class="textblock"><p>The <a class="el" href="class_taranis_1_1_command_line_interface_builder.html" title="The CommandLineInterfaceBuilder class is used to construct a command line interface object...">CommandLineInterfaceBuilder</a> class is used to construct a command line interface object. You can specify what arguments your CLI object will process as well as optionally set a name, version, and description of your application which will be displayed in the built in help text. </p>
 <dl class="section warning"><dt>Warning</dt><dd>The QApplication object needs to exist before building a <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> object. If you try to build a CLI object before the QApplication object exists an exception will be thrown alerting you of this fact. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example5_8cpp-example.html#_a0">main.example5.cpp</a>, and <a class="el" href="main_8example6_8cpp-example.html#_a0">main.example6.cpp</a>.</dd>
-</dl>
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8hpp_source.html#l00048">48</a> of file <a class="el" href="_command_line_interface_builder_8hpp_source.html">CommandLineInterfaceBuilder.hpp</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</dl></div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a1745d837d33032b5746af634da6148ed"></a>
 <div class="memitem">
 <div class="memproto">
@@ -199,8 +196,6 @@ Protected Member Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Only arguments which have one of these prefixes will be parsed by the CLI. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a list of argument prefixes that the CLI will accept. </dd></dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00075">75</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a89e07a674eb82a97d144a73e30449e98"></a>
@@ -218,8 +213,6 @@ Protected Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Returns the constructed <a class="el" href="class_taranis_1_1_command_line_interface.html" title="The CommandLineInterface class represents a command line interface. Your application will accept comm...">CommandLineInterface</a> object. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example5_8cpp-example.html#a5">main.example5.cpp</a>, and <a class="el" href="main_8example6_8cpp-example.html#a3">main.example6.cpp</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00093">93</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ad1434de0cb9cabd3afc9d03b08aa11a0"></a>
@@ -262,8 +255,6 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00207">207</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a31a35c680850bc2d9e80b23cddd7865f"></a>
@@ -288,8 +279,6 @@ Protected Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00146">146</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -327,8 +316,6 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example1_8cpp-example.html#a4">main.example1.cpp</a>, <a class="el" href="main_8example2_8cpp-example.html#a3">main.example2.cpp</a>, <a class="el" href="main_8example3_8cpp-example.html#a3">main.example3.cpp</a>, <a class="el" href="main_8example5_8cpp-example.html#a3">main.example5.cpp</a>, and <a class="el" href="main_8example6_8cpp-example.html#a1">main.example6.cpp</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00153">153</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a6a68df19c3e2c7f7ea0e1af928714910"></a>
@@ -372,8 +359,6 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00162">162</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aefa9f5c21cdf3e34c262ca2b702fcb10"></a>
@@ -400,8 +385,6 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example1_8cpp-example.html#a2">main.example1.cpp</a>, <a class="el" href="main_8example2_8cpp-example.html#a1">main.example2.cpp</a>, <a class="el" href="main_8example3_8cpp-example.html#a1">main.example3.cpp</a>, <a class="el" href="main_8example5_8cpp-example.html#a1">main.example5.cpp</a>, <a class="el" href="main_8example7_8cpp-example.html#a2">main.example7.cpp</a>, and <a class="el" href="main_8example8_8cpp-example.html#a2">main.example8.cpp</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00123">123</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ad0eea7bb6f31b815399193d38394a6f5"></a>
@@ -441,8 +424,6 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example7_8cpp-example.html#a4">main.example7.cpp</a>, and <a class="el" href="main_8example8_8cpp-example.html#a4">main.example8.cpp</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00169">169</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aad5b0f48e84c8f327b7ca8a830a04601"></a>
@@ -484,8 +465,6 @@ Protected Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00200">200</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -531,8 +510,6 @@ Protected Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00178">178</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
 
 </div>
 </div>
@@ -583,8 +560,6 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00190">190</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="adf5d9f2f637fcd569bf2dc656b2b517b"></a>
@@ -612,8 +587,6 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8example1_8cpp-example.html#a3">main.example1.cpp</a>, <a class="el" href="main_8example2_8cpp-example.html#a2">main.example2.cpp</a>, <a class="el" href="main_8example3_8cpp-example.html#a2">main.example3.cpp</a>, <a class="el" href="main_8example5_8cpp-example.html#a2">main.example5.cpp</a>, <a class="el" href="main_8example7_8cpp-example.html#a3">main.example7.cpp</a>, and <a class="el" href="main_8example8_8cpp-example.html#a3">main.example8.cpp</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00130">130</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a2a14ed3facb1e95b76234f3f25a8371c"></a>
@@ -652,13 +625,11 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_command_line_interface_builder_8cpp_source.html#l00137">137</a> of file <a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a>.</p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Taranis/<a class="el" href="_command_line_interface_builder_8hpp_source.html">CommandLineInterfaceBuilder.hpp</a></li>
-<li>Taranis/<a class="el" href="_command_line_interface_builder_8cpp_source.html">CommandLineInterfaceBuilder.cpp</a></li>
+<li>Taranis/CommandLineInterfaceBuilder.hpp</li>
+<li>Taranis/CommandLineInterfaceBuilder.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
