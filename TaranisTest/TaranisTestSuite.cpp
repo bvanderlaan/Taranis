@@ -876,6 +876,21 @@ void TaranisTestSuite::testFlagWithValueAndCustomHandler()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testActionWithValue()
+{
+    QVariant listActionValue( false );
+    CommandLineInterface cli = CommandLineInterfaceBuilder("My Cool App", {"--list=hello"})
+            .WithAction("list", "List stuff.",[&](QVariant value) {
+                // This argument is not about the value, normaily we don't use 'value' but instead call a method.
+                listActionValue = value;
+            });
+
+    QCOMPARE( listActionValue.isValid(), false );
+    QCOMPARE( listActionValue.toBool(), false );
+    QCOMPARE( listActionValue.toString(), QStringLiteral("") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testIsValidWhenItIs()
 {

@@ -305,6 +305,9 @@ namespace Taranis
          * 'version' argument is not about setting the version or turning on a version flag but rather about executing the display
          * version action so the user can see the version of your application on screen.
          *
+         * No values will be stored for this argument type and an action handler is required to specify which action should be
+         * executed when this argument is provided.
+         *
          * @code{.cpp}
          * CommandLineInterface cli = CommandLineInterface::build().WithAction("restart", "Will restart the service.",
          *                                          [this](QVariant) {

@@ -144,6 +144,7 @@ namespace Taranis
             /// Test invalid flag
             void testFlagWithValue();
             void testFlagWithValueAndCustomHandler();
+            void testActionWithValue();
 
             /////////////////////////////////////////////////////////////////////////////
             /// InputArgument
