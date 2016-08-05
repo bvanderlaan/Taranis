@@ -83,22 +83,7 @@ CommandLineInterface& CommandLineInterface::process()
     int numOfArguments = m_inputArguments.count();
     for( int i = 0; i < numOfArguments; ++i )
     {
-        InputArgument* input = new InputArgument( m_inputArguments.at(i), m_acceptedArgumentPrefixs );
-        if ( ( numOfArguments > 1 ) && (i < numOfArguments - 1 ) && input->isValid() && !input->hasValue() )
-        {
-            bool isNextArgumentValid = InputArgument( m_inputArguments.at(i+1), m_acceptedArgumentPrefixs ).isValid();
-            if ( !isNextArgumentValid )
-            {
-                QString multiPartInput = QString("%1%2%3")
-                                                .arg(m_inputArguments.at(i))
-                                                .arg( input->nameValueSeperator().isEmpty() ? ":" : "" )
-                                                .arg(m_inputArguments.at(i+1));
-
-                delete input;
-                input = new InputArgument( multiPartInput , m_acceptedArgumentPrefixs );
-                ++i;
-            }
-        }
+        InputArgument* input = parseInputArgument(i);
 
         if ( input->isValid() )
         {
@@ -113,9 +98,11 @@ CommandLineInterface& CommandLineInterface::process()
                 case ArgumentType::Boolean:
                     value = true;
                     break;
+                case ArgumentType::Action:
+                    value = arg->value();
+                    break;
                 default:
                     break;
-
                 }
 
                 arg->callback()( value );
@@ -125,6 +112,31 @@ CommandLineInterface& CommandLineInterface::process()
     }
 
     return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+InputArgument* CommandLineInterface::parseInputArgument(int& index)
+{
+    int numOfArguments = m_inputArguments.count();
+    InputArgument* input = new InputArgument( m_inputArguments.at(index), m_acceptedArgumentPrefixs );
+
+    if ( ( numOfArguments > 1 ) && (index < numOfArguments - 1 ) && input->isValid() && !input->hasValue() )
+    {
+        bool isNextArgumentValid = InputArgument( m_inputArguments.at(index+1), m_acceptedArgumentPrefixs ).isValid();
+        if ( !isNextArgumentValid )
+        {
+            QString multiPartInput = QString("%1%2%3")
+                                            .arg(m_inputArguments.at(index))
+                                            .arg( input->nameValueSeperator().isEmpty() ? ":" : "" )
+                                            .arg(m_inputArguments.at(index+1));
+
+            delete input;
+            input = new InputArgument( multiPartInput , m_acceptedArgumentPrefixs );
+            ++index;
+        }
+    }
+
+    return input;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

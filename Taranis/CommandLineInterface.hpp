@@ -39,6 +39,7 @@ namespace Taranis
     namespace Internal
     {
         class Argument;
+        class InputArgument;
     }
 
     /**
@@ -97,6 +98,7 @@ namespace Taranis
         virtual QString normilizeKey( const QString& key ) const;
         virtual void validateArgumentName(const Internal::Argument& arg) const;
         virtual void validateArgumentShortName(const Internal::Argument& arg) const;
+        virtual Internal::InputArgument* parseInputArgument(int& index);
 
     private:
         QString m_applicationName;
