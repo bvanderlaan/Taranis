@@ -83,32 +83,45 @@ CommandLineInterface& CommandLineInterface::process()
     int numOfArguments = m_inputArguments.count();
     for( int i = 0; i < numOfArguments; ++i )
     {
-        InputArgument* arg = new InputArgument( m_inputArguments.at(i), m_acceptedArgumentPrefixs );
-        if ( ( numOfArguments > 1 ) && (i < numOfArguments - 1 ) && arg->isValid() && !arg->hasValue() )
+        InputArgument* input = new InputArgument( m_inputArguments.at(i), m_acceptedArgumentPrefixs );
+        if ( ( numOfArguments > 1 ) && (i < numOfArguments - 1 ) && input->isValid() && !input->hasValue() )
         {
             bool isNextArgumentValid = InputArgument( m_inputArguments.at(i+1), m_acceptedArgumentPrefixs ).isValid();
             if ( !isNextArgumentValid )
             {
                 QString multiPartInput = QString("%1%2%3")
                                                 .arg(m_inputArguments.at(i))
-                                                .arg( arg->nameValueSeperator().isEmpty() ? ":" : "" )
+                                                .arg( input->nameValueSeperator().isEmpty() ? ":" : "" )
                                                 .arg(m_inputArguments.at(i+1));
 
-                delete arg;
-                arg = new InputArgument( multiPartInput , m_acceptedArgumentPrefixs );
+                delete input;
+                input = new InputArgument( multiPartInput , m_acceptedArgumentPrefixs );
                 ++i;
             }
         }
 
-        if ( arg->isValid() )
+        if ( input->isValid() )
         {
-            QString key = normilizeKey( arg->name() );
+            QString key = normilizeKey( input->name() );
             if ( m_arguments.contains( key ) )
             {
-                m_arguments[key]->callback()(arg->value());
+                Argument* arg = m_arguments[key];
+                QVariant value = input->value();
+
+                switch ( arg->type() )
+                {
+                case ArgumentType::Boolean:
+                    value = true;
+                    break;
+                default:
+                    break;
+
+                }
+
+                arg->callback()( value );
             }
         }
-        delete arg;
+        delete input;
     }
 
     return *this;

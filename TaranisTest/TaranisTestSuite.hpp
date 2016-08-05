@@ -141,6 +141,11 @@ namespace Taranis
             void testAddingArgumentWhichCollidesWithBuiltInVersionShortNameButNoVersionIsSet();
             void testAddingArgumentWhichCollidesWithBuiltInVersionShortNameButNoVersionIsSetHoweverAnotherArgumentWithSameShortNameIs();
 
+            /// Test invalid flag
+            void testFlagWithValue();
+            void testFlagWithValueAndCustomHandler();
+
+            /////////////////////////////////////////////////////////////////////////////
             /// InputArgument
             void testIsValidWhenItIs();
             void testIsValidWhenItsNot();

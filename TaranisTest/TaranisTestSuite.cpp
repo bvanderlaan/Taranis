@@ -848,11 +848,35 @@ void TaranisTestSuite::testAddingArgumentWhichCollidesWithBuiltInVersionShortNam
     QVERIFY_EXCEPTION_THROWN(CommandLineInterfaceBuilder()
             .WithName("My Cool App")
             .WithFlag("victor", "Enables victor mode.")
-            .WithFlag("verbose", "Enables verbose logging."), ShortNameCollisionException);
+                             .WithFlag("verbose", "Enables verbose logging."), ShortNameCollisionException);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testFlagWithValue()
+{
+    CommandLineInterface cli = CommandLineInterfaceBuilder("My Cool App", {"--debug=hello"})
+            .WithFlag("debug", "enables debug mode.");
+
+    QCOMPARE( cli["debug"].toBool(), true );
+    QCOMPARE( cli["debug"].toString(), QStringLiteral("true") );
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TaranisTestSuite::testFlagWithValueAndCustomHandler()
+{
+    QVariant debug( false );
+    CommandLineInterface cli = CommandLineInterfaceBuilder("My Cool App", {"--debug=hello"})
+            .WithFlag("debug", "enables debug mode.",[&](QVariant value) {
+                debug = value;
+            });
+
+    QCOMPARE( debug.toBool(), true );
+    QCOMPARE( debug.toString(), QStringLiteral("true") );
+}
+
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 void TaranisTestSuite::testIsValidWhenItIs()
 {
     InputArgument arg( "--help", {"--"} );
