@@ -35,7 +35,7 @@ configuration:
   - Release
 
 install:
-  - cmd: @echo Building with [%COMPILER%]
+  - echo Building with [%COMPILER%]
   - cinst doxygen.install
   - if [%COMPILER%] == [vs2015] ( set QTDIR=C:\Qt\5.6\msvc2015_32 )
   - if [%COMPILER%] == [vs2013] ( set QTDIR=C:\Qt\5.6\msvc2013_32 )
@@ -43,7 +43,7 @@ install:
   - if [%COMPILER%] == [gcc] ( set QTDIR=C:\Qt\5.6\mingw49_32 )
   - set PATH=%PATH%;%QTDIR%\bin
   - if [%COMPILER%] == [gcc] ( set PATH=%PATH%;C:\MinGW\bin )
-  - cmd: @echo Done Install
+  - echo Done Install
 
 before_build:
   - cmd: doxygen --version
