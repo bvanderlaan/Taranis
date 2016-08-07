@@ -44,7 +44,9 @@ install:
   - echo QTDIR == %QTDIR%
   - echo %PATH%
   - set PATH=%PATH%;%QTDIR%\bin
+  - echo %PATH%
   - if [%COMPILER%] == [gcc] ( set PATH=%PATH%;C:\MinGW\bin )
+  - echo %PATH%
   - echo Done Install
 
 before_build:
