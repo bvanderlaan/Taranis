@@ -41,6 +41,8 @@ install:
   - if [%COMPILER%] == [vs2013] ( set QTDIR=C:\Qt\5.6\msvc2013_32 )
   - if [%COMPILER%] == [vs2012] ( set QTDIR=C:\Qt\5.6\msvc2012_32 )
   - if [%COMPILER%] == [gcc] ( set QTDIR=C:\Qt\5.6\mingw49_32 )
+  - echo QTDIR == %QTDIR%
+  - echo %PATH%
   - set PATH=%PATH%;%QTDIR%\bin
   - if [%COMPILER%] == [gcc] ( set PATH=%PATH%;C:\MinGW\bin )
   - echo Done Install
