@@ -4,8 +4,30 @@ branches:
   except:
     - gh-pages
 
-os: Visual Studio 2015
 clone_depth: 5
+
+os: Visual Studio 2015
+
+matrix:
+  - environment: 
+    - VisualStudioVersion: 14.0
+    - COMPILER: vs2015
+  - environment: 
+    - VisualStudioVersion: 12.0
+    - COMPILER: vs2013
+  - environment: 
+    - VisualStudioVersion: 11.0
+    - COMPILER: vs2012
+  - environment: 
+    - COMPILER: gcc
+
+allow_failures:
+  - environment: 
+    - VisualStudioVersion: 12.0
+    - COMPILER: vs2013
+  - environment: 
+    - VisualStudioVersion: 11.0
+    - COMPILER: vs2012
 
 platform:
   - Win32
@@ -15,15 +37,29 @@ configuration:
 
 install:
   - cinst doxygen.install
-  - set QTDIR=C:\Qt\5.6\mingw49_32
-  - set PATH=%PATH%;%QTDIR%\bin;C:\MinGW\bin
+  - if [%COMPILER%] == [vs2015] ( set QTDIR=C:\Qt\5.6\msvc2015_32 )
+  - if [%COMPILER%] == [vs2013] ( set QTDIR=C:\Qt\5.6\msvc2013_32 )
+  - if [%COMPILER%] == [vs2012] ( set QTDIR=C:\Qt\5.6\msvc2012_32 )
+  - if [%COMPILER%] == [gcc] ( set QTDIR=C:\Qt\5.6\mingw49_32 )
+  - set PATH=%PATH%;%QTDIR%\bin
+  - if [%COMPILER%] == [gcc] ( set PATH=%PATH%;C:\MinGW\bin )
+
+before_build:
+  - cmd: doxygen --version
+  - cmd: qmake --version
+  - cmd: g++ --version
+  - cmd: msbuild --version
+  - cmd: if [%COMPILER%] == [vs2015] ( qmake -spec win32-msvc2015 -tp vc Taranis.pro )
+  - cmd: if [%COMPILER%] == [vs2013] ( qmake -spec win32-msvc2013 -tp vc Taranis.pro )
+  - cmd: if [%COMPILER%] == [vs2012] ( qmake -spec win32-msvc2012 -tp vc Taranis.pro )
+  - cmd: if [%COMPILER%] == [gcc] ( qmake Taranis.pro )
 
 build:
   verbosity: detailed
 
 build_script:
-  - qmake Taranis.pro
-  - mingw32-make
+  - cmd: if [%COMPILER%] == [gcc] ( mingw32-make )
+  - cmd: if [%COMPILER%] != [gcc] ( msbuild Taranis.sln )
 
 test_script:
 #   - cmd: echo c:\projects\taranis\TaranisTest\%CONFIGURATION%\TaranisTest.exe 
