@@ -63,6 +63,8 @@ build_script:
   - cmd: if NOT [%COMPILER%] == [gcc] ( msbuild Taranis.sln )
 
 test_script:
+    - echo %CONFIGURATION%
+    - dir TaranisTest\%CONFIGURATION%
 #   - cmd: echo c:\projects\taranis\TaranisTest\%CONFIGURATION%\TaranisTest.exe 
 #   - mingw32-make check 
 
