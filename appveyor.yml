@@ -49,8 +49,8 @@ install:
 before_build:
   - cmd: doxygen --version
   - cmd: qmake --version
-  - cmd: g++ --version
-  - cmd: msbuild --version
+  - cmd: if [%COMPILER%] == [gcc] g++ --version
+  - cmd: if NOT [%COMPILER%] == [gcc] msbuild /version
   - cmd: if [%COMPILER%] == [vs2015] ( qmake -spec win32-msvc2015 -tp vc Taranis.pro )
   - cmd: if [%COMPILER%] == [vs2013] ( qmake -spec win32-msvc2013 -tp vc Taranis.pro )
   - cmd: if [%COMPILER%] == [vs2012] ( qmake -spec win32-msvc2012 -tp vc Taranis.pro )
