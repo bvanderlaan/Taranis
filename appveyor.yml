@@ -21,11 +21,12 @@ environment:
 
   - COMPILER: gcc
 
-allow_failures:
-  - VisualStudioVersion: 12.0
-    COMPILER: vs2013
-  - VisualStudioVersion: 11.0
-    COMPILER: vs2012
+matrix:
+  allow_failures:
+    - VisualStudioVersion: 12.0
+      COMPILER: vs2013
+    - VisualStudioVersion: 11.0
+      COMPILER: vs2012
 
 platform:
   - Win32
