@@ -739,7 +739,7 @@ void TaranisTestSuite::testArgumentWithValueNoSpaceAndSecondInvalidArgument()
 void TaranisTestSuite::testARgumentWithDefaultValueWhenAbsent()
 {
     auto arguments = CommandLineInterfaceBuilder("My Cool App", {})
-            .WithValue("remote", "1.2.3.4", "This is a test, please stand by.")
+            .WithValue("remote", "1.2.3.4", QStringLiteral("This is a test, please stand by."))
             .getCommandLineInterface();
 
     QCOMPARE( arguments["remote"].toString(), QString("1.2.3.4") );
@@ -749,7 +749,7 @@ void TaranisTestSuite::testARgumentWithDefaultValueWhenAbsent()
 void TaranisTestSuite::testARgumentWithDefaultValueWhenProvided()
 {
     auto arguments = CommandLineInterfaceBuilder("My Cool App", {"--remote","192.168.228.64"})
-            .WithValue("remote", "1.2.3.4", "This is a test, please stand by.")
+            .WithValue("remote", "1.2.3.4", QStringLiteral("This is a test, please stand by."))
             .getCommandLineInterface();
 
     QCOMPARE( arguments["remote"].toString(), QString("192.168.228.64") );
@@ -799,7 +799,7 @@ void TaranisTestSuite::testAddingArgumentsWithDifferentNamesButSameShortNameWith
 void TaranisTestSuite::testAddingArgumentWhichCollidesWithBuiltInHelpShortName()
 {
     QVERIFY_EXCEPTION_THROWN(CommandLineInterfaceBuilder()
-                             .WithValue("here", "Canada", "Set current location."), HelpShortNameCollisionException);
+                             .WithValue("here", "Canada", QStringLiteral("Set current location.")), HelpShortNameCollisionException);
 }
 
 /////////////////////////////////////////////////////////////////////////////
