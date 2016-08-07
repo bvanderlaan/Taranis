@@ -44,15 +44,15 @@ before_build:
   - cmd: doxygen --version
   - cmd: qmake --version
   - cmd: if [%COMPILER%] == [gcc] g++ --version
-  - cmd: if NOT [%COMPILER%] == [gcc] msbuild /version
-  - cmd: if [%COMPILER%] == [vs2015] ( qmake -spec win32-msvc2015 -tp vc Taranis.pro )
+  - cmd: if NOT [%COMPILER%] == [gcc] msbuild /version 
   - cmd: if [%COMPILER%] == [vs2015] ( qmake -spec win32-msvc2015 -tp vc Taranis/Taranis.pro )
   - cmd: if [%COMPILER%] == [vs2015] ( qmake -spec win32-msvc2015 -tp vc TaranisTest/TaranisTest.pro )
   - cmd: if [%COMPILER%] == [vs2015] ( qmake -spec win32-msvc2015 -tp vc Example/Example.pro )
-  - cmd: if [%COMPILER%] == [vs2013] ( qmake -spec win32-msvc2013 -tp vc Taranis.pro )
+  - cmd: if [%COMPILER%] == [vs2015] ( qmake -spec win32-msvc2015 -tp vc Taranis.pro )
   - cmd: if [%COMPILER%] == [vs2013] ( qmake -spec win32-msvc2013 -tp vc Taranis/Taranis.pro )
   - cmd: if [%COMPILER%] == [vs2013] ( qmake -spec win32-msvc2013 -tp vc TaranisTest/TaranisTest.pro )
   - cmd: if [%COMPILER%] == [vs2013] ( qmake -spec win32-msvc2013 -tp vc Example/Example.pro )
+  - cmd: if [%COMPILER%] == [vs2013] ( qmake -spec win32-msvc2013 -tp vc Taranis.pro )
   - cmd: if [%COMPILER%] == [gcc] ( qmake Taranis.pro )
 
 build:
